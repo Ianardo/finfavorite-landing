@@ -1,0 +1,350 @@
+:root {
+    --bg: #ffffff;
+    --text: #1a1a1b;
+    --text-inverted: #ffffff;
+    --muted: rgba(11, 18, 32, 0.72);
+    --border: rgba(15, 30, 60, 0.10);
+
+    --accent-color: #0B68FF;
+    --accent-color-light: #2898eb;
+    --secondary-accent-color: #33a6e9;
+    --amber: #f2ab27;
+    --blackish: #1a1a1e;
+    --med-gray: #a9a9ba;
+    --light-gray: #dadadc;
+    --lighter-gray: #ebebed;
+    --lightest-gray: #f1f1f4;
+
+    --container: 1100px;
+
+    --r-lg: 18px;
+    --r-md: 14px;
+
+    --shadow-lg: 0 30px 70px rgba(11, 18, 32, 0.10);
+    --shadow-md: 0 18px 45px rgba(11, 18, 32, 0.08);
+
+    --font-size-xs: 1.2rem;
+    --font-size-s: 1.4rem;
+    --font-size-xl: 2.8rem;
+
+    /* spacing scale */
+    --s-1: 8px;
+    --s-2: 12px;
+    --s-3: 16px;
+    --s-4: 24px;
+    --s-5: 32px;
+    --s-6: 48px;
+    --s-7: 72px;
+    --s-8: 96px;
+
+    /* font weights */
+    --fw-regular: 400;
+    --fw-medium: 500;
+    --fw-semibold: 600;
+    --fw-bold: 700;
+    --fw-black: 800;
+}
+
+* { box-sizing: border-box; }
+html {
+    scroll-behavior: smooth;           /* for anchor clicks */
+    scroll-snap-type: y proximity;     /* discrete snaps */
+    /* scroll-padding-top: 72px;          if you have a fixed header */
+    height: 100%;
+    /* For Chrome, Safari, and Opera */
+    &::-webkit-scrollbar {
+        display: none;
+    }
+
+    /* For Internet Explorer and Edge */
+    -ms-overflow-style: none;
+
+    /* For Firefox */
+    scrollbar-width: none;
+}
+
+body {
+    height: 100%;
+    margin: 0;
+    font-family: "Inter", sans-serif;
+    color: var(--text);
+    background: var(--bg);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+section {
+    padding: var(--s-8) 0;
+
+    min-height: 100vh;
+    min-width: 100vw;
+
+    display: flex;
+    justify-content: center;
+
+    scroll-snap-align: start;          /* scroll snapping */
+    scroll-snap-stop: always;          /* helps prevent “skipping” on fast scrolls */
+    
+    border-bottom: 2px solid var(--lightest-gray);
+}
+
+hgroup {
+    margin-top: 5vh;
+    max-width: 1000px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+hgroup.narrow-header {
+    max-width: 700px;
+}
+
+section#hero {
+    background-image: url(../img/scribbles.png);
+    background-size: 100vw 130vh;
+    background-position: 0vw 15vh;
+    background-repeat: no-repeat;
+    
+    flex-direction: column;
+    align-items: center;
+
+    overflow: hidden;
+}
+
+section#hero #hero-image {
+    height: 60%;
+    min-width: 50%;
+    max-width: 60%;
+}
+
+section#hero img {
+    /* position: relative; */
+    width: 100%;
+}
+
+section hgroup p {
+    width: 85%;
+}
+
+section#hero hgroup {
+    flex-grow: 1;
+    margin-top: 5vh;
+}
+
+section#macro-micro {
+    flex-direction: row;
+    padding: 2vw 0;
+}
+
+section#macro-micro hgroup {
+    margin-top: 5vw;
+    text-align: left;
+    align-items: start;
+}
+
+section#macro-micro .info-images {
+    height: 70vw;
+}
+
+section#macro-micro .info-images img {
+    height: 100%;
+    width: auto;
+}
+
+section#macro-micro hgroup {
+    margin-left: 5vw;
+    text-shadow: 4px 4px 12px rgb(0,0,0,0.25);
+}
+
+section#how-it-works {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+section#how-it-works #how-it-works-content {
+    display: flex;
+    flex-direction: row;
+    gap: var(--s-6);
+    margin-top: var(--s-6);
+    margin: auto 20vw;
+}
+
+section#how-it-works #steps {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 1;
+}
+
+section#how-it-works .step {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    padding: var(--s-4);
+    gap: var(--s-2);
+}
+
+section#how-it-works .step .step-number {
+    background-color: var(--amber);
+    border-radius: 100%;
+    min-width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-inverted);
+    font-weight: 800;
+}
+
+section#how-it-works .step .step-words h2 {
+    font-size: var(--font-size-xs);
+    font-weight: var(--fw-semibold);
+    margin: 0;
+}
+
+section#how-it-works .step .step-words p {
+    margin-top: var(--s-1);
+}
+
+section#how-it-works #how-it-works-content #how-it-works-image {
+    flex-basis: 2;
+    max-width: 40vw;
+    height: auto;
+}
+
+
+section#how-it-works #how-it-works-content #how-it-works-image img {
+    width: 100%;
+    height: auto;
+}
+
+section#trust {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+section#trust .trust-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    /* Creates 2 rows with automatic height based on content */
+    grid-template-rows: auto auto; 
+    gap: var(--s-6);
+    margin-top: var(--s-6);
+}
+
+.container {
+    width: min(var(--container), calc(100% - 48px));
+    margin: 0 auto;
+}
+
+.card {
+    border: 1px solid var(--border);
+    border-radius: var(--r-lg);
+    background: #fff;
+    box-shadow: var(--shadow-md);
+}
+
+.center-align {
+    text-align: center;
+}
+
+h1 {
+    font-size: var(--font-size-xl);
+    color: var(--text);
+    font-weight: var(--fw-bold);
+    margin: 0;
+}
+
+.cta {
+    background-color: var(--accent-color);
+    color: var(--text-inverted);
+    padding: 12px 24px;
+    border-radius: var(--r-md);
+    font-weight: 600;
+    font-size: var(--font-size-xs);
+    text-decoration: none;
+}
+
+hgroup .header-pill {
+    padding: 0px 24px;
+    border-radius: 9999px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    margin-bottom: var(--s-4);
+}
+
+hgroup .header-pill .pill {
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--lightest-gray);
+    padding: 4px 20px 3px 20px;      /* tweak until it matches */
+    border-radius: 9999px;   /* the “pill” part */
+    color: #111827;          /* near-black */
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 1;
+
+    box-shadow: 0 1px 0 rgba(0,0,0,0.04); /* subtle lift (optional) */
+}
+
+hgroup p.subheader {
+    color: var(--med-gray);
+    font-size: var(--font-size-xs);
+}
+
+/* text gradient accent */
+.gradient-text {
+    background: linear-gradient(270deg, var(--accent-color), var(--secondary-accent-color), var(--accent-color));
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shimmer 7s linear infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.accent {
+    color: var(--accent-color);
+}
+/*                      */
+
+/* diagonal line background */
+.diag {
+    position: relative;
+    overflow: hidden;   /* hides anything outside the diagonal */
+}
+
+.diag h1 {
+    color: var(--text-inverted);
+}
+
+.diag p.subheader {
+    color: var(--light-gray);
+}
+
+.diag::before {
+    content:"";
+    position: absolute;
+    inset: 0;
+    background-image: conic-gradient(from 35deg at 30% 50%, var(--accent-color-light), var(--accent-color));
+    background-position: right;
+    background-repeat: no-repeat;
+    clip-path: polygon(0 0, 100% 0, 100% 15%, 0 95%);
+    z-index: -1;
+}
+
+.diag .container {
+    position: relative;
+    z-index: 1;  /* content above the background */
+}
+/***********************/
