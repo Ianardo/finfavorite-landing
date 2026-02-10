@@ -10,6 +10,7 @@
     --secondary-accent-color: #33a6e9;
     --amber: #f2ab27;
     --blackish: #1a1a1e;
+    --dark-med-gray: #9090a0;
     --med-gray: #a9a9ba;
     --light-gray: #dadadc;
     --lighter-gray: #ebebed;
@@ -25,7 +26,10 @@
 
     --font-size-xs: 1.2rem;
     --font-size-s: 1.4rem;
+    --font-size-m: 1.8rem;
     --font-size-xl: 2.8rem;
+
+    --font-size-list: 1.1rem;
 
     /* spacing scale */
     --s-1: 8px;
@@ -87,6 +91,11 @@ section {
     scroll-snap-stop: always;          /* helps prevent “skipping” on fast scrolls */
     
     border-bottom: 2px solid var(--lightest-gray);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
 }
 
 hgroup {
@@ -135,6 +144,8 @@ section#hero hgroup {
 
 section#macro-micro {
     flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
     padding: 2vw 0;
 }
 
@@ -145,11 +156,11 @@ section#macro-micro hgroup {
 }
 
 section#macro-micro .info-images {
-    height: 70vw;
+    height: 45vw;
 }
 
 section#macro-micro .info-images img {
-    height: 100%;
+    max-height: 100%;
     width: auto;
 }
 
@@ -214,7 +225,6 @@ section#how-it-works #how-it-works-content #how-it-works-image {
     height: auto;
 }
 
-
 section#how-it-works #how-it-works-content #how-it-works-image img {
     width: 100%;
     height: auto;
@@ -223,16 +233,70 @@ section#how-it-works #how-it-works-content #how-it-works-image img {
 section#trust {
     display: flex;
     flex-direction: column;
+    justify-content: flex-start;
     align-items: center;
+    gap: var(--s-2);
 }
 
 section#trust .trust-grid {
+    position: relative;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    /* Creates 2 rows with automatic height based on content */
     grid-template-rows: auto auto; 
-    gap: var(--s-6);
     margin-top: var(--s-6);
+}
+
+/* dashed cross */
+.trust-grid::before,
+.trust-grid::after {
+    content: "";
+    position: absolute;
+    pointer-events: none;
+    opacity: 0.9;
+}
+
+/* vertical dash */
+.trust-grid::before {
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    border-left: 2px dashed var(--lighter-gray);
+    transform: translateX(-1px);
+}
+
+/* horizontal dash */
+.trust-grid::after {
+    left: 0;
+    right: 0;
+    top: 50%;
+    border-top: 2px dashed var(--lighter-gray);
+    transform: translateY(-1px);
+}
+
+section#trust .trust-grid .trust-card {
+    max-width: 400px;
+    padding: var(--s-6);
+}
+
+section#trust .trust-grid .trust-card h3 {
+    font-size: var(--font-size-m);
+    font-weight: var(--fw-bold);
+    margin: 0;
+}
+
+section#trust .trust-grid ul {
+    color: var(--dark-med-gray)
+}
+
+section#trust .trust-grid ul li {
+    font-size: var(--font-size-list);
+    margin-bottom: var(--s-3);
+}
+
+section#trust .trust-card__icon img {
+    width: 35px;
+    height: 35px;
+    margin-bottom: var(--s-1);
 }
 
 .container {
