@@ -85,6 +85,7 @@
             <h1>Everything you need to reach your financial goals.</h1>
             <p class="subheader">Each part of the platform is designed to translate decisions into measurable outcomes.</p>
         </hgroup>
+
     </section>
     <section id="trust">
         <hgroup class="center-align narrow-header">
@@ -279,15 +280,74 @@
             </div>
         </div>
     </section>
-
-    <section id="pricing">
-        <hgroup class="center-align">
+    <section id="pricing" aria-labelledby="pricing-title">
+        <hgroup class="center-align narrow-header">
             <div class="header-pill">
                 <span class="pill">Pricing</span>
             </div>
-            <h1>Choose a plan that's right for you.</h1>
+
+            <h1>Choose a plan that's right for you.</h2>
             <p class="subheader">All plans keep your data exportable.</p>
         </hgroup>
+
+        <div class="pricing-wrap">
+            <div class="pricing-grid">
+                <article class="pricing-card" aria-labelledby="plan-free">
+                    <header class="pricing-card__header">
+                        <h3 id="plan-free">Free</h3>
+                        <p class="pricing-price">$0</p>
+                    </header>
+
+                    <ul class="pricing-features">
+                        <li>Core dashboards</li>
+                        <li>Watchlists and tags</li>
+                        <li>Trade journal</li>
+                        <li>CSV export</li>
+                    </ul>
+
+                    <footer class="pricing-card__footer">
+                        <button class="cta">Get started →</button>
+                    </footer>
+                </article>
+
+                <article class="pricing-card pricing-card--featured" aria-labelledby="plan-basic">
+                    <div class="pricing-badge" aria-hidden="true">Most popular</div>
+                    <header class="pricing-card__header">
+                        <h3 id="plan-basic">Basic</h3>
+                        <p class="pricing-price">$12<span class="pricing-price__unit">/mo</span></p>
+                    </header>
+
+                    <ul class="pricing-features">
+                        <li>Advanced performance breakdowns</li>
+                        <li>Custom tag analytics</li>
+                        <li>Template library</li>
+                        <li>Priority imports</li>
+                    </ul>
+
+                    <footer class="pricing-card__footer">
+                        <button class="cta">Get started →</button>
+                    </footer>
+                </article>
+
+                <article class="pricing-card" aria-labelledby="plan-premium">
+                    <header class="pricing-card__header">
+                        <h3 id="plan-premium">Premium</h3>
+                        <p class="pricing-price">$20<span class="pricing-price__unit">/mo</span></p>
+                    </header>
+
+                    <ul class="pricing-features">
+                        <li>Shared workspaces</li>
+                        <li>Role-based access</li>
+                        <li>Audit trails</li>
+                        <li>Team reports</li>
+                    </ul>
+
+                    <footer class="pricing-card__footer">
+                        <button class="cta">Get started →</button>
+                    </footer>
+                </article>
+            </div>
+        </div>
     </section>
     <script type="module" src="/src/main.js"></script>
   </body>

@@ -20,6 +20,7 @@
 
     --r-lg: 18px;
     --r-md: 14px;
+    --r-sm: 8px;
 
     --shadow-lg: 0 30px 70px rgba(11, 18, 32, 0.10);
     --shadow-md: 0 18px 45px rgba(11, 18, 32, 0.08);
@@ -347,7 +348,7 @@ section#testimonials {
     border: var(--lighter-gray) solid 1px;
     border-radius: var(--r-md);
     box-shadow: var(--shadow-sm);
-    background-color: #fff;
+    background-color: var(--bg);
 
     max-width: 420px;
     padding: var(--s-4);
@@ -389,6 +390,85 @@ section#testimonials {
     display: inline-block;
 }
 
+section#pricing {
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.pricing-wrap {
+    /* width: min(var(--container), calc(100% - 48px)); */
+    margin: var(--s-4) auto 0 auto;
+}
+
+.pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--s-5);
+    align-items: stretch;
+
+    width: 1300px;
+    margin: 0 auto;
+}
+
+.pricing-card {
+    position: relative;
+
+    background: var(--bg);
+    border: var(--lighter-gray) solid 1px;
+    border-radius: var(--r-md);
+    box-shadow: var(--shadow-sm);
+
+    padding: var(--s-4);
+
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-2);
+
+    min-height: 250px;
+}
+
+.pricing-card__header h3 {
+    margin: 0;
+    font-size: var(--font-size-xs);
+    font-weight: var(--fw-medium);
+    color: var(--text)
+}
+
+.pricing-price {
+    font-size: 2.0rem;
+    font-weight: var(--fw-semibold);
+    color: var(--text);
+    margin: 4px 0 0 0;
+}
+
+.pricing-features {
+    margin: 0;
+    padding-left: var(--s-3);
+    font-size: var(--font-size-xxs);
+    color: var(--dark-med-gray);
+    line-height: 1.8;
+}
+
+section#pricing .cta {
+    background-color: var(--blackish);
+    font-size: 1.0rem;
+    margin-top: var(--s-2);
+    box-shadow: var(--shadow-sm); 
+}
+
+.pricing-badge {
+    position: absolute;
+    left: 53%;
+    transform: translateX(50%);
+    background-color: var(--accent-color);
+    color: var(--text-inverted);
+    padding: 6px 10px;
+    border-radius: var(--r-sm);
+    font-size: 0.9rem;
+    font-weight: var(--fw-semibold);
+}
+
 .container {
     width: min(var(--container), calc(100% - 48px));
     margin: 0 auto;
@@ -415,11 +495,12 @@ h1 {
 .cta {
     background-color: var(--accent-color);
     color: var(--text-inverted);
-    padding: 12px 24px;
-    border-radius: var(--r-md);
+    padding: var(--s-2) var(--s-3);
+    border-radius: var(--r-sm);
     font-weight: 600;
     font-size: var(--font-size-xs);
     text-decoration: none;
+    border: none;
 }
 
 hgroup .header-pill {
