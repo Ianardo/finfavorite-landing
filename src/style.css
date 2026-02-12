@@ -469,6 +469,91 @@ section#pricing .cta {
     font-weight: var(--fw-semibold);
 }
 
+section#features {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: auto;
+    height: auto;
+    /* scroll-snap-align: none;
+    scroll-snap-stop: normal; */
+}
+
+.features-wrap {
+    width: min(var(--container), calc(100% - var(--s-4)));
+    margin: var(--s-4) auto 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-8);
+}
+
+.feature {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--s-6);
+}
+
+.feature.feature--left {
+    flex-direction: row;
+}
+
+.feature.feature--right {
+    flex-direction: row-reverse;
+}
+
+.feature-copy--right {
+    text-align: right;
+}
+
+.feature-icon img {
+    width: 40px;
+    height: 40px;
+    margin-bottom: var(--s-1);
+}
+
+.feature-copy h3 {
+    margin: 0;
+    font-size: 2.3rem;
+    font-weight: var(--fw-bold);
+    color: var(--text);
+}
+
+.feature-desc {
+    margin: var(--s-2) 0 var(--s-1) 0;
+    font-size: 1.1rem;
+    color: var(--med-gray);
+    line-height: 1.6;
+}
+
+.feature-link {
+    margin: 0;
+    color: var(--dark-med-gray);
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+.feature-media {
+    justify-self: flex-end;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.feature-media img {
+    width: min(720px, 100%);
+    height: auto;
+
+    border-radius: 18px;
+    border: 1px solid rgba(15, 30, 60, 0.10);
+
+    box-shadow: var(--shadow-sm);
+
+    background: #fff;
+    display: block;
+
+    justify-self: end;
+}
+
 .container {
     width: min(var(--container), calc(100% - 48px));
     margin: 0 auto;
@@ -583,3 +668,28 @@ hgroup p.subheader {
     z-index: 1;  /* content above the background */
 }
 /***********************/
+
+
+/* experimental */
+#testimonials .testimonial-card {
+  opacity: 0;
+  transform: translateY(14px);
+  transition:
+    opacity 600ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    transform 600ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  transition-delay: var(--stagger-delay, 0ms);
+  will-change: opacity, transform;
+}
+
+#testimonials.is-revealed .testimonial-card {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #testimonials .testimonial-card {
+    transition: none;
+    opacity: 1;
+    transform: none;
+  }
+}
