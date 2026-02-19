@@ -27,6 +27,9 @@
     --shadow-md: 0 18px 45px rgba(11, 18, 32, 0.08);
     --shadow-sm: 4px 4px 6px rgba(32, 36, 44, 0.05);
 
+    --text-shadow: 4px 4px 12px rgb(182,182,190,0.25);
+    --text-shadow-dark: 4px 4px 12px rgb(0,0,0,0.25);
+
     --font-size-xxs: 1rem;
     --font-size-xs: 1.2rem;
     --font-size-s: 1.4rem;
@@ -213,6 +216,7 @@ section#hero {
 
     overflow: hidden;
     max-height: 100svh;
+    gap: var(--s-6);
 }
 
 section#hero #hero-image {
@@ -233,6 +237,10 @@ section hgroup p {
 section#hero hgroup {
     flex-grow: 1;
     margin-top: 5vh;
+}
+
+#hero h1 {
+    font-size: 3.2rem;
 }
 
 section#macro-micro {
@@ -257,9 +265,9 @@ section#macro-micro .info-images img {
     width: auto;
 }
 
-section#macro-micro hgroup {
+section#macro-micro hgroup * {
     margin-left: 5vw;
-    text-shadow: 4px 4px 12px rgb(0,0,0,0.25);
+    text-shadow: var(--text-shadow-dark);
 }
 
 section#how-it-works {
@@ -300,6 +308,7 @@ section#how-it-works .step .step-number {
     justify-content: center;
     color: var(--text-inverted);
     font-weight: 800;
+    box-shadow: var(--shadow-sm);
 }
 
 section#how-it-works .step .step-words h2 {
@@ -331,6 +340,7 @@ section#trust {
 
     overflow: hidden;
     max-height: 100svh;
+    
 }
 
 section#trust .trust-grid {
@@ -837,6 +847,7 @@ h1 {
     color: var(--text);
     font-weight: var(--fw-bold);
     margin: 0;
+    text-shadow: var(--text-shadow);
 }
 
 .cta {
@@ -847,14 +858,39 @@ h1 {
     font-weight: 600;
     font-size: var(--font-size-xs);
     text-decoration: none;
-    border: none;
+    border: 1px solid rgba(255, 255, 255, 0.24);
+    box-shadow: 0 3px 8px rgba(11, 18, 32, 0.14);
+    transform: none;
+    cursor: pointer;
+    transition:
+        border-color var(--t-2) var(--ease-out),
+        box-shadow var(--t-2) var(--ease-out),
+        transform var(--t-2) var(--ease-out);
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .cta:hover {
+        border-color: rgba(255, 255, 255, 0.38);
+        box-shadow: 0 8px 18px rgba(11, 18, 32, 0.20);
+        transform: translateY(-2px);
+    }
+}
+
+.cta:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 5px rgba(11, 18, 32, 0.16);
+}
+
+.cta:focus-visible {
+    outline: 2px solid rgba(11, 104, 255, 0.9);
+    outline-offset: 3px;
+    box-shadow: 0 0 0 3px rgba(11, 104, 255, 0.28), 0 3px 8px rgba(11, 18, 32, 0.14);
 }
 
 section#pricing .cta, section#how-it-works .cta {
     background-color: var(--blackish);
     font-size: 1.0rem;
     margin-top: var(--s-2);
-    box-shadow: var(--shadow-sm); 
 }
 
 hgroup .header-pill {
