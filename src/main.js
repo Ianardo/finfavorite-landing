@@ -1,12 +1,22 @@
-// On-scroll reveal behavior
-ScrollReveal({reset: true, distance: '20px'})
-ScrollReveal().reveal('hgroup > *', {interval: 90});
-ScrollReveal().reveal('section > *:not(hgroup)', { delay: 200, distance: '10px' });
-ScrollReveal().reveal('#testimonials')
+const sr = ScrollReveal({
+  reset: false,        
+  duration: 650,
+  distance: '18px',
+  origin: 'bottom',
+  easing: 'cubic-bezier(0.2, 0.65, 0.3, 1)',
+  cleanup: true,
+});
 
-const sr = ScrollReveal({ distance: '18px', duration: 650, origin: 'bottom' });
+// Headings
+sr.reveal('hgroup > *', { interval: 90 });
 
-/* testimonials */
+// Generic reveal for sections, but EXCLUDE testimonials-wrap so it doesn't shift down
+sr.reveal('section > *:not(hgroup):not(.testimonials-wrap)', {
+  delay: 200,
+  distance: '10px',
+});
+
+// Testimonials: stagger in your custom interleaved order
 window.addEventListener('DOMContentLoaded', () => {
   const left = [...document.querySelectorAll('#testimonials .testimonials-col:nth-child(1) .testimonial-card')];
   const right = [...document.querySelectorAll('#testimonials .testimonials-col:nth-child(2) .testimonial-card')];
@@ -17,59 +27,16 @@ window.addEventListener('DOMContentLoaded', () => {
     if (right[i]) ordered.push(right[i]);
   }
 
-  const base = 120;   // ms before first
-  const step = 120;   // ms between each
+  const base = 120;
+  const step = 120;
 
   ordered.forEach((el, i) => {
-    el.style.setProperty('--stagger-delay', `${base + i * step}ms`);
+    sr.reveal(el, {
+      delay: base + i * step,
+      distance: '0px',   // IMPORTANT: no translate => no overlap at bottom
+      opacity: 0,
+    });
   });
-
-  ScrollReveal().reveal('#testimonials', {
-    distance: '0px',
-    duration: 1,
-    opacity: 1,
-    viewFactor: 0.2,
-    viewOffset: { bottom: 80 },
-    beforeReveal: (section) => section.classList.add('is-revealed'),
-  });
-});
-
-/* /testimonials */
-
-const cards = document.querySelectorAll('#testimonials .testimonial-card');
-
-sr.reveal(cards, {
-  delay: 100,     // initial wait before the first card
-  interval: 120,  // stagger step between cards
-  distance: '0px'
-});
-
-sr.reveal('#trust .trust-card', {
-  delay: 140,     // gives the header a beat
-  interval: 90,
-  distance: '12px',
-  duration: 600,
-});
-
-sr.reveal('#pricing .pricing-card', {
-  delay: 140,     // gives the header a beat
-  interval: 90,
-  distance: '12px',
-  duration: 600,
-});
-
-sr.reveal('#features .feature', {
-  delay: 140,     // gives the header a beat
-  interval: 90,
-  distance: '12px',
-  duration: 600,
-});
-
-sr.reveal('#how-it-works .step', {
-  delay: 140,     // gives the header a beat
-  interval: 90,
-  distance: '12px',
-  duration: 600,
 });
 
 const spotlight = document.querySelector('[data-feature-spotlight]');
