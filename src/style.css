@@ -93,6 +93,11 @@ body {
     padding-top: var(--nav-height);
 }
 
+img {
+    max-width: 100%;
+    height: auto;
+}
+
 .top-nav {
     width: 100%;
     border-bottom: 1px solid #e7e7ea;
@@ -157,7 +162,7 @@ body {
     }
 
     .top-nav__brand {
-        font-size: 24px;
+        font-size: 20px;
     }
 
     .top-nav__brand img {
@@ -215,8 +220,9 @@ section#hero {
     align-items: center;
 
     overflow: hidden;
-    max-height: 100svh;
     gap: var(--s-6);
+
+    max-height: 100svh;
 }
 
 section#hero #hero-image {
@@ -228,6 +234,11 @@ section#hero #hero-image {
 section#hero img {
     /* position: relative; */
     width: 100%;
+
+
+    border-radius: var(--r-lg);
+    border: 1px solid rgba(15, 30, 60, 0.10);
+    box-shadow: var(--shadow-sm);    
 }
 
 section hgroup p {
@@ -281,7 +292,9 @@ section#how-it-works #how-it-works-content {
     flex-direction: row;
     gap: var(--s-6);
     margin-top: var(--s-6);
-    margin: auto 20vw;
+    width: min(var(--container), calc(100% - 48px));
+    margin-left: auto;
+    margin-right: auto;
 }
 
 section#how-it-works #steps {
@@ -338,8 +351,7 @@ section#trust {
     justify-content: flex-start;
     align-items: center;
 
-    overflow: hidden;
-    max-height: 100svh;
+    overflow: visible;
     
 }
 
@@ -466,7 +478,7 @@ section#testimonials {
     display: grid;
 
     /* auto-collapses cleanly */
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
 
     gap: clamp(18px, 2vw, 30px);
     align-items: start;
@@ -537,7 +549,7 @@ section#pricing {
 }
 
 .pricing-wrap {
-    /* width: min(var(--container), calc(100% - 48px)); */
+    width: min(1300px, calc(100% - 48px));
     margin: var(--s-4) auto 0 auto;
 }
 
@@ -547,7 +559,7 @@ section#pricing {
     gap: var(--s-5);
     align-items: stretch;
 
-    width: 1300px;
+    width: 100%;
     margin: 0 auto;
 }
 
@@ -592,8 +604,8 @@ section#pricing {
 
 .pricing-badge {
     position: absolute;
-    left: 53%;
-    transform: translateX(50%);
+    top: var(--s-3);
+    right: var(--s-3);
     background-color: var(--accent-color);
     color: var(--text-inverted);
     padding: 6px 10px;
@@ -994,4 +1006,100 @@ hgroup p.subheader {
 #testimonials .testimonials-col{
   position: static !important;
   inset: auto !important;
+}
+
+@media (max-width: 900px) {
+    section {
+        min-height: auto;
+        padding: var(--s-7) 0;
+    }
+
+    section#hero {
+        background-size: cover;
+        background-position: center top;
+        gap: var(--s-4);
+    }
+
+    section#hero hgroup {
+        margin-top: 0;
+    }
+
+    #hero h1 {
+        font-size: clamp(2rem, 8vw, 2.6rem);
+    }
+
+    section#hero #hero-image {
+        min-width: 0;
+        max-width: 92%;
+        height: auto;
+    }
+
+    section#macro-micro {
+        flex-direction: column;
+        align-items: center;
+        gap: var(--s-4);
+        padding: var(--s-6) 0;
+    }
+
+    section#macro-micro hgroup {
+        margin-top: 0;
+        text-align: center;
+        align-items: center;
+    }
+
+    section#macro-micro hgroup * {
+        margin-left: 0;
+    }
+
+    section#macro-micro .info-images {
+        height: auto;
+        width: min(760px, 100%);
+    }
+
+    section#macro-micro .info-images img {
+        width: 100%;
+        max-height: none;
+    }
+
+    section#how-it-works #how-it-works-content {
+        flex-direction: column;
+        gap: var(--s-4);
+        width: min(720px, calc(100% - 24px));
+        margin-top: var(--s-4);
+    }
+
+    section#how-it-works .step {
+        padding: var(--s-3) 0;
+    }
+
+    section#how-it-works #how-it-works-content #how-it-works-image {
+        max-width: 100%;
+    }
+
+    .pricing-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 600px) {
+    .top-nav__brand span {
+        display: none;
+    }
+
+    .top-nav__cta {
+        font-size: 0.9rem;
+        padding: 10px 12px;
+    }
+
+    section hgroup p {
+        width: 100%;
+    }
+
+    .pricing-wrap {
+        width: calc(100% - 24px);
+    }
+
+    .pricing-grid {
+        grid-template-columns: 1fr;
+    }
 }
