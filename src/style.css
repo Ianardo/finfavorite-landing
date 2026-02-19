@@ -51,6 +51,11 @@
     --fw-semibold: 600;
     --fw-bold: 700;
     --fw-black: 800;
+
+    /* motion */
+    --ease-out: cubic-bezier(.2,.8,.2,1);
+    --ease-inout: cubic-bezier(.4,0,.2,1);
+    --t-1: 140ms; --t-2: 220ms; --t-3: 360ms;
 }
 
 html {
@@ -518,6 +523,7 @@ section#pricing {
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
+    gap: var(--s-6);
 }
 
 .pricing-wrap {
