@@ -14,8 +14,8 @@
   <body>
     <section id="hero">
         <hgroup class="center-align narrow-header">
-            <h1 class="wide-header">A <span class="accent gradient-text">unified view</span> of your money at work.</h1>
-            <p class="subheader">FinFavorite provides a unified interface for your long term and short term portfolio.</p>
+            <h1 class="wide-header">A <span class="accent gradient-text">unified view</span> of your <br> money at work.</h1>
+            <p class="subheader">Track long-term positions and short-term trades together, with full history and context.</p>
         </hgroup>
         <div id="hero-image">
             <img src="../img/dashboard.png">
@@ -36,7 +36,7 @@
             <div class="header-pill">
                 <span class="pill">How it works</span>
             </div>
-            <h1>From raw broker exports to decision-grade clarity.</h1>
+            <h1>From raw broker exports to an auditable portfolio view.</h1>
             <p class="subheader">Import your data, see unified performance, then review decisions with context.</p>
         </hgroup>
         <div id="how-it-works-content">
@@ -83,7 +83,7 @@
                 <span class="pill">Features</span>
             </div>
 
-            <h1 id="features-title">Everything you need to reach<br />your financial goals.</h2>
+            <h1 id="features-title">Tools for tracking, reviewing,<br> and improving decisions.</h2>
             <p class="subheader">Each part of the platform is designed to translate decisions into measurable outcomes.</p>
         </hgroup>
 
@@ -144,6 +144,97 @@
                     <img src="../img/dashboard.png" alt="Stock overview dashboard preview" />
                 </div>
             </article>
+
+            <div class="feature-explorer" aria-labelledby="feature-explorer-title">
+                <h2 id="feature-explorer-title">Explore more features</h2>
+
+                <article class="feature-spotlight card" data-feature-spotlight>
+                    <div class="feature-spotlight-tabs" role="tablist" aria-label="Additional platform features">
+                        <button
+                            id="feature-tab-watchlists"
+                            class="feature-spotlight-tab"
+                            type="button"
+                            role="tab"
+                            aria-selected="true"
+                            aria-controls="feature-spotlight-panel"
+                            tabindex="0"
+                            data-feature-tab
+                            data-feature-key="watchlists"
+                        >Watchlists</button>
+                        <button
+                            id="feature-tab-overlays"
+                            class="feature-spotlight-tab"
+                            type="button"
+                            role="tab"
+                            aria-selected="false"
+                            aria-controls="feature-spotlight-panel"
+                            tabindex="-1"
+                            data-feature-tab
+                            data-feature-key="indicator-overlays"
+                        >Indicator Overlays</button>
+                        <button
+                            id="feature-tab-reports"
+                            class="feature-spotlight-tab"
+                            type="button"
+                            role="tab"
+                            aria-selected="false"
+                            aria-controls="feature-spotlight-panel"
+                            tabindex="-1"
+                            data-feature-tab
+                            data-feature-key="trading-reports"
+                        >Trading Reports</button>
+                        <button
+                            id="feature-tab-custom-assets"
+                            class="feature-spotlight-tab"
+                            type="button"
+                            role="tab"
+                            aria-selected="false"
+                            aria-controls="feature-spotlight-panel"
+                            tabindex="-1"
+                            data-feature-tab
+                            data-feature-key="custom-assets"
+                        >Custom Assets</button>
+                        <button
+                            id="feature-tab-alerts"
+                            class="feature-spotlight-tab"
+                            type="button"
+                            role="tab"
+                            aria-selected="false"
+                            aria-controls="feature-spotlight-panel"
+                            tabindex="-1"
+                            data-feature-tab
+                            data-feature-key="price-alerts"
+                        >Price Alerts</button>
+                    </div>
+
+                    <div
+                        id="feature-spotlight-panel"
+                        class="feature-spotlight-panel"
+                        role="tabpanel"
+                        aria-labelledby="feature-tab-watchlists"
+                    >
+                        <div class="feature-spotlight-copy">
+                            <h3 data-feature-title>Watchlists</h3>
+                            <p class="feature-desc" data-feature-description>
+                                Keep your best ideas in one place, with quick views of price action, momentum, and next
+                                events before you open a full stock overview.
+                            </p>
+                            <a class="feature-link" data-feature-link href="#">
+                                Try Watchlists →
+                            </a>
+                        </div>
+
+                        <div
+                            class="feature-spotlight-media"
+                            data-feature-media
+                            role="img"
+                            aria-label="Watchlists screenshot placeholder"
+                        >
+                            <span data-feature-media-label>Screenshot coming soon</span>
+                        </div>
+                    </div>
+                </article>
+            </div>
         </div>
     </section>
 
@@ -180,7 +271,7 @@
                 <ul class="trust-card__list">
                     <li>Your data is used to generate your dashboards and reports.</li>
                     <li>We don’t sell portfolio or personal data.</li>
-                    <li>You decide what you upload and keep.</li>
+                    <li>You control what's stored.</li>
                 </ul>
             </article>
 

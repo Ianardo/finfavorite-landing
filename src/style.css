@@ -54,8 +54,8 @@
 
 * { box-sizing: border-box; }
 html {
-    scroll-behavior: smooth;           /* for anchor clicks */
-    scroll-snap-type: y proximity;     /* discrete snaps */
+    /* scroll-behavior: smooth;           
+    scroll-snap-type: y proximity;      */
     /* scroll-padding-top: 72px;          if you have a fixed header */
     height: 100%;
     /* For Chrome, Safari, and Opera */
@@ -92,8 +92,8 @@ section {
     display: flex;
     justify-content: center;
 
-    scroll-snap-align: start;          /* scroll snapping */
-    scroll-snap-stop: always;          /* helps prevent “skipping” on fast scrolls */
+    /* scroll-snap-align: start;         
+    scroll-snap-stop: always;          */
     
     border-bottom: 2px solid var(--lightest-gray);
 
@@ -552,6 +552,145 @@ section#features {
     display: block;
 
     justify-self: end;
+}
+
+.feature-explorer {
+    margin-top: var(--s-2);
+}
+
+.feature-explorer h2 {
+    margin: 0 0 var(--s-4) 0;
+    text-align: center;
+    font-size: 2.2rem;
+    color: var(--text);
+}
+
+.feature-spotlight {
+    overflow: hidden;
+    border: 1px solid rgba(15, 30, 60, 0.08);
+    box-shadow: none;
+    background: var(--lightest-gray);
+}
+
+.feature-spotlight-tabs {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    align-items: center;
+    padding: 6px;
+    border-bottom: 1px solid var(--lighter-gray);
+    background: var(--lightest-gray);
+}
+
+.feature-spotlight-tab {
+    border: none;
+    background: transparent;
+    color: var(--dark-med-gray);
+    font-size: 0.98rem;
+    font-weight: var(--fw-medium);
+    padding: var(--s-2) var(--s-1);
+    cursor: pointer;
+    border-radius: var(--r-sm);
+}
+
+.feature-spotlight-tab[aria-selected="true"] {
+    color: var(--text);
+    font-weight: var(--fw-semibold);
+    background: #ffffff;
+    box-shadow: inset 0 0 0 1px var(--border);
+}
+
+.feature-spotlight-tab:focus-visible {
+    outline: 2px solid var(--accent-color);
+    outline-offset: -2px;
+    border-radius: 999px;
+}
+
+.feature-spotlight-panel {
+    display: grid;
+    grid-template-columns: minmax(280px, 1fr) minmax(320px, 1.15fr);
+    gap: var(--s-5);
+    align-items: stretch;
+    padding: var(--s-5);
+}
+
+.feature-spotlight-copy {
+    max-width: 420px;
+    align-self: center;
+}
+
+.feature-spotlight-copy h3 {
+    margin: 0;
+    font-size: 2.1rem;
+    color: var(--text);
+}
+
+.feature-spotlight-media {
+    position: relative;
+    border: 1px solid var(--lighter-gray);
+    border-radius: var(--r-md);
+    min-height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #ffffff;
+}
+
+.feature-spotlight-media span {
+    color: var(--dark-med-gray);
+    font-weight: var(--fw-semibold);
+    font-size: 0.9rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+@media (max-width: 980px) {
+    .feature,
+    .feature.feature--left,
+    .feature.feature--right {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .feature-copy--right {
+        text-align: left;
+    }
+
+    .feature-media {
+        width: 100%;
+    }
+
+    .feature-media img {
+        width: 100%;
+    }
+
+    .feature-spotlight-tabs {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: var(--s-1);
+        padding: var(--s-2);
+    }
+
+    .feature-spotlight-tab {
+        background: #ffffff;
+        box-shadow: inset 0 0 0 1px var(--border);
+    }
+
+    .feature-spotlight-tab[aria-selected="true"] {
+        box-shadow: inset 0 0 0 1px rgba(11, 104, 255, 0.25);
+    }
+
+    .feature-spotlight-tab:last-child {
+        grid-column: 1 / -1;
+    }
+
+    .feature-spotlight-panel {
+        grid-template-columns: 1fr;
+        padding: var(--s-4);
+        gap: var(--s-4);
+    }
+
+    .feature-spotlight-media {
+        min-height: 220px;
+    }
 }
 
 .container {
