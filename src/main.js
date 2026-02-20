@@ -73,6 +73,13 @@ sr.reveal('#how-it-works .step', {
   duration: 600,
 });
 
+sr.reveal('#macro-micro .macro-micro__zoom-line', {
+  delay: 640,
+  distance: '10px',
+  duration: 540,
+  origin: 'bottom',
+});
+
 const spotlight = document.querySelector('[data-feature-spotlight]');
 
 if (spotlight) {

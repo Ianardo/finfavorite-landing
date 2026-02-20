@@ -23,9 +23,21 @@
     --r-md: 14px;
     --r-sm: 8px;
 
-    --shadow-lg: 0 30px 70px rgba(11, 18, 32, 0.10);
-    --shadow-md: 0 18px 45px rgba(11, 18, 32, 0.08);
-    --shadow-sm: 4px 4px 6px rgba(32, 36, 44, 0.05);
+    /* elevation */
+    --shadow-surface-sm: 0 10px 26px -14px rgba(11, 18, 32, 0.34), 0 3px 10px -8px rgba(11, 18, 32, 0.20);
+    --shadow-surface-md: 0 22px 52px -20px rgba(11, 18, 32, 0.36), 0 8px 20px -12px rgba(11, 18, 32, 0.22);
+    --shadow-surface-lg: 0 34px 74px -28px rgba(11, 18, 32, 0.40), 0 14px 30px -16px rgba(11, 18, 32, 0.24);
+
+    --shadow-cta-rest: 0 6px 14px -8px rgba(11, 18, 32, 0.34), 0 2px 6px -4px rgba(11, 18, 32, 0.24);
+    --shadow-cta-hover: 0 12px 26px -10px rgba(11, 18, 32, 0.38), 0 4px 10px -6px rgba(11, 18, 32, 0.26);
+    --shadow-cta-active: 0 3px 8px -5px rgba(11, 18, 32, 0.34), 0 1px 3px -2px rgba(11, 18, 32, 0.24);
+    --shadow-focus-ring: 0 0 0 3px rgba(11, 104, 255, 0.28);
+    --shadow-pill: 0 1px 0 rgba(0, 0, 0, 0.04);
+
+    /* backwards-compatible aliases */
+    --shadow-sm: var(--shadow-surface-sm);
+    --shadow-md: var(--shadow-surface-md);
+    --shadow-lg: var(--shadow-surface-lg);
 
     --text-shadow: 4px 4px 12px rgb(182,182,190,0.25);
     --text-shadow-dark: 4px 4px 12px rgb(0,0,0,0.25);
@@ -283,6 +295,10 @@ section#macro-micro .macro-micro__inner hgroup p {
     width: 100%;
 }
 
+section#macro-micro .macro-micro__zoom-line {
+    display: inline-block;
+}
+
 section#macro-micro .macro-micro__inner .info-images {
     width: clamp(520px, 62vw, 1320px);
     flex: 1 1 auto;
@@ -328,6 +344,13 @@ section#how-it-works .step {
     flex-direction: row;
     padding: var(--s-4);
     gap: var(--s-2);
+    border-radius: var(--r-md);
+    border: 1px solid transparent;
+    transition:
+        transform var(--t-2) var(--ease-out),
+        box-shadow var(--t-2) var(--ease-out),
+        border-color var(--t-2) var(--ease-out),
+        background-color var(--t-2) var(--ease-out);
 }
 
 section#how-it-works .step .step-number {
@@ -341,6 +364,10 @@ section#how-it-works .step .step-number {
     color: var(--text-inverted);
     font-weight: 800;
     box-shadow: var(--shadow-sm);
+    transition:
+        transform var(--t-2) var(--ease-out),
+        box-shadow var(--t-2) var(--ease-out),
+        background-color var(--t-2) var(--ease-out);
 }
 
 section#how-it-works .step .step-words h2 {
@@ -710,6 +737,7 @@ section#features {
     color: var(--dark-med-gray);
     font-weight: 500;
     font-size: 0.9rem;
+    transition: color var(--t-2) var(--ease-out);
 }
 
 .feature-media {
@@ -731,6 +759,9 @@ section#features {
     display: block;
 
     justify-self: end;
+    transition:
+        transform var(--t-2) var(--ease-out),
+        box-shadow var(--t-2) var(--ease-out);
 }
 
 .feature-explorer {
@@ -747,8 +778,12 @@ section#features {
 .feature-spotlight {
     overflow: hidden;
     border: 1px solid rgba(15, 30, 60, 0.08);
-    box-shadow: none;
+    box-shadow: var(--shadow-sm);
     background: var(--lightest-gray);
+    transition:
+        transform var(--t-2) var(--ease-out),
+        box-shadow var(--t-2) var(--ease-out),
+        border-color var(--t-2) var(--ease-out);
 }
 
 .feature-spotlight-tabs {
@@ -933,7 +968,7 @@ h1 {
     font-size: var(--font-size-xs);
     text-decoration: none;
     border: 1px solid rgba(255, 255, 255, 0.24);
-    box-shadow: 0 3px 8px rgba(11, 18, 32, 0.14);
+    box-shadow: var(--shadow-cta-rest);
     transform: none;
     cursor: pointer;
     transition:
@@ -945,20 +980,49 @@ h1 {
 @media (hover: hover) and (pointer: fine) {
     .cta:hover {
         border-color: rgba(255, 255, 255, 0.38);
-        box-shadow: 0 8px 18px rgba(11, 18, 32, 0.20);
+        box-shadow: var(--shadow-cta-hover);
         transform: translateY(-2px);
+    }
+
+    .feature-media img:hover {
+        transform: translateY(-3px) scale(1.008);
+        box-shadow: var(--shadow-md);
+    }
+
+    .feature-link:hover {
+        color: var(--text);
+    }
+
+    .feature-spotlight:hover {
+        transform: translateY(-3px);
+        border-color: rgba(15, 30, 60, 0.14);
+        box-shadow: var(--shadow-md);
+    }
+
+    section#how-it-works .step:not(.step--cta):hover,
+    section#how-it-works .step:not(.step--cta):focus-within {
+        transform: translateY(-2px);
+        border-color: var(--lighter-gray);
+        background: #ffffff;
+        box-shadow: var(--shadow-sm);
+    }
+
+    section#how-it-works .step:not(.step--cta):hover .step-number,
+    section#how-it-works .step:not(.step--cta):focus-within .step-number {
+        transform: scale(1.06);
+        box-shadow: var(--shadow-md);
     }
 }
 
 .cta:active {
     transform: translateY(0);
-    box-shadow: 0 2px 5px rgba(11, 18, 32, 0.16);
+    box-shadow: var(--shadow-cta-active);
 }
 
 .cta:focus-visible {
     outline: 2px solid rgba(11, 104, 255, 0.9);
     outline-offset: 3px;
-    box-shadow: 0 0 0 3px rgba(11, 104, 255, 0.28), 0 3px 8px rgba(11, 18, 32, 0.14);
+    box-shadow: var(--shadow-focus-ring), var(--shadow-cta-rest);
 }
 
 section#pricing .cta, section#how-it-works .cta {
@@ -989,7 +1053,7 @@ hgroup .header-pill .pill {
     font-size: 16px;
     line-height: 1;
 
-    box-shadow: 0 1px 0 rgba(0,0,0,0.04); /* subtle lift (optional) */
+    box-shadow: var(--shadow-pill);
 }
 
 hgroup p.subheader {
