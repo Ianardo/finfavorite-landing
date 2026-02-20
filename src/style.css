@@ -396,20 +396,18 @@ section#trust {
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-
     overflow: visible;
-    
 }
 
 section#trust .trust-grid {
   position: relative;
-  width: min(960px, 100%);          /* key: scale down on laptop */
+  width: min(960px, 100%);
   margin-top: var(--s-6);
 
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: clamp(12px, 2vw, 32px);      /* fluid spacing */
-  justify-items: center;            /* keeps cards centered in their cells */
+  gap: clamp(12px, 2vw, 32px);
+  justify-items: center;
   align-items: start;
 }
 
@@ -420,7 +418,7 @@ section#trust .trust-grid {
     content: "";
     position: absolute;
     pointer-events: none;
-    opacity: 0.9;
+    opacity: 0.85;
     inset: 0;    
 }
 
@@ -443,30 +441,73 @@ section#trust .trust-grid {
 }
 
 section#trust .trust-grid .trust-card {
-    padding: clamp(18px, 3vw, 32px);  /* fluid padding */
+    padding: clamp(18px, 3vw, 30px);
     min-width: 100%;
+    transition: color var(--t-2) var(--ease-out);
+}
+
+section#trust .trust-card__header {
+    display: flex;
+    align-items: center;
+    gap: var(--s-2);
+    margin-bottom: var(--s-2);
 }
 
 section#trust .trust-grid .trust-card h3 {
     font-size: clamp(1.15rem, 1.4vw, 1.5rem);
     font-weight: var(--fw-bold);
     margin: 0;
+    transition: color var(--t-2) var(--ease-out);
 }
 
 section#trust .trust-grid ul {
     color: var(--dark-med-gray);
     min-width: 100%;
+    margin: 0;
+    padding-left: var(--s-3);
 }
 
 section#trust .trust-grid ul li {
     font-size: clamp(0.95rem, 1.1vw, 1.0rem);
-    margin-bottom: var(--s-3);
+    margin-bottom: var(--s-2);
+    transition:
+        color var(--t-2) var(--ease-out),
+        transform var(--t-2) var(--ease-out);
 }
 
 section#trust .trust-card__icon img {
     width: 35px;
     height: 35px;
-    margin-bottom: var(--s-1);
+    margin-bottom: 0;
+    transition:
+        transform var(--t-2) var(--ease-out),
+        filter var(--t-2) var(--ease-out);
+}
+
+section#trust .trust-card__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    section#trust .trust-card:hover {
+        color: var(--text);
+    }
+
+    section#trust .trust-card:hover h3 {
+        color: color-mix(in srgb, var(--accent-color) 60%, var(--text));
+    }
+
+    section#trust .trust-card:hover .trust-card__icon img {
+        transform: translateY(-1px) scale(1.03) rotate(-3deg);
+        filter: saturate(1.08);
+    }
+
+    section#trust .trust-card:hover li {
+        color: color-mix(in srgb, var(--text) 72%, var(--dark-med-gray));
+        transform: translateX(1px);
+    }
 }
 
 @media (max-width: 820px) {
@@ -482,14 +523,8 @@ section#trust .trust-card__icon img {
     display: none;
   }
 
-  /* Optional: add a single subtle divider between stacked cards */
   section#trust .trust-card {
-    border-bottom: 1px dashed var(--lighter-gray);
-    padding-bottom: clamp(18px, 3vw, 28px);
-  }
-  section#trust .trust-card:last-child {
-    border-bottom: none;
-    padding-bottom: 0;
+    padding: clamp(18px, 3vw, 28px);
   }
 }
 
