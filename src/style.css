@@ -182,7 +182,7 @@ section {
     padding: var(--s-8) 0;
     scroll-margin-top: var(--nav-height);
 
-    min-height: 100svh;
+    min-height: clamp(1024px, 100svh, 100vw);
     height: auto;
     width: 100%;
     padding: var(--s-8) 0;
@@ -255,29 +255,48 @@ section#hero hgroup {
 }
 
 section#macro-micro {
+    min-height: auto;
+    padding: clamp(48px, 7vh, 88px) 0;
+}
+
+section#macro-micro .macro-micro__inner {
+    width: min(1600px, calc(100% - 48px));
+    margin-inline: auto;
+    display: flex;
     flex-direction: row;
     align-items: flex-start;
     justify-content: center;
-    padding: 2vw 0;
+    gap: clamp(24px, 4vw, 72px);
+    padding-inline: clamp(16px, 2vw, 40px);
+    min-height: auto;
 }
 
-section#macro-micro hgroup {
-    margin-top: 5vw;
+section#macro-micro .macro-micro__inner hgroup {
+    margin-top: clamp(40px, 9vh, 140px);
+    max-width: min(540px, 34vw);
     text-align: left;
-    align-items: start;
+    align-items: flex-start;
+    flex: 0 1 min(540px, 34vw);
 }
 
-section#macro-micro .info-images {
-    height: 45vw;
+section#macro-micro .macro-micro__inner hgroup p {
+    width: 100%;
 }
 
-section#macro-micro .info-images img {
-    max-height: 100%;
-    width: auto;
+section#macro-micro .macro-micro__inner .info-images {
+    width: clamp(520px, 62vw, 1320px);
+    flex: 1 1 auto;
+    align-self: center;
 }
 
-section#macro-micro hgroup * {
-    margin-left: 5vw;
+section#macro-micro .macro-micro__inner .info-images img {
+    width: 100%;
+    max-height: min(78vh, 980px);
+    object-fit: contain;
+}
+
+section#macro-micro .macro-micro__inner hgroup * {
+    margin-left: 0;
     text-shadow: var(--text-shadow-dark);
 }
 
@@ -1088,28 +1107,33 @@ hgroup p.subheader {
     }
 
     section#macro-micro {
-        flex-direction: column;
-        align-items: center;
-        gap: var(--s-4);
         padding: var(--s-6) 0;
     }
 
-    section#macro-micro hgroup {
+    section#macro-micro .macro-micro__inner {
+        flex-direction: column;
+        align-items: center;
+        gap: var(--s-4);
+        width: min(760px, calc(100% - 24px));
+        padding-inline: 0;
+    }
+
+    section#macro-micro .macro-micro__inner hgroup {
         margin-top: 0;
         text-align: center;
         align-items: center;
     }
 
-    section#macro-micro hgroup * {
+    section#macro-micro .macro-micro__inner hgroup * {
         margin-left: 0;
     }
 
-    section#macro-micro .info-images {
+    section#macro-micro .macro-micro__inner .info-images {
         height: auto;
         width: min(760px, 100%);
     }
 
-    section#macro-micro .info-images img {
+    section#macro-micro .macro-micro__inner .info-images img {
         width: 100%;
         max-height: none;
     }

@@ -89,7 +89,7 @@ if (spotlight) {
       title: 'Watchlists',
       description:
         'Keep your best ideas in one place, with quick views of price action, momentum, and next events before you open a full stock overview.',
-      linkText: 'Try Watchlists →',
+      linkText: 'Learn about Watchlists →',
       mediaText: 'Screenshot coming soon',
       mediaAriaLabel: 'Watchlists screenshot placeholder',
     },
@@ -121,7 +121,7 @@ if (spotlight) {
       title: 'Price Alerts',
       description:
         'Set alerts around levels that matter to your thesis and get reminded when momentum, pullbacks, or breakouts hit your watch criteria.',
-      linkText: 'Try Price Alerts →',
+      linkText: 'See Price Alerts →',
       mediaText: 'Alert center coming soon',
       mediaAriaLabel: 'Price alerts screenshot placeholder',
     },
