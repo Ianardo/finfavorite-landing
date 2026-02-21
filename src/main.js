@@ -6,6 +6,17 @@ ScrollReveal().reveal('#testimonials')
 
 const sr = ScrollReveal({ distance: '18px', duration: 650, origin: 'bottom' });
 
+const topNav = document.querySelector('.top-nav');
+
+if (topNav) {
+  const updateNavGlassState = () => {
+    topNav.classList.toggle('top-nav--glassy', window.scrollY > 2);
+  };
+
+  updateNavGlassState();
+  window.addEventListener('scroll', updateNavGlassState, { passive: true });
+}
+
 /* testimonials */
 window.addEventListener('DOMContentLoaded', () => {
   const left = [...document.querySelectorAll('#testimonials .testimonials-col:nth-child(1) .testimonial-card')];
@@ -88,49 +99,48 @@ if (spotlight) {
   const title = spotlight.querySelector('[data-feature-title]');
   const description = spotlight.querySelector('[data-feature-description]');
   const link = spotlight.querySelector('[data-feature-link]');
-  const media = spotlight.querySelector('[data-feature-media]');
-  const mediaLabel = spotlight.querySelector('[data-feature-media-label]');
+  const mediaImage = spotlight.querySelector('[data-feature-media-image]');
 
   const featureCopy = {
+    reports: {
+      title: 'Reports',
+      description:
+        'Generate clean weekly and monthly snapshots across return, win rate, and exposure so performance reviews stay objective and repeatable.',
+      linkText: 'Open Reports →',
+      mediaSrc: '../img/screenshots/Reports.png',
+      mediaAlt: 'Reports screenshot',
+    },
+    dividends: {
+      title: 'Dividends',
+      description:
+        'Track payouts, dividend growth, and yield consistency across holdings so your income strategy stays transparent and easy to monitor.',
+      linkText: 'View Dividends →',
+      mediaSrc: '../img/screenshots/Dividends.png',
+      mediaAlt: 'Dividends screenshot',
+    },
+    charting: {
+      title: 'Charting',
+      description:
+        'Customize indicators and overlays to compare momentum, structure, and context directly on chart so setup quality is easier to validate.',
+      linkText: 'Explore Charting →',
+      mediaSrc: '../img/screenshots/Custom.png',
+      mediaAlt: 'Charting screenshot',
+    },
     watchlists: {
       title: 'Watchlists',
       description:
         'Keep your best ideas in one place, with quick views of price action, momentum, and next events before you open a full stock overview.',
-      linkText: 'Learn about Watchlists →',
-      mediaText: 'Screenshot coming soon',
-      mediaAriaLabel: 'Watchlists screenshot placeholder',
+      linkText: 'Open Watchlists →',
+      mediaSrc: '../img/screenshots/Watchlists.png',
+      mediaAlt: 'Watchlists screenshot',
     },
-    'indicator-overlays': {
-      title: 'Indicator Overlays',
+    calendar: {
+      title: 'Calendar',
       description:
-        'Layer moving averages, RSI, and volume context directly on your chart so you can compare setup quality before and after each trade.',
-      linkText: 'Preview Indicator Overlays →',
-      mediaText: 'Overlay view coming soon',
-      mediaAriaLabel: 'Indicator overlays screenshot placeholder',
-    },
-    'trading-reports': {
-      title: 'Trading Reports',
-      description:
-        'Generate clean weekly and monthly snapshots of return, hit rate, and exposure shifts so performance reviews stay objective and repeatable.',
-      linkText: 'Open Trading Reports →',
-      mediaText: 'Report preview coming soon',
-      mediaAriaLabel: 'Trading reports screenshot placeholder',
-    },
-    'custom-assets': {
-      title: 'Custom Assets',
-      description:
-        'Track private positions, options models, or synthetic baskets alongside equities to keep a complete view of your risk across every idea.',
-      linkText: 'See Custom Assets →',
-      mediaText: 'Custom asset view coming soon',
-      mediaAriaLabel: 'Custom assets screenshot placeholder',
-    },
-    'price-alerts': {
-      title: 'Price Alerts',
-      description:
-        'Set alerts around levels that matter to your thesis and get reminded when momentum, pullbacks, or breakouts hit your watch criteria.',
-      linkText: 'See Price Alerts →',
-      mediaText: 'Alert center coming soon',
-      mediaAriaLabel: 'Price alerts screenshot placeholder',
+        'Keep earnings dates, dividend events, and key market timings in one timeline so planning and execution stay synchronized.',
+      linkText: 'Open Calendar →',
+      mediaSrc: '../img/screenshots/Calendar.png',
+      mediaAlt: 'Calendar screenshot',
     },
   };
 
@@ -150,8 +160,10 @@ if (spotlight) {
     title.textContent = nextData.title;
     description.textContent = nextData.description;
     link.textContent = nextData.linkText;
-    mediaLabel.textContent = nextData.mediaText;
-    media.setAttribute('aria-label', nextData.mediaAriaLabel);
+    if (mediaImage) {
+      mediaImage.src = nextData.mediaSrc;
+      mediaImage.alt = nextData.mediaAlt;
+    }
   };
 
   tabs.forEach((tab) => {

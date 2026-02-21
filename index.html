@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/png" href="img/favicon.png">
+    <link rel="icon" type="image/png" href="icons/global/favicon.png">
     <link rel="stylesheet" href="src/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -93,7 +93,7 @@
                 </div>
             </div>
             <div id="how-it-works-image">
-                <img src="../img/portfolio-view.png">
+                <img src="../img/screenshots/Upload.png">
             </div>
         </div>
     </section>
@@ -108,60 +108,61 @@
         </hgroup>
 
         <div class="features-wrap">
-            <article class="feature feature--left" aria-labelledby="feature-dividends-title">
+            <article class="feature feature--left" aria-labelledby="feature-overview-title">
                 <div class="feature-copy">
                     <div class="feature-icon" aria-hidden="true">
-                        <img src="../img/icon-dividends.svg">
+                        <img src="../icons/features/icon-dashboard.svg">
                     </div>
 
-                    <h3 id="feature-dividends-title">Dividends</h3>
+                    <h3 id="feature-overview-title">Overview</h3>
                     <p class="feature-desc">
-                        Stay on top of your dividend portfolio, track your dividend income, and research high-yielding stocks.
+                        Start from a clean portfolio overview that surfaces allocation, performance, and key movement at a
+                        glance so you can orient quickly before going deeper.
                     </p>
-                    <a class="feature-link" href="#">Explore the dividend dashboard →</a>
+                    <a class="feature-link" href="#">Open Overview →</a>
                 </div>
 
                 <div class="feature-media">
-                    <img src="../img/dashboard.png" alt="Dividend dashboard preview" />
+                    <img src="../img/screenshots/Overview.png" alt="Overview dashboard preview" />
                 </div>
             </article>
 
-            <article class="feature feature--right" aria-labelledby="feature-replay-title">
+            <article class="feature feature--right" aria-labelledby="feature-doctor-title">
                 <div class="feature-copy feature-copy--right">
                     <div class="feature-icon" aria-hidden="true">
-                        <img src="../img/icon-replay.svg">
+                        <img src="../icons/features/icon-doctor.svg">
                     </div>
 
-                    <h3 id="feature-replay-title">Trade Replay</h3>
+                    <h3 id="feature-doctor-title">Doctor</h3>
                     <p class="feature-desc">
-                        Trade Replay lets you revisit past trades with a clear, step-by-step timeline of your actions. It’s an
-                        easy way to review decisions, track outcomes, and improve consistency.
+                        Doctor highlights portfolio weak spots and concentration risk with practical fixes, helping you
+                        tighten decision quality without digging through raw data.
                     </p>
-                    <a class="feature-link" href="#">See Trade Replay in action →</a>
+                    <a class="feature-link" href="#">Run Doctor →</a>
                 </div>
 
                 <div class="feature-media">
-                    <img src="../img/dashboard.png" alt="Trade replay interface preview" />
+                    <img src="../img/screenshots/Doctor.png" alt="Doctor diagnostics preview" />
                 </div>
 
             </article>
 
-            <article class="feature feature--left" aria-labelledby="feature-stock-title">
+            <article class="feature feature--left" aria-labelledby="feature-replay-title">
                 <div class="feature-copy">
                     <div class="feature-icon" aria-hidden="true">
-                        <img src="../img/icon-dashboard.svg">
+                        <img src="../icons/features/icon-replay.svg">
                     </div>
 
-                    <h3 id="feature-stock-title">Stock Overview</h3>
+                    <h3 id="feature-replay-title">Replay</h3>
                     <p class="feature-desc">
-                        Stock Overview is a simple dashboard for any stock, combining quote, history, and news into a single
-                        view. It’s designed to keep market context and your portfolio context together.
+                        Replay lets you walk past trades in sequence, review what happened around each entry, and tighten
+                        your process from real execution history.
                     </p>
-                    <a class="feature-link" href="#">Check out the Stock Overview →</a>
+                    <a class="feature-link" href="#">Review Replay →</a>
                 </div>
 
                 <div class="feature-media">
-                    <img src="../img/dashboard.png" alt="Stock overview dashboard preview" />
+                    <img src="../img/screenshots/Replay.png" alt="Replay interface preview" />
                 </div>
             </article>
 
@@ -171,104 +172,104 @@
                 <article class="feature-spotlight card" data-feature-spotlight>
                     <div class="feature-spotlight-tabs" role="tablist" aria-label="Additional platform features">
                         <button
+                            id="feature-tab-reports"
+                            class="feature-spotlight-tab"
+                            type="button"
+                            role="tab"
+                            aria-label="Reports"
+                            aria-selected="true"
+                            aria-controls="feature-spotlight-panel"
+                            tabindex="0"
+                            data-feature-tab
+                            data-feature-key="reports"
+                        >
+                            <img
+                                class="feature-spotlight-tab-icon"
+                                src="../icons/features/more/icon-reports.svg"
+                                alt=""
+                                aria-hidden="true"
+                            >
+                            <span class="feature-spotlight-tab-label">Reports</span>
+                        </button>
+                        <button
+                            id="feature-tab-dividends"
+                            class="feature-spotlight-tab"
+                            type="button"
+                            role="tab"
+                            aria-label="Dividends"
+                            aria-selected="false"
+                            aria-controls="feature-spotlight-panel"
+                            tabindex="-1"
+                            data-feature-tab
+                            data-feature-key="dividends"
+                        >
+                            <img
+                                class="feature-spotlight-tab-icon"
+                                src="../icons/features/more/icon-dividends.svg"
+                                alt=""
+                                aria-hidden="true"
+                            >
+                            <span class="feature-spotlight-tab-label">Dividends</span>
+                        </button>
+                        <button
+                            id="feature-tab-charting"
+                            class="feature-spotlight-tab"
+                            type="button"
+                            role="tab"
+                            aria-label="Charting"
+                            aria-selected="false"
+                            aria-controls="feature-spotlight-panel"
+                            tabindex="-1"
+                            data-feature-tab
+                            data-feature-key="charting"
+                        >
+                            <img
+                                class="feature-spotlight-tab-icon"
+                                src="../icons/features/more/icon-charting.svg"
+                                alt=""
+                                aria-hidden="true"
+                            >
+                            <span class="feature-spotlight-tab-label">Charting</span>
+                        </button>
+                        <button
                             id="feature-tab-watchlists"
                             class="feature-spotlight-tab"
                             type="button"
                             role="tab"
                             aria-label="Watchlists"
-                            aria-selected="true"
+                            aria-selected="false"
                             aria-controls="feature-spotlight-panel"
-                            tabindex="0"
+                            tabindex="-1"
                             data-feature-tab
                             data-feature-key="watchlists"
                         >
                             <img
                                 class="feature-spotlight-tab-icon"
-                                src="../img/more-features-icons/watchlists.svg"
+                                src="../icons/features/more/icon-watchlists.svg"
                                 alt=""
                                 aria-hidden="true"
                             >
                             <span class="feature-spotlight-tab-label">Watchlists</span>
                         </button>
                         <button
-                            id="feature-tab-overlays"
+                            id="feature-tab-calendar"
                             class="feature-spotlight-tab"
                             type="button"
                             role="tab"
-                            aria-label="Indicator Overlays"
+                            aria-label="Calendar"
                             aria-selected="false"
                             aria-controls="feature-spotlight-panel"
                             tabindex="-1"
                             data-feature-tab
-                            data-feature-key="indicator-overlays"
+                            data-feature-key="calendar"
                         >
                             <img
                                 class="feature-spotlight-tab-icon"
-                                src="../img/more-features-icons/indicator-overlays.svg"
+                                src="../icons/features/more/icon-calendar.svg"
                                 alt=""
                                 aria-hidden="true"
                             >
-                            <span class="feature-spotlight-tab-label">Indicator Overlays</span>
-                        </button>
-                        <button
-                            id="feature-tab-reports"
-                            class="feature-spotlight-tab"
-                            type="button"
-                            role="tab"
-                            aria-label="Trading Reports"
-                            aria-selected="false"
-                            aria-controls="feature-spotlight-panel"
-                            tabindex="-1"
-                            data-feature-tab
-                            data-feature-key="trading-reports"
-                        >
-                            <img
-                                class="feature-spotlight-tab-icon"
-                                src="../img/more-features-icons/trading-reports.svg"
-                                alt=""
-                                aria-hidden="true"
-                            >
-                            <span class="feature-spotlight-tab-label">Trading Reports</span>
-                        </button>
-                        <button
-                            id="feature-tab-custom-assets"
-                            class="feature-spotlight-tab"
-                            type="button"
-                            role="tab"
-                            aria-label="Custom Assets"
-                            aria-selected="false"
-                            aria-controls="feature-spotlight-panel"
-                            tabindex="-1"
-                            data-feature-tab
-                            data-feature-key="custom-assets"
-                        >
-                            <img
-                                class="feature-spotlight-tab-icon"
-                                src="../img/more-features-icons/custom-assets.svg"
-                                alt=""
-                                aria-hidden="true"
-                            >
-                            <span class="feature-spotlight-tab-label">Custom Assets</span>
-                        </button>
-                        <button
-                            id="feature-tab-alerts"
-                            class="feature-spotlight-tab"
-                            type="button"
-                            role="tab"
-                            aria-label="Price Alerts"
-                            aria-selected="false"
-                            aria-controls="feature-spotlight-panel"
-                            tabindex="-1"
-                            data-feature-tab
-                            data-feature-key="price-alerts"
-                        >
-                            <img
-                                class="feature-spotlight-tab-icon"
-                                src="../img/more-features-icons/price-alerts.svg"
-                                alt=""
-                                aria-hidden="true"
-                            >
-                            <span class="feature-spotlight-tab-label">Price Alerts</span>
+                            <span class="feature-spotlight-tab-label">Calendar</span>
                         </button>
                     </div>
 
@@ -276,26 +277,25 @@
                         id="feature-spotlight-panel"
                         class="feature-spotlight-panel"
                         role="tabpanel"
-                        aria-labelledby="feature-tab-watchlists"
+                        aria-labelledby="feature-tab-reports"
                     >
                         <div class="feature-spotlight-copy">
-                            <h3 data-feature-title>Watchlists</h3>
+                            <h3 data-feature-title>Reports</h3>
                             <p class="feature-desc" data-feature-description>
-                                Keep your best ideas in one place, with quick views of price action, momentum, and next
-                                events before you open a full stock overview.
+                                Generate clean weekly and monthly snapshots across return, win rate, and exposure so
+                                performance reviews stay objective and repeatable.
                             </p>
                             <a class="feature-link" data-feature-link href="#">
-                                Learn about Watchlists →
+                                Open Reports →
                             </a>
                         </div>
 
-                        <div
-                            class="feature-spotlight-media"
-                            data-feature-media
-                            role="img"
-                            aria-label="Watchlists screenshot placeholder"
-                        >
-                            <span data-feature-media-label>Screenshot coming soon</span>
+                        <div class="feature-spotlight-media" data-feature-media>
+                            <img
+                                data-feature-media-image
+                                src="../img/screenshots/Reports.png"
+                                alt="Reports screenshot"
+                            >
                         </div>
                     </div>
                 </article>
@@ -316,7 +316,7 @@
         <div class="trust-grid">
             <article class="trust-card">
                 <header class="trust-card__header">
-                    <span class="trust-card__icon"><img src="../img/icon-security.svg"></span>
+                    <span class="trust-card__icon"><img src="../icons/trust/icon-security.svg"></span>
                     <h3 id="trust-security-title">Security</h3>
                 </header>
 
@@ -329,7 +329,7 @@
 
             <article class="trust-card">
                 <header class="trust-card__header">
-                    <span class="trust-card__icon"><img src="../img/icon-privacy.svg"></span>
+                    <span class="trust-card__icon"><img src="../icons/trust/icon-privacy.svg"></span>
                     <h3 id="trust-privacy-title">Privacy</h3>
                 </header>
 
@@ -342,7 +342,7 @@
 
             <article class="trust-card">
                 <header class="trust-card__header">
-                    <span class="trust-card__icon"><img src="../img/icon-ownership.svg"></span>
+                    <span class="trust-card__icon"><img src="../icons/trust/icon-ownership.svg"></span>
                     <h3 id="trust-ownership-title">Data ownership</h3>
                 </header>
 
@@ -355,7 +355,7 @@
 
             <article class="trust-card">
                 <header class="trust-card__header">
-                    <span class="trust-card__icon"><img src="../img/icon-transparency.svg"></span>
+                    <span class="trust-card__icon"><img src="../icons/trust/icon-transparency.svg"></span>
                     <h3 id="trust-transparency-title">Transparency</h3>
                 </header>
 
