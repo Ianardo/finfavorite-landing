@@ -901,37 +901,60 @@ section#features {
     position: absolute;
     top: 50%;
     z-index: 2;
-    width: 30px;
-    height: 30px;
-    border: 1px solid rgba(15, 30, 60, 0.14);
+    width: 38px;
+    height: 38px;
+    border: 1px solid rgba(8, 15, 30, 0.38);
     border-radius: 999px;
-    background: rgba(255, 255, 255, 0.84);
-    color: var(--text);
+    background: rgba(8, 15, 30, 0.74);
+    color: #ffffff;
     display: grid;
     place-items: center;
-    font-size: 1.2rem;
+    font-size: 1.5rem;
+    font-weight: 700;
     line-height: 1;
     transform: translateY(-50%);
     cursor: pointer;
-    transition: background-color var(--t-2) var(--ease-out), border-color var(--t-2) var(--ease-out), opacity var(--t-2) var(--ease-out);
+    box-shadow: 0 10px 24px rgba(8, 15, 30, 0.25);
+    transition:
+        background-color var(--t-2) var(--ease-out),
+        border-color var(--t-2) var(--ease-out),
+        opacity var(--t-2) var(--ease-out),
+        transform var(--t-2) var(--ease-out),
+        box-shadow var(--t-2) var(--ease-out);
 }
 
 .feature-carousel-control--prev {
-    left: 10px;
+    left: 12px;
 }
 
 .feature-carousel-control--next {
-    right: 10px;
+    right: 12px;
 }
 
 .feature-carousel-control:disabled {
-    opacity: 0.4;
+    opacity: 0.28;
     cursor: default;
 }
 
 .feature-carousel-control:focus-visible {
     outline: 2px solid var(--accent-color);
     outline-offset: 2px;
+}
+
+.feature-carousel-control span {
+    display: block;
+    width: 1em;
+    line-height: 1;
+    text-align: center;
+    transform: translateY(-1px);
+}
+
+.feature-carousel-control--prev span {
+    transform: translate(-0.5px, -1px);
+}
+
+.feature-carousel-control--next span {
+    transform: translate(0.5px, -1px);
 }
 
 .feature-carousel-dots {
@@ -1146,8 +1169,9 @@ section#features {
     }
 
     .feature-carousel-control {
-        width: 28px;
-        height: 28px;
+        width: 34px;
+        height: 34px;
+        font-size: 1.35rem;
     }
 
     .feature-carousel-dots {
@@ -1244,8 +1268,10 @@ h1 {
     }
 
     .feature-carousel-control:not(:disabled):hover {
-        background: rgba(255, 255, 255, 0.96);
-        border-color: rgba(15, 30, 60, 0.22);
+        background: rgba(8, 15, 30, 0.9);
+        border-color: rgba(8, 15, 30, 0.58);
+        box-shadow: 0 14px 28px rgba(8, 15, 30, 0.32);
+        transform: translateY(-50%) scale(1.06);
     }
 
     .feature-link:hover {
