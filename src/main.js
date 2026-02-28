@@ -304,7 +304,10 @@ if (spotlight) {
       description:
         'Keep earnings dates, dividend events, and key market timings in one timeline so planning and execution stay synchronized.',
       linkText: 'Open Calendar →',
-      media: [{ src: '../img/screenshots/calendar-2.png', alt: 'Calendar screenshot' }],
+      media: [
+        { src: '../img/screenshots/Calendar.png', alt: 'Calendar screenshot' },
+        { src: '../img/screenshots/calendar-2.png', alt: 'Calendar secondary screenshot' },
+      ],
     },
   };
 
