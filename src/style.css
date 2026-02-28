@@ -977,6 +977,11 @@ section#features {
     .feature-carousel-dot {
         transition: none;
     }
+
+    .feature-spotlight-copy,
+    .feature-spotlight-media {
+        transition: none;
+    }
 }
 
 .feature-explorer {
@@ -1059,6 +1064,9 @@ section#features {
 .feature-spotlight-copy {
     max-width: 420px;
     align-self: center;
+    transition:
+        opacity 180ms var(--ease-out),
+        transform 220ms var(--ease-out);
 }
 
 .feature-spotlight-copy h3 {
@@ -1070,11 +1078,24 @@ section#features {
 .feature-spotlight-media {
     position: relative;
     min-height: 300px;
+    transition:
+        opacity 180ms var(--ease-out),
+        transform 220ms var(--ease-out);
 }
 
 .feature-spotlight-media .feature-carousel {
     width: 100%;
     max-width: none;
+}
+
+.feature-spotlight-panel.is-transitioning {
+    pointer-events: none;
+}
+
+.feature-spotlight-panel.is-transitioning .feature-spotlight-copy,
+.feature-spotlight-panel.is-transitioning .feature-spotlight-media {
+    opacity: 0;
+    transform: translateY(6px);
 }
 
 .feature-spotlight-media img {

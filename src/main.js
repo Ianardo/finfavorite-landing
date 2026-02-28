@@ -77,6 +77,7 @@ sr.reveal('#features .feature', {
 });
 
 const imagePreloadCache = new Map();
+const wait = (ms) => new Promise((resolve) => window.setTimeout(resolve, ms));
 
 const preloadImage = (src) => {
   if (!src) return Promise.resolve(false);
@@ -86,7 +87,13 @@ const preloadImage = (src) => {
     const image = new Image();
     image.decoding = 'async';
     image.loading = 'eager';
-    image.onload = () => resolve(true);
+    image.onload = () => {
+      if (typeof image.decode === 'function') {
+        image.decode().then(() => resolve(true)).catch(() => resolve(true));
+        return;
+      }
+      resolve(true);
+    };
     image.onerror = () => resolve(false);
     image.src = src;
   });
@@ -265,6 +272,8 @@ if (spotlight) {
   const link = spotlight.querySelector('[data-feature-link]');
   const spotlightCarousel = spotlight.querySelector('[data-spotlight-carousel]');
   const spotlightCarouselController = spotlightCarousel ? carouselControllers.get(spotlightCarousel) : null;
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let spotlightTransitionToken = 0;
 
   const featureCopy = {
     // Use 1 item in `media` for a single image, or 2 items for a double carousel.
@@ -317,9 +326,22 @@ if (spotlight) {
     });
   });
 
-  const activateTab = (tab) => {
+  const activateTab = async (tab, options = {}) => {
+    const shouldAnimate = options.animate ?? !prefersReducedMotion;
     const nextData = featureCopy[tab.dataset.featureKey];
     if (!nextData) return;
+    const transitionToken = ++spotlightTransitionToken;
+
+    if (shouldAnimate) {
+      panel.classList.add('is-transitioning');
+      await wait(90);
+      if (transitionToken !== spotlightTransitionToken) return;
+    }
+
+    if (spotlightCarouselController) {
+      await spotlightCarouselController.setSlides(nextData.media);
+      if (transitionToken !== spotlightTransitionToken) return;
+    }
 
     tabs.forEach((item) => {
       const isActive = item === tab;
@@ -333,13 +355,19 @@ if (spotlight) {
     title.textContent = nextData.title;
     description.textContent = nextData.description;
     link.textContent = nextData.linkText;
-    if (spotlightCarouselController) {
-      spotlightCarouselController.setSlides(nextData.media);
+
+    if (shouldAnimate) {
+      window.requestAnimationFrame(() => {
+        if (transitionToken !== spotlightTransitionToken) return;
+        panel.classList.remove('is-transitioning');
+      });
     }
   };
 
   tabs.forEach((tab) => {
-    tab.addEventListener('click', () => activateTab(tab));
+    tab.addEventListener('click', () => {
+      void activateTab(tab);
+    });
 
     tab.addEventListener('keydown', (event) => {
       if (!['ArrowRight', 'ArrowLeft', 'Home', 'End'].includes(event.key)) return;
@@ -355,12 +383,12 @@ if (spotlight) {
       if (event.key === 'End') nextIndex = tabs.length - 1;
 
       tabs[nextIndex].focus();
-      activateTab(tabs[nextIndex]);
+      void activateTab(tabs[nextIndex]);
     });
   });
 
   const selectedTab = tabs.find((tab) => tab.getAttribute('aria-selected') === 'true') ?? tabs[0];
-  if (selectedTab) activateTab(selectedTab);
+  if (selectedTab) void activateTab(selectedTab, { animate: false });
 }
 
 /*************/
