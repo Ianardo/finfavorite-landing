@@ -116,14 +116,32 @@
 
                     <h3 id="feature-overview-title">Overview</h3>
                     <p class="feature-desc">
-                        Start from a clean portfolio overview that surfaces allocation, performance, and key movement at a
-                        glance so you can orient quickly before going deeper.
+                        See market movement, position risk, and upcoming catalysts in one summary built for quick
+                        orientation before going deeper.
                     </p>
                     <a class="feature-link" href="#">Open Overview →</a>
                 </div>
 
                 <div class="feature-media">
-                    <img src="../img/screenshots/Overview.png" alt="Overview dashboard preview" />
+                    <div class="feature-carousel is-single" data-feature-carousel aria-label="Overview showcase">
+                        <div class="feature-carousel-track" data-feature-track>
+                            <img
+                                class="feature-carousel-slide"
+                                data-feature-slide
+                                src="../img/screenshots/Overview.png"
+                                alt="Overview dashboard preview"
+                            />
+                        </div>
+
+                        <button class="feature-carousel-control feature-carousel-control--prev" type="button" aria-label="Previous image" data-feature-prev hidden>
+                            <span aria-hidden="true">‹</span>
+                        </button>
+                        <button class="feature-carousel-control feature-carousel-control--next" type="button" aria-label="Next image" data-feature-next hidden>
+                            <span aria-hidden="true">›</span>
+                        </button>
+
+                        <div class="feature-carousel-dots" hidden></div>
+                    </div>
                 </div>
             </article>
 
@@ -135,14 +153,38 @@
 
                     <h3 id="feature-doctor-title">Doctor</h3>
                     <p class="feature-desc">
-                        Doctor highlights portfolio weak spots and concentration risk with practical fixes, helping you
-                        tighten decision quality without digging through raw data.
+                        Run controlled what-if analyses to test whether alternative risk/exit rules would have improved
+                        outcomes.
                     </p>
                     <a class="feature-link" href="#">Run Doctor →</a>
                 </div>
 
                 <div class="feature-media">
-                    <img src="../img/screenshots/Doctor.png" alt="Doctor diagnostics preview" />
+                    <div class="feature-carousel" data-feature-carousel aria-label="Doctor showcase">
+                        <div class="feature-carousel-track" data-feature-track>
+                            <img
+                                class="feature-carousel-slide"
+                                data-feature-slide
+                                src="../img/screenshots/doctor-1.png"
+                                alt="Doctor diagnostics preview"
+                            />
+                            <img
+                                class="feature-carousel-slide"
+                                data-feature-slide
+                                src="../img/screenshots/doctor-2.png"
+                                alt="Doctor follow-up insights preview"
+                            />
+                        </div>
+
+                        <button class="feature-carousel-control feature-carousel-control--prev" type="button" aria-label="Previous image" data-feature-prev>
+                            <span aria-hidden="true">‹</span>
+                        </button>
+                        <button class="feature-carousel-control feature-carousel-control--next" type="button" aria-label="Next image" data-feature-next>
+                            <span aria-hidden="true">›</span>
+                        </button>
+
+                        <div class="feature-carousel-dots"></div>
+                    </div>
                 </div>
 
             </article>
@@ -155,14 +197,32 @@
 
                     <h3 id="feature-replay-title">Replay</h3>
                     <p class="feature-desc">
-                        Replay lets you walk past trades in sequence, review what happened around each entry, and tighten
-                        your process from real execution history.
+                        See how your positions developed in real time, review what occurred around each entry, and
+                        tighten your process from your execution history.
                     </p>
                     <a class="feature-link" href="#">Review Replay →</a>
                 </div>
 
                 <div class="feature-media">
-                    <img src="../img/screenshots/Replay.png" alt="Replay interface preview" />
+                    <div class="feature-carousel is-single" data-feature-carousel aria-label="Replay showcase">
+                        <div class="feature-carousel-track" data-feature-track>
+                            <img
+                                class="feature-carousel-slide"
+                                data-feature-slide
+                                src="../img/screenshots/Replay.png"
+                                alt="Replay interface preview"
+                            />
+                        </div>
+
+                        <button class="feature-carousel-control feature-carousel-control--prev" type="button" aria-label="Previous image" data-feature-prev hidden>
+                            <span aria-hidden="true">‹</span>
+                        </button>
+                        <button class="feature-carousel-control feature-carousel-control--next" type="button" aria-label="Next image" data-feature-next hidden>
+                            <span aria-hidden="true">›</span>
+                        </button>
+
+                        <div class="feature-carousel-dots" hidden></div>
+                    </div>
                 </div>
             </article>
 
@@ -236,7 +296,7 @@
                             class="feature-spotlight-tab"
                             type="button"
                             role="tab"
-                            aria-label="Watchlists"
+                            aria-label="Watchlist"
                             aria-selected="false"
                             aria-controls="feature-spotlight-panel"
                             tabindex="-1"
@@ -249,7 +309,7 @@
                                 alt=""
                                 aria-hidden="true"
                             >
-                            <span class="feature-spotlight-tab-label">Watchlists</span>
+                            <span class="feature-spotlight-tab-label">Watchlist</span>
                         </button>
                         <button
                             id="feature-tab-calendar"
@@ -282,8 +342,8 @@
                         <div class="feature-spotlight-copy">
                             <h3 data-feature-title>Reports</h3>
                             <p class="feature-desc" data-feature-description>
-                                Generate clean weekly and monthly snapshots across return, win rate, and exposure so
-                                performance reviews stay objective and repeatable.
+                                View metrics from basic win rate to drawdown, excursion, hold-time, and edge-quality
+                                analytics.
                             </p>
                             <a class="feature-link" data-feature-link href="#">
                                 Open Reports →
@@ -291,11 +351,25 @@
                         </div>
 
                         <div class="feature-spotlight-media" data-feature-media>
-                            <img
-                                data-feature-media-image
-                                src="../img/screenshots/Reports.png"
-                                alt="Reports screenshot"
-                            >
+                            <div class="feature-carousel feature-carousel--spotlight is-single" data-feature-carousel data-spotlight-carousel aria-label="Additional feature showcase">
+                                <div class="feature-carousel-track" data-feature-track>
+                                    <img
+                                        class="feature-carousel-slide"
+                                        data-feature-slide
+                                        src="../img/screenshots/Reports.png"
+                                        alt="Reports screenshot"
+                                    />
+                                </div>
+
+                                <button class="feature-carousel-control feature-carousel-control--prev" type="button" aria-label="Previous image" data-feature-prev hidden>
+                                    <span aria-hidden="true">‹</span>
+                                </button>
+                                <button class="feature-carousel-control feature-carousel-control--next" type="button" aria-label="Next image" data-feature-next hidden>
+                                    <span aria-hidden="true">›</span>
+                                </button>
+
+                                <div class="feature-carousel-dots" hidden></div>
+                            </div>
                         </div>
                     </div>
                 </article>

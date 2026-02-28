@@ -76,6 +76,170 @@ sr.reveal('#features .feature', {
   duration: 600,
 });
 
+const imagePreloadCache = new Map();
+
+const preloadImage = (src) => {
+  if (!src) return Promise.resolve(false);
+  if (imagePreloadCache.has(src)) return imagePreloadCache.get(src);
+
+  const preloadPromise = new Promise((resolve) => {
+    const image = new Image();
+    image.decoding = 'async';
+    image.loading = 'eager';
+    image.onload = () => resolve(true);
+    image.onerror = () => resolve(false);
+    image.src = src;
+  });
+
+  imagePreloadCache.set(src, preloadPromise);
+  return preloadPromise;
+};
+
+const createFeatureCarousel = (carousel) => {
+  const track = carousel.querySelector('[data-feature-track]');
+  const dotsWrap = carousel.querySelector('.feature-carousel-dots');
+  const prevButton = carousel.querySelector('[data-feature-prev]');
+  const nextButton = carousel.querySelector('[data-feature-next]');
+
+  if (!track) return null;
+
+  let slides = [];
+  let dots = [];
+  let activeIndex = 0;
+  let rafId = 0;
+  let setSlidesToken = 0;
+
+  const clamp = (index) => {
+    const maxIndex = Math.max(slides.length - 1, 0);
+    return Math.min(Math.max(index, 0), maxIndex);
+  };
+
+  const slideWidth = () => Math.max(track.clientWidth, 1);
+  const isSingle = () => slides.length <= 1;
+
+  const updateNavState = () => {
+    const single = isSingle();
+    carousel.classList.toggle('is-single', single);
+
+    if (prevButton) {
+      prevButton.hidden = single;
+      prevButton.disabled = single || activeIndex === 0;
+    }
+
+    if (nextButton) {
+      nextButton.hidden = single;
+      nextButton.disabled = single || activeIndex === slides.length - 1;
+    }
+
+    if (dotsWrap) {
+      dotsWrap.hidden = single;
+    }
+  };
+
+  const setActiveState = (index) => {
+    activeIndex = clamp(index);
+
+    dots.forEach((dot, dotIndex) => {
+      const isActive = dotIndex === activeIndex;
+      dot.classList.toggle('is-active', isActive);
+      dot.setAttribute('aria-current', isActive ? 'true' : 'false');
+    });
+
+    updateNavState();
+  };
+
+  const indexFromScroll = () => clamp(Math.round(track.scrollLeft / slideWidth()));
+
+  const goTo = (index, behavior = 'smooth') => {
+    if (!slides.length) return;
+    const next = clamp(index);
+    track.scrollTo({ left: next * slideWidth(), behavior });
+    setActiveState(next);
+  };
+
+  const rebuildDots = () => {
+    if (!dotsWrap) return;
+
+    dotsWrap.replaceChildren();
+    dots = [];
+
+    slides.forEach((_, index) => {
+      const dot = document.createElement('button');
+      dot.type = 'button';
+      dot.className = 'feature-carousel-dot';
+      dot.dataset.featureDot = '';
+      dot.dataset.featureIndex = String(index);
+      dot.setAttribute('aria-label', `Go to image ${index + 1} of ${slides.length}`);
+      dot.setAttribute('aria-current', 'false');
+      dot.addEventListener('click', () => goTo(index));
+      dotsWrap.append(dot);
+      dots.push(dot);
+    });
+  };
+
+  const refresh = (index = 0, behavior = 'auto') => {
+    slides = [...track.querySelectorAll('[data-feature-slide]')];
+    rebuildDots();
+    setActiveState(index);
+    goTo(activeIndex, behavior);
+  };
+
+  const setSlides = async (mediaItems = []) => {
+    if (!Array.isArray(mediaItems) || mediaItems.length === 0) return;
+
+    const nextItems = mediaItems.filter((media) => media?.src);
+    if (!nextItems.length) return;
+
+    const requestToken = ++setSlidesToken;
+    await Promise.all(nextItems.map((media) => preloadImage(media.src)));
+    if (requestToken !== setSlidesToken) return;
+
+    track.replaceChildren();
+
+    nextItems.forEach((media) => {
+      const image = document.createElement('img');
+      image.className = 'feature-carousel-slide';
+      image.dataset.featureSlide = '';
+      image.src = media.src;
+      image.alt = media.alt ?? '';
+      track.append(image);
+    });
+
+    refresh(0, 'auto');
+  };
+
+  track.addEventListener('scroll', () => {
+    if (isSingle() || rafId) return;
+    rafId = window.requestAnimationFrame(() => {
+      rafId = 0;
+      setActiveState(indexFromScroll());
+    });
+  }, { passive: true });
+
+  if (prevButton) prevButton.addEventListener('click', () => goTo(activeIndex - 1));
+  if (nextButton) nextButton.addEventListener('click', () => goTo(activeIndex + 1));
+
+  window.addEventListener('resize', () => {
+    if (!slides.length) return;
+    goTo(activeIndex, 'auto');
+  });
+
+  refresh(0, 'auto');
+
+  return {
+    setSlides,
+  };
+};
+
+const carouselControllers = new Map();
+
+[...document.querySelectorAll('[data-feature-carousel]')].forEach((carousel) => {
+  const controller = createFeatureCarousel(carousel);
+  if (controller) {
+    carouselControllers.set(carousel, controller);
+  }
+});
+
 
 sr.reveal('#how-it-works .step', {
   delay: 140,     // gives the header a beat
@@ -99,50 +263,56 @@ if (spotlight) {
   const title = spotlight.querySelector('[data-feature-title]');
   const description = spotlight.querySelector('[data-feature-description]');
   const link = spotlight.querySelector('[data-feature-link]');
-  const mediaImage = spotlight.querySelector('[data-feature-media-image]');
+  const spotlightCarousel = spotlight.querySelector('[data-spotlight-carousel]');
+  const spotlightCarouselController = spotlightCarousel ? carouselControllers.get(spotlightCarousel) : null;
 
   const featureCopy = {
+    // Use 1 item in `media` for a single image, or 2 items for a double carousel.
     reports: {
       title: 'Reports',
       description:
-        'Generate clean weekly and monthly snapshots across return, win rate, and exposure so performance reviews stay objective and repeatable.',
+        'View metrics from basic win rate to drawdown, excursion, hold-time, and edge-quality analytics.',
       linkText: 'Open Reports →',
-      mediaSrc: '../img/screenshots/Reports.png',
-      mediaAlt: 'Reports screenshot',
+      media: [{ src: '../img/screenshots/Reports.png', alt: 'Reports screenshot' }],
     },
     dividends: {
       title: 'Dividends',
       description:
-        'Track payouts, dividend growth, and yield consistency across holdings so your income strategy stays transparent and easy to monitor.',
+        'Turn income investing into a planned system with yield metrics, ex-date visibility, and projected payout timelines.',
       linkText: 'View Dividends →',
-      mediaSrc: '../img/screenshots/Dividends.png',
-      mediaAlt: 'Dividends screenshot',
+      media: [{ src: '../img/screenshots/Dividends.png', alt: 'Dividends screenshot' }],
     },
     charting: {
       title: 'Charting',
       description:
         'Customize indicators and overlays to compare momentum, structure, and context directly on chart so setup quality is easier to validate.',
       linkText: 'Explore Charting →',
-      mediaSrc: '../img/screenshots/Custom.png',
-      mediaAlt: 'Charting screenshot',
+      media: [
+        { src: '../img/screenshots/Custom.png', alt: 'Charting screenshot' },
+        { src: '../img/screenshots/custom-2.png', alt: 'Charting secondary screenshot' },
+      ],
     },
     watchlists: {
-      title: 'Watchlists',
+      title: 'Watchlist',
       description:
-        'Keep your best ideas in one place, with quick views of price action, momentum, and next events before you open a full stock overview.',
-      linkText: 'Open Watchlists →',
-      mediaSrc: '../img/screenshots/Watchlists.png',
-      mediaAlt: 'Watchlists screenshot',
+        'Organize ideas with tags, imports, and quick filtering so research stays actionable instead of scattered.',
+      linkText: 'Open Watchlist →',
+      media: [{ src: '../img/screenshots/Watchlists.png', alt: 'Watchlists screenshot' }],
     },
     calendar: {
       title: 'Calendar',
       description:
         'Keep earnings dates, dividend events, and key market timings in one timeline so planning and execution stay synchronized.',
       linkText: 'Open Calendar →',
-      mediaSrc: '../img/screenshots/Calendar.png',
-      mediaAlt: 'Calendar screenshot',
+      media: [{ src: '../img/screenshots/calendar-2.png', alt: 'Calendar screenshot' }],
     },
   };
+
+  Object.values(featureCopy).forEach((feature) => {
+    feature.media.forEach((media) => {
+      void preloadImage(media.src);
+    });
+  });
 
   const activateTab = (tab) => {
     const nextData = featureCopy[tab.dataset.featureKey];
@@ -160,9 +330,8 @@ if (spotlight) {
     title.textContent = nextData.title;
     description.textContent = nextData.description;
     link.textContent = nextData.linkText;
-    if (mediaImage) {
-      mediaImage.src = nextData.mediaSrc;
-      mediaImage.alt = nextData.mediaAlt;
+    if (spotlightCarouselController) {
+      spotlightCarouselController.setSlides(nextData.media);
     }
   };
 
@@ -186,6 +355,9 @@ if (spotlight) {
       activateTab(tabs[nextIndex]);
     });
   });
+
+  const selectedTab = tabs.find((tab) => tab.getAttribute('aria-selected') === 'true') ?? tabs[0];
+  if (selectedTab) activateTab(selectedTab);
 }
 
 /*************/
