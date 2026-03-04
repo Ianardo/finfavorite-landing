@@ -637,6 +637,163 @@
                     </footer>
                 </article>
             </div>
+
+            <button class="compare-toggle" aria-expanded="false" aria-controls="compare-table">
+                <span class="compare-toggle__text">Compare all features</span>
+                <svg class="compare-toggle__icon" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                    <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
+
+            <div id="compare-table" class="compare-collapse" aria-hidden="true">
+                <div class="compare-collapse__inner">
+                <table class="compare-table" role="grid">
+                    <thead>
+                        <tr>
+                            <th class="compare-table__feature-col"></th>
+                            <th class="compare-table__plan-col">Free</th>
+                            <th class="compare-table__plan-col compare-table__plan-col--featured">Basic</th>
+                            <th class="compare-table__plan-col">Premium</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="compare-table__group-row">
+                            <td colspan="4">Core</td>
+                        </tr>
+                        <tr>
+                            <td>Dashboards</td>
+                            <td>Basic</td>
+                            <td>Advanced</td>
+                            <td>Advanced</td>
+                        </tr>
+                        <tr>
+                            <td>Watchlists &amp; tags</td>
+                            <td><svg class="icon-check" viewBox="0 0 16 16" aria-label="Included"><path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></td>
+                            <td><svg class="icon-check" viewBox="0 0 16 16" aria-label="Included"><path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></td>
+                            <td><svg class="icon-check" viewBox="0 0 16 16" aria-label="Included"><path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></td>
+                        </tr>
+                        <tr>
+                            <td>Trade journal</td>
+                            <td><svg class="icon-check" viewBox="0 0 16 16" aria-label="Included"><path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></td>
+                            <td><svg class="icon-check" viewBox="0 0 16 16" aria-label="Included"><path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></td>
+                            <td><svg class="icon-check" viewBox="0 0 16 16" aria-label="Included"><path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></td>
+                        </tr>
+                        <tr>
+                            <td>Data export</td>
+                            <td>CSV</td>
+                            <td>CSV + API</td>
+                            <td>CSV + API</td>
+                        </tr>
+
+                        <tr class="compare-table__group-row">
+                            <td colspan="4">Analytics</td>
+                        </tr>
+                        <tr>
+                            <td>Performance breakdowns</td>
+                            <td><span class="icon-dash" aria-label="Not included">&ndash;</span></td>
+                            <td><svg class="icon-check" viewBox="0 0 16 16" aria-label="Included"><path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></td>
+                            <td><svg class="icon-check" viewBox="0 0 16 16" aria-label="Included"><path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></td>
+                        </tr>
+                        <tr>
+                            <td>Custom tag analytics</td>
+                            <td><span class="icon-dash" aria-label="Not included">&ndash;</span></td>
+                            <td><svg class="icon-check" viewBox="0 0 16 16" aria-label="Included"><path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></td>
+                            <td><svg class="icon-check" viewBox="0 0 16 16" aria-label="Included"><path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></td>
+                        </tr>
+                        <tr>
+                            <td>P&amp;L attribution</td>
+                            <td><span class="icon-dash" aria-label="Not included">&ndash;</span></td>
+                            <td><svg class="icon-check" viewBox="0 0 16 16" aria-label="Included"><path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></td>
+                            <td><svg class="icon-check" viewBox="0 0 16 16" aria-label="Included"><path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></td>
+                        </tr>
+                        <tr>
+                            <td>Win-rate trends</td>
+                            <td><span class="icon-dash" aria-label="Not included">&ndash;</span></td>
+                            <td><svg class="icon-check" viewBox="0 0 16 16" aria-label="Included"><path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></td>
+                            <td><svg class="icon-check" viewBox="0 0 16 16" aria-label="Included"><path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></td>
+                        </tr>
+
+                        <tr class="compare-table__group-row">
+                            <td colspan="4">Tools</td>
+                        </tr>
+                        <tr>
+                            <td>Template library</td>
+                            <td><span class="icon-dash" aria-label="Not included">&ndash;</span></td>
+                            <td><svg class="icon-check" viewBox="0 0 16 16" aria-label="Included"><path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></td>
+                            <td><svg class="icon-check" viewBox="0 0 16 16" aria-label="Included"><path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></td>
+                        </tr>
+                        <tr>
+                            <td>Priority imports</td>
+                            <td><span class="icon-dash" aria-label="Not included">&ndash;</span></td>
+                            <td><svg class="icon-check" viewBox="0 0 16 16" aria-label="Included"><path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></td>
+                            <td><svg class="icon-check" viewBox="0 0 16 16" aria-label="Included"><path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></td>
+                        </tr>
+                        <tr>
+                            <td>Automated trade sync</td>
+                            <td><span class="icon-dash" aria-label="Not included">&ndash;</span></td>
+                            <td><svg class="icon-check" viewBox="0 0 16 16" aria-label="Included"><path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></td>
+                            <td><svg class="icon-check" viewBox="0 0 16 16" aria-label="Included"><path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></td>
+                        </tr>
+                        <tr>
+                            <td>Advanced filters</td>
+                            <td><span class="icon-dash" aria-label="Not included">&ndash;</span></td>
+                            <td><svg class="icon-check" viewBox="0 0 16 16" aria-label="Included"><path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></td>
+                            <td><svg class="icon-check" viewBox="0 0 16 16" aria-label="Included"><path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></td>
+                        </tr>
+
+                        <tr class="compare-table__group-row">
+                            <td colspan="4">Collaboration</td>
+                        </tr>
+                        <tr>
+                            <td>Shared workspaces</td>
+                            <td><span class="icon-dash" aria-label="Not included">&ndash;</span></td>
+                            <td><span class="icon-dash" aria-label="Not included">&ndash;</span></td>
+                            <td><svg class="icon-check" viewBox="0 0 16 16" aria-label="Included"><path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></td>
+                        </tr>
+                        <tr>
+                            <td>Role-based access</td>
+                            <td><span class="icon-dash" aria-label="Not included">&ndash;</span></td>
+                            <td><span class="icon-dash" aria-label="Not included">&ndash;</span></td>
+                            <td><svg class="icon-check" viewBox="0 0 16 16" aria-label="Included"><path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></td>
+                        </tr>
+                        <tr>
+                            <td>Audit trails</td>
+                            <td><span class="icon-dash" aria-label="Not included">&ndash;</span></td>
+                            <td><span class="icon-dash" aria-label="Not included">&ndash;</span></td>
+                            <td><svg class="icon-check" viewBox="0 0 16 16" aria-label="Included"><path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></td>
+                        </tr>
+                        <tr>
+                            <td>Team reports</td>
+                            <td><span class="icon-dash" aria-label="Not included">&ndash;</span></td>
+                            <td><span class="icon-dash" aria-label="Not included">&ndash;</span></td>
+                            <td><svg class="icon-check" viewBox="0 0 16 16" aria-label="Included"><path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></td>
+                        </tr>
+
+                        <tr class="compare-table__group-row">
+                            <td colspan="4">Support</td>
+                        </tr>
+                        <tr>
+                            <td>Community forum</td>
+                            <td><svg class="icon-check" viewBox="0 0 16 16" aria-label="Included"><path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></td>
+                            <td><svg class="icon-check" viewBox="0 0 16 16" aria-label="Included"><path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></td>
+                            <td><svg class="icon-check" viewBox="0 0 16 16" aria-label="Included"><path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></td>
+                        </tr>
+                        <tr>
+                            <td>Email support</td>
+                            <td><span class="icon-dash" aria-label="Not included">&ndash;</span></td>
+                            <td><svg class="icon-check" viewBox="0 0 16 16" aria-label="Included"><path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></td>
+                            <td><svg class="icon-check" viewBox="0 0 16 16" aria-label="Included"><path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></td>
+                        </tr>
+                        <tr>
+                            <td>Priority support</td>
+                            <td><span class="icon-dash" aria-label="Not included">&ndash;</span></td>
+                            <td><span class="icon-dash" aria-label="Not included">&ndash;</span></td>
+                            <td><svg class="icon-check" viewBox="0 0 16 16" aria-label="Included"><path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></td>
+                        </tr>
+                    </tbody>
+                </table>
+                </div>
+            </div>
         </div>
     </section>
     <script type="module" src="/src/main.js"></script>
