@@ -69,6 +69,24 @@ sr.reveal('#pricing .pricing-card', {
   duration: 600,
 });
 
+/* ── Compare-features toggle ── */
+const compareToggle = document.querySelector('.compare-toggle');
+const compareCollapse = document.getElementById('compare-table');
+
+if (compareToggle && compareCollapse) {
+  compareToggle.addEventListener('click', () => {
+    const isExpanded = compareToggle.getAttribute('aria-expanded') === 'true';
+    compareToggle.setAttribute('aria-expanded', String(!isExpanded));
+    compareCollapse.setAttribute('aria-hidden', String(isExpanded));
+
+    if (!isExpanded) {
+      compareToggle.querySelector('.compare-toggle__text').textContent = 'Hide comparison';
+    } else {
+      compareToggle.querySelector('.compare-toggle__text').textContent = 'Compare all features';
+    }
+  });
+}
+
 sr.reveal('#features .feature', {
   delay: 140,     // gives the header a beat
   interval: 90,
