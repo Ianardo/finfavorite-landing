@@ -8,9 +8,14 @@ const sr = typeof ScrollReveal === 'function'
     })
   : { reveal: () => {} };
 
-sr.reveal('hgroup > *', {
-  interval: 90,
-  distance: '20px',
+[...document.querySelectorAll('hgroup')].forEach((group) => {
+  const items = [...group.children];
+  if (!items.length) return;
+
+  sr.reveal(items, {
+    interval: 90,
+    distance: '20px',
+  });
 });
 
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
