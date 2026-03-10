@@ -1,9 +1,18 @@
 // On-scroll reveal behavior
-ScrollReveal({reset: false, distance: '20px'})
-ScrollReveal().reveal('hgroup > *', {interval: 90});
-ScrollReveal().reveal('section:not(#testimonials):not(#pricing) > *:not(hgroup)', { delay: 200, distance: '10px' });
+const sr = typeof ScrollReveal === 'function'
+  ? ScrollReveal({
+      reset: false,
+      distance: '18px',
+      duration: 650,
+      origin: 'bottom',
+    })
+  : { reveal: () => {} };
 
-const sr = ScrollReveal({ distance: '18px', duration: 650, origin: 'bottom' });
+sr.reveal('hgroup > *', {
+  interval: 90,
+  distance: '20px',
+});
+
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 const topNav = document.querySelector('.top-nav');
@@ -16,6 +25,13 @@ if (topNav) {
   updateNavGlassState();
   window.addEventListener('scroll', updateNavGlassState, { passive: true });
 }
+
+// Keep placeholder links from forcing a jump to the page top.
+[...document.querySelectorAll('a[href="#"]')].forEach((link) => {
+  link.addEventListener('click', (event) => {
+    event.preventDefault();
+  });
+});
 
 const getTestimonialsInAlternatingOrder = () => {
   const left = [...document.querySelectorAll('#testimonials .testimonials-col:nth-child(1) .testimonial-card')];
@@ -455,16 +471,3 @@ if (spotlight) {
   const selectedTab = tabs.find((tab) => tab.getAttribute('aria-selected') === 'true') ?? tabs[0];
   if (selectedTab) void activateTab(selectedTab, { animate: false });
 }
-
-/*************/
-// Always start at the top on reload (dev + prod)
-// if ("scrollRestoration" in history) {
-//   history.scrollRestoration = "manual";
-// }
-
-window.addEventListener("load", () => {
-  // If you want to ignore hashes too, uncomment the next 2 lines:
-  // if (location.hash) history.replaceState(null, "", location.pathname + location.search);
-  window.scrollTo(0, 0);
-});
-/*************/

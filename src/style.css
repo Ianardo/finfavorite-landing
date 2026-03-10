@@ -188,6 +188,10 @@ img {
 }
 
 @media (max-width: 900px) {
+    :root {
+        --nav-height: 64px;
+    }
+
     .top-nav__inner {
         min-height: 64px;
         gap: 16px;
