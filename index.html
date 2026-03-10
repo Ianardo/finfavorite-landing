@@ -8,10 +8,12 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="FinFavorite unifies long-term investing and active trading into one auditable portfolio dashboard.">
     <title>finfavorite-landing</title>
     <script src="https://unpkg.com/scrollreveal"></script>
   </head>
   <body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
     <nav class="top-nav" aria-label="Primary">
       <div class="top-nav__inner">
         <a class="top-nav__brand" href="#hero" aria-label="FinFavorite home">
@@ -26,17 +28,18 @@
           <a href="#pricing">Pricing</a>
         </div>
 
-        <a class="cta top-nav__cta" href="https://app.finfavorite.com/dashboard/home">Try for free</a>
+        <a class="cta top-nav__cta" href="https://app.finfavorite.com/dashboard/home" aria-label="Try FinFavorite for free">Try for free</a>
       </div>
     </nav>
 
+    <main id="main-content" tabindex="-1">
     <section id="hero">
         <hgroup class="center-align narrow-header">
             <h1 class="wide-header">A <span class="accent gradient-text">unified view</span> of your <br> money at work.</h1>
             <p class="subheader">Track long-term positions and short-term trades together, with full history and context.</p>
         </hgroup>
         <div id="hero-image">
-            <img src="../img/screenshots/reports.png">
+            <img src="../img/screenshots/reports.png" alt="Portfolio reports screen in FinFavorite" decoding="async" fetchpriority="high">
         </div>
     </section>
     <section class="diag" id="macro-micro">
@@ -47,7 +50,7 @@
                 <p class="subheader">Track your entire portfolio over time, then drop down into any stock, any position, and any trade.</p>
             </hgroup>
             <div class="info-images">
-                <img src="../img/zoom.png">
+                <img src="../img/zoom.png" alt="Macro and micro portfolio view comparison" loading="lazy" decoding="async">
             </div>
         </div>
     </section>
@@ -89,11 +92,11 @@
                     </div>
                 </div>
                 <div class="step step--cta">
-                    <button class="cta">Watch walkthrough</button>
+                    <a class="cta" href="#features">Explore features</a>
                 </div>
             </div>
             <div id="how-it-works-image">
-                <img src="../img/screenshots/Upload.png">
+                <img src="../img/screenshots/Upload.png" alt="CSV import flow in FinFavorite" loading="lazy" decoding="async">
             </div>
         </div>
     </section>
@@ -103,7 +106,7 @@
                 <span class="pill">Features</span>
             </div>
 
-            <h1 id="features-title">Tools for tracking, reviewing,<br> and improving decisions.</h2>
+            <h1 id="features-title">Tools for tracking, reviewing,<br> and improving decisions.</h1>
             <p class="subheader">Each part of the platform is designed to translate decisions into measurable outcomes.</p>
         </hgroup>
 
@@ -111,7 +114,7 @@
             <article class="feature feature--left" aria-labelledby="feature-overview-title">
                 <div class="feature-copy">
                     <div class="feature-icon" aria-hidden="true">
-                        <img src="../icons/features/icon-dashboard.svg">
+                        <img src="../icons/features/icon-dashboard.svg" alt="">
                     </div>
 
                     <h3 id="feature-overview-title">Overview</h3>
@@ -119,7 +122,6 @@
                         See market movement, position risk, and upcoming catalysts in one summary built for quick
                         orientation before going deeper.
                     </p>
-                    <a class="feature-link" href="#">Open Overview →</a>
                 </div>
 
                 <div class="feature-media">
@@ -148,7 +150,7 @@
             <article class="feature feature--right" aria-labelledby="feature-doctor-title">
                 <div class="feature-copy feature-copy--right">
                     <div class="feature-icon" aria-hidden="true">
-                        <img src="../icons/features/icon-doctor.svg">
+                        <img src="../icons/features/icon-doctor.svg" alt="">
                     </div>
 
                     <h3 id="feature-doctor-title">Doctor</h3>
@@ -156,7 +158,6 @@
                         Run controlled what-if analyses to test whether alternative risk/exit rules would have improved
                         outcomes.
                     </p>
-                    <a class="feature-link" href="#">Run Doctor →</a>
                 </div>
 
                 <div class="feature-media">
@@ -192,7 +193,7 @@
             <article class="feature feature--left" aria-labelledby="feature-replay-title">
                 <div class="feature-copy">
                     <div class="feature-icon" aria-hidden="true">
-                        <img src="../icons/features/icon-replay.svg">
+                        <img src="../icons/features/icon-replay.svg" alt="">
                     </div>
 
                     <h3 id="feature-replay-title">Replay</h3>
@@ -200,7 +201,6 @@
                         See how your positions developed in real time, review what occurred around each entry, and
                         tighten your process from your execution history.
                     </p>
-                    <a class="feature-link" href="#">Review Replay →</a>
                 </div>
 
                 <div class="feature-media">
@@ -365,9 +365,6 @@
                                 View metrics from basic win rate to drawdown, excursion, hold-time, and edge-quality
                                 analytics.
                             </p>
-                            <a class="feature-link" data-feature-link href="#">
-                                Open Reports →
-                            </a>
                         </div>
 
                         <div class="feature-spotlight-media" data-feature-media>
@@ -410,7 +407,7 @@
         <div class="trust-grid">
             <article class="trust-card">
                 <header class="trust-card__header">
-                    <span class="trust-card__icon"><img src="../icons/trust/icon-security.svg"></span>
+                    <span class="trust-card__icon"><img src="../icons/trust/icon-security.svg" alt=""></span>
                     <h3 id="trust-security-title">Security</h3>
                 </header>
 
@@ -423,7 +420,7 @@
 
             <article class="trust-card">
                 <header class="trust-card__header">
-                    <span class="trust-card__icon"><img src="../icons/trust/icon-privacy.svg"></span>
+                    <span class="trust-card__icon"><img src="../icons/trust/icon-privacy.svg" alt=""></span>
                     <h3 id="trust-privacy-title">Privacy</h3>
                 </header>
 
@@ -436,7 +433,7 @@
 
             <article class="trust-card">
                 <header class="trust-card__header">
-                    <span class="trust-card__icon"><img src="../icons/trust/icon-ownership.svg"></span>
+                    <span class="trust-card__icon"><img src="../icons/trust/icon-ownership.svg" alt=""></span>
                     <h3 id="trust-ownership-title">Data ownership</h3>
                 </header>
 
@@ -449,7 +446,7 @@
 
             <article class="trust-card">
                 <header class="trust-card__header">
-                    <span class="trust-card__icon"><img src="../icons/trust/icon-transparency.svg"></span>
+                    <span class="trust-card__icon"><img src="../icons/trust/icon-transparency.svg" alt=""></span>
                     <h3 id="trust-transparency-title">Transparency</h3>
                 </header>
 
@@ -573,7 +570,7 @@
                 <span class="pill">Pricing</span>
             </div>
 
-            <h1>Choose a plan that's right for you.</h2>
+            <h1>Choose a plan that's right for you.</h1>
             <p class="subheader">All plans keep your data exportable.</p>
         </hgroup>
 
@@ -593,7 +590,7 @@
                     </ul>
 
                     <footer class="pricing-card__footer">
-                        <button class="cta">Get started →</button>
+                        <a class="cta" href="https://app.finfavorite.com/dashboard/home">Get started →</a>
                     </footer>
                 </article>
 
@@ -612,7 +609,7 @@
                     </ul>
 
                     <footer class="pricing-card__footer">
-                        <button class="cta">Get started →</button>
+                        <a class="cta" href="https://app.finfavorite.com/dashboard/home">Get started →</a>
                     </footer>
                 </article>
 
@@ -630,7 +627,7 @@
                     </ul>
 
                     <footer class="pricing-card__footer">
-                        <button class="cta">Get started →</button>
+                        <a class="cta" href="https://app.finfavorite.com/dashboard/home">Get started →</a>
                     </footer>
                 </article>
             </div>
@@ -642,7 +639,7 @@
                 </svg>
             </button>
 
-            <div id="compare-table" class="compare-collapse" aria-hidden="true">
+            <div id="compare-table" class="compare-collapse" aria-hidden="true" inert>
                 <div class="compare-collapse__inner">
                 <table class="compare-table" role="grid">
                     <thead>
@@ -793,6 +790,7 @@
             </div>
         </div>
     </section>
+    </main>
     <script type="module" src="/src/main.js"></script>
   </body>
 </html>

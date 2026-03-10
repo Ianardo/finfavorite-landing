@@ -106,6 +106,26 @@ body {
     padding-top: var(--nav-height);
 }
 
+.skip-link {
+    position: absolute;
+    left: 16px;
+    top: -56px;
+    z-index: 1200;
+    padding: 10px 14px;
+    border-radius: var(--r-sm);
+    color: #ffffff;
+    background: #111827;
+    text-decoration: none;
+    box-shadow: var(--shadow-sm);
+    transition: top var(--t-2) var(--ease-out);
+}
+
+.skip-link:focus-visible {
+    top: 12px;
+    outline: 2px solid #ffffff;
+    outline-offset: 2px;
+}
+
 img {
     max-width: 100%;
     height: auto;
@@ -162,6 +182,12 @@ img {
     line-height: 1;
 }
 
+.top-nav__brand:focus-visible {
+    outline: 2px solid var(--accent-color);
+    outline-offset: 4px;
+    border-radius: var(--r-sm);
+}
+
 .top-nav__brand img {
     width: 34px;
     height: auto;
@@ -180,6 +206,21 @@ img {
     font-weight: 500;
     text-decoration: none;
     line-height: 1;
+    transition: color var(--t-2) var(--ease-out);
+}
+
+.top-nav__links a:hover {
+    color: #1f2328;
+}
+
+.top-nav__links a.is-active {
+    color: #1f2328;
+}
+
+.top-nav__links a:focus-visible {
+    outline: 2px solid var(--accent-color);
+    outline-offset: 4px;
+    border-radius: var(--r-sm);
 }
 
 .cta.top-nav__cta {
@@ -788,7 +829,7 @@ section#pricing {
     border-radius: 9999px;
     color: var(--text);
     font-size: 1.1rem;
-    font-weight: var(--shadow-cta-rest);
+    font-weight: var(--fw-semibold);
     cursor: pointer;
     transition: color var(--t-2) var(--ease-out), border-color var(--t-2) var(--ease-out);
 }
@@ -805,6 +846,11 @@ section#pricing {
 
 .compare-toggle[aria-expanded="true"] .compare-toggle__icon {
     transform: rotate(180deg);
+}
+
+.compare-toggle:focus-visible {
+    outline: 2px solid var(--accent-color);
+    outline-offset: 3px;
 }
 
 /* ── Compare collapse wrapper ── */
@@ -964,14 +1010,6 @@ section#features {
     font-size: 1.1rem;
     color: var(--med-gray);
     line-height: 1.6;
-}
-
-.feature-link {
-    margin: 0;
-    color: var(--dark-med-gray);
-    font-weight: 500;
-    font-size: 0.9rem;
-    transition: color var(--t-2) var(--ease-out);
 }
 
 .feature-media {
@@ -1426,10 +1464,6 @@ h1 {
         border-color: rgba(8, 15, 30, 0.58);
         box-shadow: 0 14px 28px rgba(8, 15, 30, 0.32);
         transform: translateY(-50%) scale(1.06);
-    }
-
-    .feature-link:hover {
-        color: var(--text);
     }
 
     .feature-spotlight:hover {

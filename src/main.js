@@ -21,6 +21,37 @@ const sr = typeof ScrollReveal === 'function'
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 const topNav = document.querySelector('.top-nav');
+const inPageLinks = [...document.querySelectorAll('a[href^="#"]:not([href="#"])')]
+  .filter((link) => !link.classList.contains('skip-link'));
+const topNavLinks = [...document.querySelectorAll('.top-nav__links a[href^="#"]')];
+const topNavSections = topNavLinks
+  .map((link) => {
+    const hash = link.getAttribute('href');
+    const section = hash ? document.querySelector(hash) : null;
+    return section ? { link, section } : null;
+  })
+  .filter(Boolean);
+
+const getHeaderOffset = () => (topNav ? topNav.offsetHeight : 0);
+const smoothScrollToSection = (section) => {
+  const targetY = section.getBoundingClientRect().top + window.scrollY - getHeaderOffset() + 2;
+  window.scrollTo({
+    top: Math.max(targetY, 0),
+    behavior: prefersReducedMotion ? 'auto' : 'smooth',
+  });
+};
+
+const setActiveTopNavLink = (activeId = '') => {
+  topNavLinks.forEach((link) => {
+    const isActive = link.getAttribute('href') === `#${activeId}`;
+    link.classList.toggle('is-active', isActive);
+    if (isActive) {
+      link.setAttribute('aria-current', 'page');
+    } else {
+      link.removeAttribute('aria-current');
+    }
+  });
+};
 
 if (topNav) {
   const updateNavGlassState = () => {
@@ -31,12 +62,35 @@ if (topNav) {
   window.addEventListener('scroll', updateNavGlassState, { passive: true });
 }
 
-// Keep placeholder links from forcing a jump to the page top.
-[...document.querySelectorAll('a[href="#"]')].forEach((link) => {
+inPageLinks.forEach((link) => {
   link.addEventListener('click', (event) => {
+    const hash = link.getAttribute('href');
+    const target = hash ? document.querySelector(hash) : null;
+    if (!target) return;
     event.preventDefault();
+    smoothScrollToSection(target);
+    window.history.replaceState(null, '', hash);
   });
 });
+
+if (topNavSections.length > 0) {
+  const syncActiveTopNavLink = () => {
+    const y = window.scrollY + getHeaderOffset() + 18;
+    let activeId = '';
+
+    topNavSections.forEach(({ section }) => {
+      if (y >= section.offsetTop) {
+        activeId = section.id;
+      }
+    });
+
+    setActiveTopNavLink(activeId);
+  };
+
+  syncActiveTopNavLink();
+  window.addEventListener('scroll', syncActiveTopNavLink, { passive: true });
+  window.addEventListener('resize', syncActiveTopNavLink, { passive: true });
+}
 
 const getTestimonialsInAlternatingOrder = () => {
   const left = [...document.querySelectorAll('#testimonials .testimonials-col:nth-child(1) .testimonial-card')];
@@ -133,10 +187,13 @@ const compareToggle = document.querySelector('.compare-toggle');
 const compareCollapse = document.getElementById('compare-table');
 
 if (compareToggle && compareCollapse) {
+  compareCollapse.inert = true;
+
   compareToggle.addEventListener('click', () => {
     const isExpanded = compareToggle.getAttribute('aria-expanded') === 'true';
     compareToggle.setAttribute('aria-expanded', String(!isExpanded));
     compareCollapse.setAttribute('aria-hidden', String(isExpanded));
+    compareCollapse.inert = isExpanded;
 
     if (!isExpanded) {
       compareToggle.querySelector('.compare-toggle__text').textContent = 'Hide comparison';
@@ -286,6 +343,8 @@ const createFeatureCarousel = (carousel) => {
       image.dataset.featureSlide = '';
       image.src = media.src;
       image.alt = media.alt ?? '';
+      image.loading = 'lazy';
+      image.decoding = 'async';
       track.append(image);
     });
 
@@ -346,7 +405,6 @@ if (spotlight) {
   const panel = spotlight.querySelector('.feature-spotlight-panel');
   const title = spotlight.querySelector('[data-feature-title]');
   const description = spotlight.querySelector('[data-feature-description]');
-  const link = spotlight.querySelector('[data-feature-link]');
   const spotlightCarousel = spotlight.querySelector('[data-spotlight-carousel]');
   const spotlightCarouselController = spotlightCarousel ? carouselControllers.get(spotlightCarousel) : null;
   let spotlightTransitionToken = 0;
@@ -357,21 +415,18 @@ if (spotlight) {
       title: 'Reports',
       description:
         'View metrics from basic win rate to drawdown, excursion, hold-time, and edge-quality analytics.',
-      linkText: 'Open Reports →',
       media: [{ src: '../img/screenshots/Reports.png', alt: 'Reports screenshot' }],
     },
     dividends: {
       title: 'Dividends',
       description:
         'Turn income investing into a planned system with yield metrics, ex-date visibility, and projected payout timelines.',
-      linkText: 'View Dividends →',
       media: [{ src: '../img/screenshots/Dividends.png', alt: 'Dividends screenshot' }],
     },
     charting: {
       title: 'Charting',
       description:
         'Customize indicators and overlays to compare momentum, structure, and context directly on chart so setup quality is easier to validate.',
-      linkText: 'Explore Charting →',
       media: [
         { src: '../img/screenshots/charting.png', alt: 'Charting screenshot' },
         { src: '../img/screenshots/charting-2.png', alt: 'Charting secondary screenshot' },
@@ -381,14 +436,12 @@ if (spotlight) {
       title: 'Watchlist',
       description:
         'Organize ideas with tags, imports, and quick filtering so research stays actionable instead of scattered.',
-      linkText: 'Open Watchlist →',
       media: [{ src: '../img/screenshots/Watchlists.png', alt: 'Watchlists screenshot' }],
     },
     calendar: {
       title: 'Calendar',
       description:
         'Keep earnings dates, dividend events, and key market timings in one timeline so planning and execution stay synchronized.',
-      linkText: 'Open Calendar →',
       media: [
         { src: '../img/screenshots/Calendar.png', alt: 'Calendar screenshot' },
         { src: '../img/screenshots/calendar-2.png', alt: 'Calendar secondary screenshot' },
@@ -398,7 +451,6 @@ if (spotlight) {
       title: 'Custom Assets',
       description:
         'Track private financial instruments and tangible assets in one place with dedicated views for both asset types.',
-      linkText: 'Open Custom Assets →',
       media: [
         { src: '../img/screenshots/custom.png', alt: 'Custom assets financial tab screenshot' },
         { src: '../img/screenshots/custom-2.png', alt: 'Custom assets tangible tab screenshot' },
@@ -440,7 +492,6 @@ if (spotlight) {
 
     title.textContent = nextData.title;
     description.textContent = nextData.description;
-    link.textContent = nextData.linkText;
 
     if (shouldAnimate) {
       window.requestAnimationFrame(() => {
