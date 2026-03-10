@@ -1161,7 +1161,7 @@ section#features {
 
 .feature-spotlight-tabs {
     display: grid;
-    grid-template-columns: repeat(5, minmax(0, 1fr));
+    grid-template-columns: repeat(6, minmax(0, 1fr));
     align-items: center;
     padding: 6px;
     border-bottom: 1px solid var(--lighter-gray);
@@ -1324,7 +1324,7 @@ section#features {
     }
 
     .feature-spotlight-tab:last-child {
-        grid-column: 1 / -1;
+        grid-column: auto;
     }
 
     .feature-spotlight-panel {
@@ -1692,7 +1692,7 @@ hgroup p.subheader {
     }
 
     .feature-spotlight-tabs {
-        grid-template-columns: repeat(5, minmax(0, 1fr));
+        grid-template-columns: repeat(6, minmax(0, 1fr));
         gap: 6px;
         padding: 6px;
     }

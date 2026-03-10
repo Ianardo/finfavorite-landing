@@ -1,10 +1,10 @@
 // On-scroll reveal behavior
 ScrollReveal({reset: false, distance: '20px'})
 ScrollReveal().reveal('hgroup > *', {interval: 90});
-ScrollReveal().reveal('section > *:not(hgroup)', { delay: 200, distance: '10px' });
-ScrollReveal().reveal('#testimonials')
+ScrollReveal().reveal('section:not(#testimonials):not(#pricing) > *:not(hgroup)', { delay: 200, distance: '10px' });
 
 const sr = ScrollReveal({ distance: '18px', duration: 650, origin: 'bottom' });
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 const topNav = document.querySelector('.top-nav');
 
@@ -17,43 +17,74 @@ if (topNav) {
   window.addEventListener('scroll', updateNavGlassState, { passive: true });
 }
 
-/* testimonials */
-window.addEventListener('DOMContentLoaded', () => {
+const getTestimonialsInAlternatingOrder = () => {
   const left = [...document.querySelectorAll('#testimonials .testimonials-col:nth-child(1) .testimonial-card')];
   const right = [...document.querySelectorAll('#testimonials .testimonials-col:nth-child(2) .testimonial-card')];
-
   const ordered = [];
+
   for (let i = 0; i < Math.max(left.length, right.length); i++) {
     if (left[i]) ordered.push(left[i]);
     if (right[i]) ordered.push(right[i]);
   }
 
-  const base = 120;   // ms before first
-  const step = 120;   // ms between each
+  return ordered;
+};
 
-  ordered.forEach((el, i) => {
-    el.style.setProperty('--stagger-delay', `${base + i * step}ms`);
-  });
+const revealCardsOnce = (sectionSelector, getCards, options = {}) => {
+  const section = document.querySelector(sectionSelector);
+  if (!section) return;
 
-  ScrollReveal().reveal('#testimonials', {
-    distance: '0px',
-    duration: 1,
-    opacity: 1,
-    viewFactor: 0.2,
-    viewOffset: { bottom: 80 },
-    beforeReveal: (section) => section.classList.add('is-revealed'),
-  });
-});
+  const {
+    baseDelay = 100,
+    step = 100,
+    distance = 12,
+    duration = 600,
+  } = options;
 
-/* /testimonials */
+  let hasRevealed = false;
 
-const cards = document.querySelectorAll('#testimonials .testimonial-card');
+  const runReveal = () => {
+    if (hasRevealed) return;
+    hasRevealed = true;
 
-sr.reveal(cards, {
-  delay: 100,     // initial wait before the first card
-  interval: 120,  // stagger step between cards
-  distance: '0px'
-});
+    const cards = getCards();
+    if (!cards.length || prefersReducedMotion || typeof cards[0]?.animate !== 'function') return;
+
+    cards.forEach((card, index) => {
+      card.animate(
+        [
+          { opacity: 0, transform: `translateY(${distance}px)` },
+          { opacity: 1, transform: 'translateY(0)' },
+        ],
+        {
+          duration,
+          delay: baseDelay + index * step,
+          easing: 'cubic-bezier(0.22, 1, 0.36, 1)',
+          fill: 'both',
+        }
+      );
+    });
+  };
+
+  if (!('IntersectionObserver' in window) || prefersReducedMotion) {
+    runReveal();
+    return;
+  }
+
+  const observer = new IntersectionObserver(
+    (entries, currentObserver) => {
+      if (!entries.some((entry) => entry.isIntersecting)) return;
+      currentObserver.disconnect();
+      runReveal();
+    },
+    {
+      threshold: 0.1,
+      rootMargin: '0px 0px -10% 0px',
+    }
+  );
+
+  observer.observe(section);
+};
 
 sr.reveal('#trust .trust-card', {
   delay: 140,     // gives the header a beat
@@ -62,11 +93,18 @@ sr.reveal('#trust .trust-card', {
   duration: 600,
 });
 
-sr.reveal('#pricing .pricing-card', {
-  delay: 140,     // gives the header a beat
-  interval: 90,
-  distance: '12px',
-  duration: 600,
+revealCardsOnce('#testimonials', getTestimonialsInAlternatingOrder, {
+  baseDelay: 100,
+  step: 120,
+  distance: 12,
+  duration: 640,
+});
+
+revealCardsOnce('#pricing', () => [...document.querySelectorAll('#pricing .pricing-card')], {
+  baseDelay: 80,
+  step: 90,
+  distance: 10,
+  duration: 560,
 });
 
 /* ── Compare-features toggle ── */
@@ -290,7 +328,6 @@ if (spotlight) {
   const link = spotlight.querySelector('[data-feature-link]');
   const spotlightCarousel = spotlight.querySelector('[data-spotlight-carousel]');
   const spotlightCarouselController = spotlightCarousel ? carouselControllers.get(spotlightCarousel) : null;
-  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   let spotlightTransitionToken = 0;
 
   const featureCopy = {
@@ -315,8 +352,8 @@ if (spotlight) {
         'Customize indicators and overlays to compare momentum, structure, and context directly on chart so setup quality is easier to validate.',
       linkText: 'Explore Charting →',
       media: [
-        { src: '../img/screenshots/Custom.png', alt: 'Charting screenshot' },
-        { src: '../img/screenshots/custom-2.png', alt: 'Charting secondary screenshot' },
+        { src: '../img/screenshots/charting.png', alt: 'Charting screenshot' },
+        { src: '../img/screenshots/charting-2.png', alt: 'Charting secondary screenshot' },
       ],
     },
     watchlists: {
@@ -334,6 +371,16 @@ if (spotlight) {
       media: [
         { src: '../img/screenshots/Calendar.png', alt: 'Calendar screenshot' },
         { src: '../img/screenshots/calendar-2.png', alt: 'Calendar secondary screenshot' },
+      ],
+    },
+    customAssets: {
+      title: 'Custom Assets',
+      description:
+        'Track private financial instruments and tangible assets in one place with dedicated views for both asset types.',
+      linkText: 'Open Custom Assets →',
+      media: [
+        { src: '../img/screenshots/custom.png', alt: 'Custom assets financial tab screenshot' },
+        { src: '../img/screenshots/custom-2.png', alt: 'Custom assets tangible tab screenshot' },
       ],
     },
   };
