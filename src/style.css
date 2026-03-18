@@ -860,7 +860,7 @@ section#pricing {
 }
 
 .compare-collapse[aria-hidden="false"] .compare-collapse__inner {
-    max-height: 3600px;
+    max-height: 6200px;
     transition: max-height 600ms cubic-bezier(.2, 0, .2, 1);
 }
 
