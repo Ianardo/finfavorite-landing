@@ -780,7 +780,7 @@ section#pricing {
 .pricing-price__amount {
     position: relative;
     display: inline-block;
-    padding-right: 0.85em;
+    /* padding-right: 0.85em; */
     line-height: 1;
 }
 
