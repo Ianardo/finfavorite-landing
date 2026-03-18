@@ -637,10 +637,7 @@ section#testimonials {
 
 .testimonials-grid {
     display: grid;
-
-    /* auto-collapses cleanly */
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: clamp(18px, 2vw, 30px);
     align-items: start;
     justify-items: center;
@@ -662,6 +659,7 @@ section#testimonials {
     box-shadow: var(--shadow-sm);
     background-color: var(--bg);
 
+    width: 100%;
     max-width: 420px;
     padding: var(--s-4);
     margin: 0;
@@ -1616,6 +1614,12 @@ hgroup p.subheader {
   inset: auto !important;
 }
 
+@media (max-width: 1100px) {
+  .testimonials-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
 @media (max-width: 900px) {
     section {
         min-height: auto;
@@ -1631,6 +1635,10 @@ hgroup p.subheader {
 
     section#hero hgroup {
         margin-top: 0;
+    }
+
+    .testimonials-grid {
+        grid-template-columns: 1fr;
     }
 
     h1 {

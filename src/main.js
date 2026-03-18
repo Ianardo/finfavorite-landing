@@ -93,13 +93,14 @@ if (topNavSections.length > 0) {
 }
 
 const getTestimonialsInAlternatingOrder = () => {
-  const left = [...document.querySelectorAll('#testimonials .testimonials-col:nth-child(1) .testimonial-card')];
-  const right = [...document.querySelectorAll('#testimonials .testimonials-col:nth-child(2) .testimonial-card')];
+  const columns = [...document.querySelectorAll('#testimonials .testimonials-col')]
+    .map((column) => [...column.querySelectorAll('.testimonial-card')]);
   const ordered = [];
 
-  for (let i = 0; i < Math.max(left.length, right.length); i++) {
-    if (left[i]) ordered.push(left[i]);
-    if (right[i]) ordered.push(right[i]);
+  for (let i = 0; i < Math.max(...columns.map((column) => column.length), 0); i++) {
+    columns.forEach((column) => {
+      if (column[i]) ordered.push(column[i]);
+    });
   }
 
   return ordered;
