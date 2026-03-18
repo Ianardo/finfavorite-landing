@@ -862,7 +862,7 @@ section#pricing {
 }
 
 .compare-collapse[aria-hidden="false"] .compare-collapse__inner {
-    max-height: 1200px;
+    max-height: 3600px;
     transition: max-height 600ms cubic-bezier(.2, 0, .2, 1);
 }
 
@@ -895,6 +895,21 @@ section#pricing {
 .compare-table td:first-child {
     text-align: left;
     color: var(--darker-med-gray);
+    vertical-align: top;
+}
+
+.compare-table__feature-title {
+    display: block;
+    font-weight: var(--fw-semibold);
+    color: var(--text);
+    margin-bottom: 4px;
+}
+
+.compare-table__feature-detail {
+    display: block;
+    font-size: 0.88rem;
+    line-height: 1.5;
+    color: var(--dark-med-gray);
 }
 
 .compare-table__plan-col {
