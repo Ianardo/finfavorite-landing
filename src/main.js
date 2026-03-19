@@ -19,6 +19,7 @@ const sr = typeof ScrollReveal === 'function'
 });
 
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const testimonialMobileQuery = window.matchMedia('(max-width: 900px)');
 
 const topNav = document.querySelector('.top-nav');
 const inPageLinks = [...document.querySelectorAll('a[href^="#"]:not([href="#"])')]
@@ -106,6 +107,141 @@ const getTestimonialsInAlternatingOrder = () => {
   return ordered;
 };
 
+const normalizeInlineText = (value) => value.replace(/\s+/g, ' ').trim();
+
+const getFirstSentence = (text) => {
+  const sentenceMatch = text.match(/.*?[.!?](?=\s|$)/);
+  return normalizeInlineText(sentenceMatch ? sentenceMatch[0] : text);
+};
+
+const getExcerptMeta = (fullText, summaryText) => {
+  const startIndex = fullText.indexOf(summaryText);
+  const fallbackEndIndex = startIndex >= 0 ? startIndex + summaryText.length : -1;
+
+  return {
+    startsMidThought: startIndex > 0,
+    endsMidThought: fallbackEndIndex > -1 && fallbackEndIndex < fullText.length,
+  };
+};
+
+const formatExcerptText = (summaryText, { startsMidThought, endsMidThought }) => {
+  let excerpt = normalizeInlineText(summaryText);
+
+  if (endsMidThought) {
+    excerpt = excerpt.replace(/[.!?]+$/, '');
+    excerpt = `${excerpt}…`;
+  }
+
+  if (startsMidThought) {
+    excerpt = `…${excerpt}`;
+  }
+
+  return excerpt;
+};
+
+const syncTestimonialCardState = (card) => {
+  const quote = card.querySelector('.testimonial-quote');
+  const preview = card.querySelector('.testimonial-toggle');
+  const action = preview?.querySelector('.testimonial-toggle__action');
+
+  if (!quote || !preview || !action) return;
+
+  if (!testimonialMobileQuery.matches) {
+    card.classList.remove('is-expanded');
+  }
+
+  const isExpanded = testimonialMobileQuery.matches && card.classList.contains('is-expanded');
+
+  quote.hidden = testimonialMobileQuery.matches && !isExpanded;
+  action.textContent = isExpanded ? 'show less' : 'read more';
+
+  if (testimonialMobileQuery.matches) {
+    card.setAttribute('role', 'button');
+    card.setAttribute('tabindex', '0');
+    card.setAttribute('aria-controls', quote.id);
+    card.setAttribute('aria-expanded', String(isExpanded));
+  } else {
+    card.removeAttribute('role');
+    card.removeAttribute('tabindex');
+    card.removeAttribute('aria-controls');
+    card.removeAttribute('aria-expanded');
+  }
+};
+
+const setupMobileTestimonialToggles = () => {
+  const cards = [...document.querySelectorAll('#testimonials .testimonial-card')];
+  if (!cards.length) return;
+
+  cards.forEach((card, index) => {
+    const quote = card.querySelector('.testimonial-quote');
+    const quoteParagraph = quote?.querySelector('p');
+    const meta = card.querySelector('.testimonial-meta');
+
+    if (!quote || !quoteParagraph || !meta) return;
+
+    const fullText = normalizeInlineText(quoteParagraph.textContent ?? '');
+    if (!fullText) return;
+
+    const summaryText = normalizeInlineText(card.dataset.mobileSummary ?? getFirstSentence(fullText));
+    if (!summaryText || summaryText === fullText) return;
+
+    card.classList.add('testimonial-card--collapsible');
+    quote.id = quote.id || `testimonial-quote-${index + 1}`;
+
+    let toggle = card.querySelector('.testimonial-toggle');
+
+    if (!toggle) {
+      toggle = document.createElement('div');
+      toggle.className = 'testimonial-toggle';
+      toggle.innerHTML = `
+        <span class="testimonial-toggle__summary"></span>
+        <span class="testimonial-toggle__action"></span>
+      `;
+      card.insertBefore(toggle, meta);
+    }
+
+    const summary = toggle.querySelector('.testimonial-toggle__summary');
+    if (summary) {
+      summary.textContent = formatExcerptText(summaryText, getExcerptMeta(fullText, summaryText));
+    }
+
+    if (!card.dataset.testimonialToggleBound) {
+      card.addEventListener('click', () => {
+        if (!testimonialMobileQuery.matches) return;
+        card.classList.toggle('is-expanded');
+        syncTestimonialCardState(card);
+      });
+
+      card.addEventListener('keydown', (event) => {
+        if (!testimonialMobileQuery.matches) return;
+        if (event.key !== 'Enter' && event.key !== ' ') return;
+
+        event.preventDefault();
+        card.classList.toggle('is-expanded');
+        syncTestimonialCardState(card);
+      });
+
+      card.dataset.testimonialToggleBound = 'true';
+    }
+
+    syncTestimonialCardState(card);
+  });
+
+  const syncAllCards = () => {
+    cards.forEach((card) => {
+      if (card.classList.contains('testimonial-card--collapsible')) {
+        syncTestimonialCardState(card);
+      }
+    });
+  };
+
+  if (typeof testimonialMobileQuery.addEventListener === 'function') {
+    testimonialMobileQuery.addEventListener('change', syncAllCards);
+  } else if (typeof testimonialMobileQuery.addListener === 'function') {
+    testimonialMobileQuery.addListener(syncAllCards);
+  }
+};
+
 const revealCardsOnce = (sectionSelector, getCards, options = {}) => {
   const section = document.querySelector(sectionSelector);
   if (!section) return;
@@ -175,6 +311,8 @@ revealCardsOnce('#testimonials', getTestimonialsInAlternatingOrder, {
   distance: 12,
   duration: 640,
 });
+
+setupMobileTestimonialToggles();
 
 revealCardsOnce('#pricing', () => [...document.querySelectorAll('#pricing .pricing-card')], {
   baseDelay: 80,
