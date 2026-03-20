@@ -580,10 +580,21 @@ if (spotlight) {
     calendar: {
       title: 'Calendar',
       description:
-        'Keep earnings dates, dividend events, and key market timings in one timeline so planning and execution stay synchronized.',
+        'Review performance by day, week, or month with a calendar view that keeps trading context tied to each result.',
       media: [
         { src: '../img/screenshots/Calendar.png', alt: 'Calendar screenshot' },
         { src: '../img/screenshots/calendar-2.png', alt: 'Calendar secondary screenshot' },
+      ],
+    },
+    events: {
+      title: 'Events',
+      description:
+        'Stay ahead of catalysts with earnings and economic calendars, event details, and journal context that surfaces what mattered on the day.',
+      media: [
+        { src: '../img/screenshots/events.png', alt: 'Earnings calendar screenshot' },
+        { src: '../img/screenshots/events-2.png', alt: 'Economic calendar screenshot' },
+        { src: '../img/screenshots/events-3.png', alt: 'Journal view with upcoming events screenshot' },
+        { src: '../img/screenshots/events-4.png', alt: 'Journal economic events panel screenshot' },
       ],
     },
     customAssets: {
