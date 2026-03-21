@@ -571,6 +571,15 @@ if (spotlight) {
         { src: '../img/screenshots/charting-2.png', alt: 'Charting secondary screenshot' },
       ],
     },
+    screener: {
+      title: 'Screener',
+      description:
+        'Filter your watchlist with technical and fundamental criteria so strong setups surface faster and stay grounded in context.',
+      media: [
+        { src: '../img/screenshots/screener.png', alt: 'Screener overview screenshot' },
+        { src: '../img/screenshots/screener-2.png', alt: 'Screener performance filter screenshot' },
+      ],
+    },
     watchlists: {
       title: 'Watchlist',
       description:
