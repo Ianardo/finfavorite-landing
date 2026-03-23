@@ -578,6 +578,7 @@ if (spotlight) {
       media: [
         { src: '../img/screenshots/screener.png', alt: 'Screener overview screenshot' },
         { src: '../img/screenshots/screener-2.png', alt: 'Screener performance filter screenshot' },
+        { src: '../img/screenshots/screener-3.png', alt: 'Screener add filters modal screenshot' },
       ],
     },
     watchlists: {
