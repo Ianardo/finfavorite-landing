@@ -38,8 +38,9 @@
             <h1 class="wide-header">A <span class="accent gradient-text">unified view</span> of your <br> money at work.</h1>
             <p class="subheader">Track long-term positions and short-term trades together, with full history and context.</p>
         </hgroup>
-        <div id="hero-image">
-            <img src="../img/screenshots/reports.png" alt="Portfolio reports screen in FinFavorite" decoding="async" fetchpriority="high">
+        <div id="hero-image" role="img" aria-label="FinFavorite dashboard screens showing performance, reminders, and upcoming events">
+            <img class="hero-image__slide hero-image__slide--primary" src="../img/screenshots/dashboard-1.png" alt="" decoding="async" fetchpriority="high">
+            <img class="hero-image__slide hero-image__slide--secondary" src="../img/screenshots/dashboard-2.png" alt="" decoding="async" fetchpriority="high">
         </div>
     </section>
     <section class="diag" id="macro-micro">
@@ -111,13 +112,13 @@
         </hgroup>
 
         <div class="features-wrap">
-            <article class="feature feature--left" aria-labelledby="feature-overview-title">
+            <article class="feature feature--left" aria-labelledby="feature-dashboard-title">
                 <div class="feature-copy">
                     <div class="feature-icon" aria-hidden="true">
                         <img src="../icons/features/icon-dashboard.svg" alt="">
                     </div>
 
-                    <h3 id="feature-overview-title">Overview</h3>
+                    <h3 id="feature-dashboard-title">Dashboard</h3>
                     <p class="feature-desc">
                         See market movement, position risk, and upcoming catalysts in one summary built for quick
                         orientation before going deeper.
@@ -125,24 +126,30 @@
                 </div>
 
                 <div class="feature-media">
-                    <div class="feature-carousel is-single" data-feature-carousel aria-label="Overview showcase">
+                    <div class="feature-carousel" data-feature-carousel aria-label="Dashboard showcase">
                         <div class="feature-carousel-track" data-feature-track>
                             <img
                                 class="feature-carousel-slide"
                                 data-feature-slide
-                                src="../img/screenshots/Overview.png"
-                                alt="Overview dashboard preview"
+                                src="../img/screenshots/dashboard-1.png"
+                                alt="Dashboard performance and sector summary preview"
+                            />
+                            <img
+                                class="feature-carousel-slide"
+                                data-feature-slide
+                                src="../img/screenshots/dashboard-2.png"
+                                alt="Dashboard reminders and events preview"
                             />
                         </div>
 
-                        <button class="feature-carousel-control feature-carousel-control--prev" type="button" aria-label="Previous image" data-feature-prev hidden>
+                        <button class="feature-carousel-control feature-carousel-control--prev" type="button" aria-label="Previous image" data-feature-prev>
                             <span aria-hidden="true">‹</span>
                         </button>
-                        <button class="feature-carousel-control feature-carousel-control--next" type="button" aria-label="Next image" data-feature-next hidden>
+                        <button class="feature-carousel-control feature-carousel-control--next" type="button" aria-label="Next image" data-feature-next>
                             <span aria-hidden="true">›</span>
                         </button>
 
-                        <div class="feature-carousel-dots" hidden></div>
+                        <div class="feature-carousel-dots"></div>
                     </div>
                 </div>
             </article>

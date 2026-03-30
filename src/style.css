@@ -299,24 +299,73 @@ section#hero {
 
     overflow: hidden;
     gap: var(--s-6);
+    margin-bottom: clamp(-168px, -10vw, -96px);
 
     max-height: 100svh;
 }
 
 section#hero #hero-image {
+    position: relative;
     height: 60%;
     min-width: 50%;
     max-width: 60%;
-}
-
-section#hero img {
-    /* position: relative; */
-    width: 100%;
-
-
     border-radius: var(--r-lg);
     border: 1px solid rgba(15, 30, 60, 0.10);
-    box-shadow: var(--shadow-sm);    
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
+    isolation: isolate;
+}
+
+section#hero #hero-image img {
+    width: 100%;
+    display: block;
+}
+
+section#hero .hero-image__slide {
+    will-change: opacity;
+}
+
+section#hero .hero-image__slide--primary {
+    position: relative;
+    z-index: 1;
+    opacity: 1;
+    animation: hero-image-primary 12s var(--ease-inout) infinite;
+}
+
+section#hero .hero-image__slide--secondary {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    opacity: 0;
+    animation: hero-image-secondary 12s var(--ease-inout) infinite;
+}
+
+@keyframes hero-image-primary {
+    0%, 42% {
+        opacity: 1;
+    }
+
+    50%, 92% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes hero-image-secondary {
+    0%, 42% {
+        opacity: 0;
+    }
+
+    50%, 92% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
 }
 
 section hgroup p {
@@ -334,7 +383,9 @@ section#hero hgroup {
 
 section#macro-micro {
     min-height: auto;
-    padding: clamp(48px, 7vh, 88px) 0;
+    padding: calc(clamp(48px, 7vh, 88px) + clamp(96px, 10vw, 168px)) 0 clamp(48px, 7vh, 88px);
+    position: relative;
+    z-index: 1;
 }
 
 section#macro-micro .macro-micro__inner {
@@ -1612,6 +1663,15 @@ hgroup p.subheader {
 /***********************/
 
 @media (prefers-reduced-motion: reduce) {
+  section#hero .hero-image__slide {
+    animation: none;
+    opacity: 1;
+  }
+
+  section#hero .hero-image__slide--secondary {
+    display: none;
+  }
+
   #testimonials .testimonial-card {
     transition: none;
     opacity: 1;
@@ -1650,6 +1710,7 @@ hgroup p.subheader {
         background-size: cover;
         background-position: center top;
         gap: var(--s-4);
+        margin-bottom: 0;
     }
 
     section#hero hgroup {
