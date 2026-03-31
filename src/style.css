@@ -51,6 +51,9 @@
 
     --font-size-list: 1.1rem;
 
+    --hero-image-max-width: clamp(700px, 60vw, 980px);
+    --hero-image-overlap: clamp(42px, calc(var(--hero-image-max-width) * 0.09), 88px);
+
     /* spacing scale */
     --s-1: 8px;
     --s-2: 12px;
@@ -293,22 +296,25 @@ section#hero {
     background-size: 100vw 130vh;
     background-position: 0vw 15vh;
     background-repeat: no-repeat;
+    padding: var(--s-8) 0 0;
+    border-bottom: 0;
     
     flex-direction: column;
     align-items: center;
 
     overflow: hidden;
     gap: var(--s-6);
-    margin-bottom: clamp(-168px, -10vw, -96px);
+    margin-bottom: calc(var(--hero-image-overlap) * -1);
 
     max-height: 100svh;
 }
 
 section#hero #hero-image {
     position: relative;
-    height: 60%;
-    min-width: 50%;
-    max-width: 60%;
+    width: min(var(--hero-image-max-width), calc(100% - 48px));
+    max-width: 100%;
+    min-width: 0;
+    height: auto;
     border-radius: var(--r-lg);
     border: 1px solid rgba(15, 30, 60, 0.10);
     box-shadow: var(--shadow-sm);
@@ -383,7 +389,7 @@ section#hero hgroup {
 
 section#macro-micro {
     min-height: auto;
-    padding: calc(clamp(48px, 7vh, 88px) + clamp(96px, 10vw, 168px)) 0 clamp(48px, 7vh, 88px);
+    padding: calc(clamp(48px, 7vh, 88px) + var(--hero-image-overlap)) 0 clamp(48px, 7vh, 88px);
     position: relative;
     z-index: 1;
 }
@@ -1782,6 +1788,7 @@ hgroup p.subheader {
     }
 
     section#hero #hero-image {
+        width: 92%;
         min-width: 0;
         max-width: 92%;
         height: auto;
