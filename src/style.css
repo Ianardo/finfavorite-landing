@@ -51,8 +51,8 @@
 
     --font-size-list: 1.1rem;
 
-    --hero-image-max-width: clamp(700px, 60vw, 980px);
-    --hero-image-overlap: clamp(42px, calc(var(--hero-image-max-width) * 0.09), 88px);
+    --hero-image-max-width: clamp(860px, 70vw, 1320px);
+    --hero-image-overlap: clamp(56px, calc(var(--hero-image-max-width) * 0.085), 112px);
 
     /* spacing scale */
     --s-1: 8px;
@@ -305,8 +305,7 @@ section#hero {
     overflow: hidden;
     gap: var(--s-6);
     margin-bottom: calc(var(--hero-image-overlap) * -1);
-
-    max-height: 100svh;
+    min-height: calc(100svh - var(--nav-height) + var(--hero-image-overlap));
 }
 
 section#hero #hero-image {
@@ -1717,6 +1716,7 @@ hgroup p.subheader {
         background-position: center top;
         gap: var(--s-4);
         margin-bottom: 0;
+        min-height: auto;
     }
 
     section#hero hgroup {
