@@ -664,10 +664,10 @@
                     </header>
 
                     <ul class="pricing-features">
-                        <li>Core dashboards</li>
-                        <li>Watchlists and tags</li>
-                        <li>Trade journal</li>
-                        <li>CSV export</li>
+                        <li>Trade imports (150/month)</li>
+                        <li>Up to 3 trading accounts</li>
+                        <li>Reports and alert workflows</li>
+                        <li>My Dashboard with core modules</li>
                     </ul>
 
                     <footer class="pricing-card__footer">
@@ -675,24 +675,23 @@
                     </footer>
                 </article>
 
-                <article class="pricing-card pricing-card--featured" aria-labelledby="plan-plus">
+                <article class="pricing-card" aria-labelledby="plan-plus">
                     <div class="pricing-badge" aria-hidden="true">Most popular</div>
                     <header class="pricing-card__header">
                         <h3 id="plan-plus">Plus</h3>
                         <p class="pricing-price">
                             <span class="pricing-price__amount">
                                 <span class="pricing-price__whole">$19</span>
-                                <!-- <span class="pricing-price__cents">.99</span> -->
                             </span>
                             <span class="pricing-price__unit">/mo</span>
                         </p>
                     </header>
 
                     <ul class="pricing-features">
-                        <li>Advanced performance breakdowns</li>
-                        <li>Custom tag analytics</li>
-                        <li>Template library</li>
-                        <li>Priority imports</li>
+                        <li>Unlimited trade imports</li>
+                        <li>Up to 8 trading accounts and 15 tags</li>
+                        <li>Share Trades and full charting suite</li>
+                        <li>Full My Dashboard + Morning Briefing</li>
                     </ul>
 
                     <footer class="pricing-card__footer">
@@ -700,23 +699,22 @@
                     </footer>
                 </article>
 
-                <article class="pricing-card" aria-labelledby="plan-premium">
+                <article class="pricing-card pricing-card--featured" aria-labelledby="plan-premium">
                     <header class="pricing-card__header">
                         <h3 id="plan-premium">Premium</h3>
                         <p class="pricing-price">
                             <span class="pricing-price__amount">
                                 <span class="pricing-price__whole">$29</span>
-                                <!-- <span class="pricing-price__cents">.99</span> -->
                             </span>
                             <span class="pricing-price__unit">/mo</span>
                         </p>
                     </header>
 
                     <ul class="pricing-features">
-                        <li>Shared workspaces</li>
-                        <li>Role-based access</li>
-                        <li>Audit trails</li>
-                        <li>Team reports</li>
+                        <li>Unlimited imports, accounts, and tags</li>
+                        <li>Trade Doc, Replay, and Share Trades</li>
+                        <li>All indicators, templates, and 5-second chart data</li>
+                        <li>Full My Dashboard access + Morning Briefing</li>
                     </ul>
 
                     <footer class="pricing-card__footer">
@@ -739,18 +737,36 @@
                         <tr>
                             <th class="compare-table__feature-col"></th>
                             <th class="compare-table__plan-col">Free</th>
-                            <th class="compare-table__plan-col compare-table__plan-col--featured">Plus</th>
-                            <th class="compare-table__plan-col">Premium</th>
+                            <th class="compare-table__plan-col">Plus</th>
+                            <th class="compare-table__plan-col compare-table__plan-col--featured">Premium</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr class="compare-table__group-row">
-                            <td colspan="4">Research</td>
+                            <td colspan="4">Dashboard</td>
                         </tr>
                         <tr>
                             <td>
-                                <span class="compare-table__feature-title">Watchlists</span>
-                                <span class="compare-table__feature-detail">Research lists for sector tracking, ticker organization, and tagged ideas.</span>
+                                <span class="compare-table__feature-title">My Dashboard Access</span>
+                                <span class="compare-table__feature-detail">Personalized dashboard home with module cards and account-scoped context.</span>
+                            </td>
+                            <td>
+                                <svg class="icon-check" viewBox="0 0 16 16" aria-label="Included"><path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+                                <span class="compare-table__cell-note">Limited modules</span>
+                            </td>
+                            <td>
+                                <svg class="icon-check" viewBox="0 0 16 16" aria-label="Included"><path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+                                <span class="compare-table__cell-note">All modules</span>
+                            </td>
+                            <td>
+                                <svg class="icon-check" viewBox="0 0 16 16" aria-label="Included"><path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+                                <span class="compare-table__cell-note">All modules</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="compare-table__feature-title">Economic Events Module</span>
+                                <span class="compare-table__feature-detail">Today&apos;s macro releases with impact filters and context.</span>
                             </td>
                             <td><svg class="icon-check" viewBox="0 0 16 16" aria-label="Included"><path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></td>
                             <td><svg class="icon-check" viewBox="0 0 16 16" aria-label="Included"><path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></td>
@@ -758,8 +774,8 @@
                         </tr>
                         <tr>
                             <td>
-                                <span class="compare-table__feature-title">Health Check</span>
-                                <span class="compare-table__feature-detail">Concentration-risk detection and overweight flagging.</span>
+                                <span class="compare-table__feature-title">Earnings Module</span>
+                                <span class="compare-table__feature-detail">Upcoming earnings for positions and watchlists.</span>
                             </td>
                             <td><svg class="icon-check" viewBox="0 0 16 16" aria-label="Included"><path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></td>
                             <td><svg class="icon-check" viewBox="0 0 16 16" aria-label="Included"><path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></td>
@@ -767,8 +783,8 @@
                         </tr>
                         <tr>
                             <td>
-                                <span class="compare-table__feature-title">Dip Opportunities</span>
-                                <span class="compare-table__feature-detail">Buy Opportunity, Bearish Dip, and Above 50 MA classifications.</span>
+                                <span class="compare-table__feature-title">Portfolio Performance Module</span>
+                                <span class="compare-table__feature-detail">Quick realized-performance view for selected lookbacks.</span>
                             </td>
                             <td><svg class="icon-check" viewBox="0 0 16 16" aria-label="Included"><path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></td>
                             <td><svg class="icon-check" viewBox="0 0 16 16" aria-label="Included"><path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></td>
@@ -776,8 +792,8 @@
                         </tr>
                         <tr>
                             <td>
-                                <span class="compare-table__feature-title">Daily Movers</span>
-                                <span class="compare-table__feature-detail">1-day and 5-day percentage change per ticker.</span>
+                                <span class="compare-table__feature-title">Daily PnL Module</span>
+                                <span class="compare-table__feature-detail">Recent day-by-day realized PnL snapshots.</span>
                             </td>
                             <td><svg class="icon-check" viewBox="0 0 16 16" aria-label="Included"><path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></td>
                             <td><svg class="icon-check" viewBox="0 0 16 16" aria-label="Included"><path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></td>
@@ -785,8 +801,8 @@
                         </tr>
                         <tr>
                             <td>
-                                <span class="compare-table__feature-title">Position Alerts</span>
-                                <span class="compare-table__feature-detail">Potential Trim style signals with gain percentages and dollar gains.</span>
+                                <span class="compare-table__feature-title">Reminders Module</span>
+                                <span class="compare-table__feature-detail">Sticky-note style reminders pinned to dashboard context.</span>
                             </td>
                             <td><svg class="icon-check" viewBox="0 0 16 16" aria-label="Included"><path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></td>
                             <td><svg class="icon-check" viewBox="0 0 16 16" aria-label="Included"><path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></td>
@@ -794,8 +810,8 @@
                         </tr>
                         <tr>
                             <td>
-                                <span class="compare-table__feature-title">Earnings Snapshot</span>
-                                <span class="compare-table__feature-detail">Embedded earnings calendar for last week, current week, and next week.</span>
+                                <span class="compare-table__feature-title">Daily Gainers / Losers Modules</span>
+                                <span class="compare-table__feature-detail">Premarket and intraday movers for tracked symbols.</span>
                             </td>
                             <td><svg class="icon-check" viewBox="0 0 16 16" aria-label="Included"><path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></td>
                             <td><svg class="icon-check" viewBox="0 0 16 16" aria-label="Included"><path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></td>
@@ -803,30 +819,8 @@
                         </tr>
                         <tr>
                             <td>
-                                <span class="compare-table__feature-title">Analyst Consensus</span>
-                                <span class="compare-table__feature-detail">Consensus score plus buy, hold, and sell recommendation breakdowns.</span>
-                            </td>
-                            <td><span class="icon-dash" aria-label="Not included">&ndash;</span></td>
-                            <td><svg class="icon-check" viewBox="0 0 16 16" aria-label="Included"><path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></td>
-                            <td><svg class="icon-check" viewBox="0 0 16 16" aria-label="Included"><path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <span class="compare-table__feature-title">Metrics &amp; Technical Levels</span>
-                                <span class="compare-table__feature-detail">Trailing and forward P/E, EPS actuals, EMA Spread, SMA levels, annual change, new lows, and beta.</span>
-                            </td>
-                            <td><span class="icon-dash" aria-label="Not included">&ndash;</span></td>
-                            <td><svg class="icon-check" viewBox="0 0 16 16" aria-label="Included"><path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></td>
-                            <td><svg class="icon-check" viewBox="0 0 16 16" aria-label="Included"><path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></td>
-                        </tr>
-
-                        <tr class="compare-table__group-row">
-                            <td colspan="4">Holdings</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <span class="compare-table__feature-title">Allocation Breakdowns</span>
-                                <span class="compare-table__feature-detail">Asset class, sector, and ticker allocation with overweight flagging.</span>
+                                <span class="compare-table__feature-title">Health Check Module</span>
+                                <span class="compare-table__feature-detail">Allocation health and concentration-risk summaries.</span>
                             </td>
                             <td><svg class="icon-check" viewBox="0 0 16 16" aria-label="Included"><path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></td>
                             <td><svg class="icon-check" viewBox="0 0 16 16" aria-label="Included"><path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></td>
@@ -834,35 +828,8 @@
                         </tr>
                         <tr>
                             <td>
-                                <span class="compare-table__feature-title">Portfolio Performance</span>
-                                <span class="compare-table__feature-detail">Performance views across YTD, 3M, 6M, 1Y, 2Y, 3Y, and 4Y.</span>
-                            </td>
-                            <td><svg class="icon-check" viewBox="0 0 16 16" aria-label="Included"><path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></td>
-                            <td><svg class="icon-check" viewBox="0 0 16 16" aria-label="Included"><path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></td>
-                            <td><svg class="icon-check" viewBox="0 0 16 16" aria-label="Included"><path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <span class="compare-table__feature-title">Portfolio Metrics</span>
-                                <span class="compare-table__feature-detail">Beta, Sharpe Ratio, P/E Ratio, and annual dividend income.</span>
-                            </td>
-                            <td><svg class="icon-check" viewBox="0 0 16 16" aria-label="Included"><path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></td>
-                            <td><svg class="icon-check" viewBox="0 0 16 16" aria-label="Included"><path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></td>
-                            <td><svg class="icon-check" viewBox="0 0 16 16" aria-label="Included"><path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <span class="compare-table__feature-title">Holdings Table</span>
-                                <span class="compare-table__feature-detail">Quantity, cost basis, market value, gain/loss, allocation, tags, and account columns.</span>
-                            </td>
-                            <td><svg class="icon-check" viewBox="0 0 16 16" aria-label="Included"><path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></td>
-                            <td><svg class="icon-check" viewBox="0 0 16 16" aria-label="Included"><path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></td>
-                            <td><svg class="icon-check" viewBox="0 0 16 16" aria-label="Included"><path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <span class="compare-table__feature-title">Dividend Events</span>
-                                <span class="compare-table__feature-detail">Upcoming ex-dividend dates with expected payment amounts.</span>
+                                <span class="compare-table__feature-title">Ticker Tape Module</span>
+                                <span class="compare-table__feature-detail">Rotating live watchlist and portfolio tape.</span>
                             </td>
                             <td><span class="icon-dash" aria-label="Not included">&ndash;</span></td>
                             <td><svg class="icon-check" viewBox="0 0 16 16" aria-label="Included"><path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></td>
@@ -870,8 +837,8 @@
                         </tr>
                         <tr>
                             <td>
-                                <span class="compare-table__feature-title">Dividend Calendar</span>
-                                <span class="compare-table__feature-detail">Monthly dividend calendar with per-day payment totals.</span>
+                                <span class="compare-table__feature-title">Sector Performance Module</span>
+                                <span class="compare-table__feature-detail">Sector ETF performance summaries.</span>
                             </td>
                             <td><span class="icon-dash" aria-label="Not included">&ndash;</span></td>
                             <td><svg class="icon-check" viewBox="0 0 16 16" aria-label="Included"><path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></td>
@@ -879,8 +846,8 @@
                         </tr>
                         <tr>
                             <td>
-                                <span class="compare-table__feature-title">Dividend Income Analysis</span>
-                                <span class="compare-table__feature-detail">Income breakdowns by sector and ticker plus historical, projected, and yield comparison views.</span>
+                                <span class="compare-table__feature-title">Dip Finder Module</span>
+                                <span class="compare-table__feature-detail">Trend-aware dip setups and context signals.</span>
                             </td>
                             <td><span class="icon-dash" aria-label="Not included">&ndash;</span></td>
                             <td><svg class="icon-check" viewBox="0 0 16 16" aria-label="Included"><path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></td>
@@ -888,8 +855,8 @@
                         </tr>
                         <tr>
                             <td>
-                                <span class="compare-table__feature-title">Accounts</span>
-                                <span class="compare-table__feature-detail">Multiple account support with trade count, open positions, Net P/L, and last trade date summaries.</span>
+                                <span class="compare-table__feature-title">Position Status Module</span>
+                                <span class="compare-table__feature-detail">Open-position risk and profit-taking status cards.</span>
                             </td>
                             <td><span class="icon-dash" aria-label="Not included">&ndash;</span></td>
                             <td><svg class="icon-check" viewBox="0 0 16 16" aria-label="Included"><path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></td>
@@ -897,8 +864,32 @@
                         </tr>
                         <tr>
                             <td>
-                                <span class="compare-table__feature-title">Alternative Assets</span>
-                                <span class="compare-table__feature-detail">Financial and tangible assets with custom instrument data, photo cards, valuations, and combined totals.</span>
+                                <span class="compare-table__feature-title">Alerts Module</span>
+                                <span class="compare-table__feature-detail">Dashboard shortcuts and summaries for alert workflows.</span>
+                            </td>
+                            <td><span class="icon-dash" aria-label="Not included">&ndash;</span></td>
+                            <td><svg class="icon-check" viewBox="0 0 16 16" aria-label="Included"><path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></td>
+                            <td><svg class="icon-check" viewBox="0 0 16 16" aria-label="Included"><path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="compare-table__feature-title">Saved Dashboard Layouts</span>
+                                <span class="compare-table__feature-detail">Save and switch between dashboard module configurations.</span>
+                            </td>
+                            <td><span class="icon-dash" aria-label="Not included">&ndash;</span></td>
+                            <td>
+                                <svg class="icon-check" viewBox="0 0 16 16" aria-label="Included"><path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+                                <span class="compare-table__cell-note">Up to 3 layouts</span>
+                            </td>
+                            <td>
+                                <svg class="icon-check" viewBox="0 0 16 16" aria-label="Included"><path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+                                <span class="compare-table__cell-note">Up to 5 layouts</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="compare-table__feature-title">Morning Briefing</span>
+                                <span class="compare-table__feature-detail">Automated dashboard morning briefing delivery.</span>
                             </td>
                             <td><span class="icon-dash" aria-label="Not included">&ndash;</span></td>
                             <td><svg class="icon-check" viewBox="0 0 16 16" aria-label="Included"><path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></td>
@@ -906,39 +897,30 @@
                         </tr>
 
                         <tr class="compare-table__group-row">
-                            <td colspan="4">Tools</td>
+                            <td colspan="4">Trading &amp; Analysis</td>
                         </tr>
                         <tr>
                             <td>
-                                <span class="compare-table__feature-title">Price Alerts</span>
-                                <span class="compare-table__feature-detail">Price Above and Price Below alert types.</span>
+                                <span class="compare-table__feature-title">Trade Import</span>
+                                <span class="compare-table__feature-detail">Import trade history from supported brokers.</span>
                             </td>
-                            <td><span class="icon-dash" aria-label="Not included">&ndash;</span></td>
-                            <td><svg class="icon-check" viewBox="0 0 16 16" aria-label="Included"><path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></td>
-                            <td><svg class="icon-check" viewBox="0 0 16 16" aria-label="Included"><path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></td>
-                        </tr>
-                        <tr>
                             <td>
-                                <span class="compare-table__feature-title">Moving-Average Alerts</span>
-                                <span class="compare-table__feature-detail">MA crosses above or below MA plus price crosses above or below MA.</span>
+                                <svg class="icon-check" viewBox="0 0 16 16" aria-label="Included"><path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+                                <span class="compare-table__cell-note">150 imports/mo</span>
                             </td>
-                            <td><span class="icon-dash" aria-label="Not included">&ndash;</span></td>
-                            <td><svg class="icon-check" viewBox="0 0 16 16" aria-label="Included"><path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></td>
-                            <td><svg class="icon-check" viewBox="0 0 16 16" aria-label="Included"><path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></td>
-                        </tr>
-                        <tr>
                             <td>
-                                <span class="compare-table__feature-title">Catalyst Reminders</span>
-                                <span class="compare-table__feature-detail">Earnings Within X Days and Dividend Within X Days alerts.</span>
+                                <svg class="icon-check" viewBox="0 0 16 16" aria-label="Included"><path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+                                <span class="compare-table__cell-note">Unlimited</span>
                             </td>
-                            <td><span class="icon-dash" aria-label="Not included">&ndash;</span></td>
-                            <td><svg class="icon-check" viewBox="0 0 16 16" aria-label="Included"><path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></td>
-                            <td><svg class="icon-check" viewBox="0 0 16 16" aria-label="Included"><path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></td>
+                            <td>
+                                <svg class="icon-check" viewBox="0 0 16 16" aria-label="Included"><path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+                                <span class="compare-table__cell-note">Unlimited</span>
+                            </td>
                         </tr>
                         <tr>
                             <td>
-                                <span class="compare-table__feature-title">Watchlist Tags</span>
-                                <span class="compare-table__feature-detail">Theme and category grouping for research lists.</span>
+                                <span class="compare-table__feature-title">Reports</span>
+                                <span class="compare-table__feature-detail">Performance and journal reporting views.</span>
                             </td>
                             <td><svg class="icon-check" viewBox="0 0 16 16" aria-label="Included"><path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></td>
                             <td><svg class="icon-check" viewBox="0 0 16 16" aria-label="Included"><path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></td>
@@ -946,93 +928,8 @@
                         </tr>
                         <tr>
                             <td>
-                                <span class="compare-table__feature-title">Strategy Tags</span>
-                                <span class="compare-table__feature-detail">Trade grouping by strategy with P/L and last-used tracking.</span>
-                            </td>
-                            <td><svg class="icon-check" viewBox="0 0 16 16" aria-label="Included"><path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></td>
-                            <td><svg class="icon-check" viewBox="0 0 16 16" aria-label="Included"><path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></td>
-                            <td><svg class="icon-check" viewBox="0 0 16 16" aria-label="Included"><path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <span class="compare-table__feature-title">Merge Tags</span>
-                                <span class="compare-table__feature-detail">Combine duplicate or evolving tag sets without losing history.</span>
-                            </td>
-                            <td><svg class="icon-check" viewBox="0 0 16 16" aria-label="Included"><path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></td>
-                            <td><svg class="icon-check" viewBox="0 0 16 16" aria-label="Included"><path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></td>
-                            <td><svg class="icon-check" viewBox="0 0 16 16" aria-label="Included"><path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <span class="compare-table__feature-title">Earnings Calendar</span>
-                                <span class="compare-table__feature-detail">Weekly Monday to Friday view with reporting counts and position flags.</span>
-                            </td>
-                            <td><span class="icon-dash" aria-label="Not included">&ndash;</span></td>
-                            <td><svg class="icon-check" viewBox="0 0 16 16" aria-label="Included"><path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></td>
-                            <td><svg class="icon-check" viewBox="0 0 16 16" aria-label="Included"><path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <span class="compare-table__feature-title">Economic Calendar</span>
-                                <span class="compare-table__feature-detail">Weekly economic events with release time, previous, forecast, actual values, and color-coded importance.</span>
-                            </td>
-                            <td><span class="icon-dash" aria-label="Not included">&ndash;</span></td>
-                            <td><svg class="icon-check" viewBox="0 0 16 16" aria-label="Included"><path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></td>
-                            <td><svg class="icon-check" viewBox="0 0 16 16" aria-label="Included"><path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></td>
-                        </tr>
-
-                        <tr class="compare-table__group-row">
-                            <td colspan="4">Analysis</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <span class="compare-table__feature-title">Trade Log</span>
-                                <span class="compare-table__feature-detail">Date, time, win/loss, symbol, direction, actions, P/L, quantity, tags, account, and session fields.</span>
-                            </td>
-                            <td><svg class="icon-check" viewBox="0 0 16 16" aria-label="Included"><path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></td>
-                            <td><svg class="icon-check" viewBox="0 0 16 16" aria-label="Included"><path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></td>
-                            <td><svg class="icon-check" viewBox="0 0 16 16" aria-label="Included"><path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <span class="compare-table__feature-title">Broker Import &amp; XLSX Export</span>
-                                <span class="compare-table__feature-detail">Import broker history and export trade data to Excel.</span>
-                            </td>
-                            <td><svg class="icon-check" viewBox="0 0 16 16" aria-label="Included"><path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></td>
-                            <td><svg class="icon-check" viewBox="0 0 16 16" aria-label="Included"><path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></td>
-                            <td><svg class="icon-check" viewBox="0 0 16 16" aria-label="Included"><path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <span class="compare-table__feature-title">Trading Calendar</span>
-                                <span class="compare-table__feature-detail">Monthly calendar with daily P/L, weekly totals, and monthly P/L summary.</span>
-                            </td>
-                            <td><span class="icon-dash" aria-label="Not included">&ndash;</span></td>
-                            <td><svg class="icon-check" viewBox="0 0 16 16" aria-label="Included"><path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></td>
-                            <td><svg class="icon-check" viewBox="0 0 16 16" aria-label="Included"><path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <span class="compare-table__feature-title">Performance Stats</span>
-                                <span class="compare-table__feature-detail">Win rate, profit factor, average win/loss, average long/short, hold time, and daily stats.</span>
-                            </td>
-                            <td><span class="icon-dash" aria-label="Not included">&ndash;</span></td>
-                            <td><svg class="icon-check" viewBox="0 0 16 16" aria-label="Included"><path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></td>
-                            <td><svg class="icon-check" viewBox="0 0 16 16" aria-label="Included"><path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <span class="compare-table__feature-title">Risk &amp; Distribution Charts</span>
-                                <span class="compare-table__feature-detail">Drawdown, excursion, win/loss ratio, average gain per share, and timing distributions.</span>
-                            </td>
-                            <td><span class="icon-dash" aria-label="Not included">&ndash;</span></td>
-                            <td><svg class="icon-check" viewBox="0 0 16 16" aria-label="Included"><path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></td>
-                            <td><svg class="icon-check" viewBox="0 0 16 16" aria-label="Included"><path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <span class="compare-table__feature-title">Report Filters &amp; Cumulative P/L</span>
-                                <span class="compare-table__feature-detail">View reports by time, year, price, or instrument with a full-history cumulative curve.</span>
+                                <span class="compare-table__feature-title">Share Trades</span>
+                                <span class="compare-table__feature-detail">Publish and share selected trades.</span>
                             </td>
                             <td><span class="icon-dash" aria-label="Not included">&ndash;</span></td>
                             <td><svg class="icon-check" viewBox="0 0 16 16" aria-label="Included"><path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></td>
@@ -1041,9 +938,165 @@
                         <tr>
                             <td>
                                 <span class="compare-table__feature-title">Trade Doc</span>
-                                <span class="compare-table__feature-detail">Configurable analysis modes, account and strategy filters, date ranges, adjustable parameters, and run history with processing status.</span>
+                                <span class="compare-table__feature-detail">Deeper post-trade analysis and backtesting.</span>
                             </td>
                             <td><span class="icon-dash" aria-label="Not included">&ndash;</span></td>
+                            <td><span class="icon-dash" aria-label="Not included">&ndash;</span></td>
+                            <td><svg class="icon-check" viewBox="0 0 16 16" aria-label="Included"><path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="compare-table__feature-title">Trade Replay</span>
+                                <span class="compare-table__feature-detail">Replay trade sessions with event and execution context.</span>
+                            </td>
+                            <td><span class="icon-dash" aria-label="Not included">&ndash;</span></td>
+                            <td><span class="icon-dash" aria-label="Not included">&ndash;</span></td>
+                            <td><svg class="icon-check" viewBox="0 0 16 16" aria-label="Included"><path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></td>
+                        </tr>
+
+                        <tr class="compare-table__group-row">
+                            <td colspan="4">Charting &amp; Calendar</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="compare-table__feature-title">Indicators</span>
+                                <span class="compare-table__feature-detail">Chart overlays and oscillators for setup and momentum analysis.</span>
+                            </td>
+                            <td>
+                                <svg class="icon-check" viewBox="0 0 16 16" aria-label="Included"><path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+                                <span class="compare-table__cell-note">Basic indicators</span>
+                            </td>
+                            <td>
+                                <svg class="icon-check" viewBox="0 0 16 16" aria-label="Included"><path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+                                <span class="compare-table__cell-note">All indicators</span>
+                            </td>
+                            <td>
+                                <svg class="icon-check" viewBox="0 0 16 16" aria-label="Included"><path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+                                <span class="compare-table__cell-note">All indicators</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="compare-table__feature-title">Calendar View Modes</span>
+                                <span class="compare-table__feature-detail">Trading calendar switcher for day, week, and month perspectives.</span>
+                            </td>
+                            <td>
+                                <svg class="icon-check" viewBox="0 0 16 16" aria-label="Included"><path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+                                <span class="compare-table__cell-note">Day only</span>
+                            </td>
+                            <td>
+                                <svg class="icon-check" viewBox="0 0 16 16" aria-label="Included"><path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+                                <span class="compare-table__cell-note">Day, week, month</span>
+                            </td>
+                            <td>
+                                <svg class="icon-check" viewBox="0 0 16 16" aria-label="Included"><path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+                                <span class="compare-table__cell-note">Day, week, month</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="compare-table__feature-title">Indicator Templates</span>
+                                <span class="compare-table__feature-detail">Save and reuse custom indicator configurations.</span>
+                            </td>
+                            <td><span class="icon-dash" aria-label="Not included">&ndash;</span></td>
+                            <td><svg class="icon-check" viewBox="0 0 16 16" aria-label="Included"><path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></td>
+                            <td><svg class="icon-check" viewBox="0 0 16 16" aria-label="Included"><path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="compare-table__feature-title">5-Second Chart Data</span>
+                                <span class="compare-table__feature-detail">Ultra-short timeframe chart granularity.</span>
+                            </td>
+                            <td><span class="icon-dash" aria-label="Not included">&ndash;</span></td>
+                            <td><svg class="icon-check" viewBox="0 0 16 16" aria-label="Included"><path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></td>
+                            <td><svg class="icon-check" viewBox="0 0 16 16" aria-label="Included"><path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="compare-table__feature-title">Analyst Ratings</span>
+                                <span class="compare-table__feature-detail">Analyst consensus and price-target insights.</span>
+                            </td>
+                            <td><span class="icon-dash" aria-label="Not included">&ndash;</span></td>
+                            <td><svg class="icon-check" viewBox="0 0 16 16" aria-label="Included"><path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></td>
+                            <td><svg class="icon-check" viewBox="0 0 16 16" aria-label="Included"><path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></td>
+                        </tr>
+
+                        <tr class="compare-table__group-row">
+                            <td colspan="4">Accounts &amp; Organization</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="compare-table__feature-title">Trading Accounts</span>
+                                <span class="compare-table__feature-detail">Manage connected and organized trading accounts.</span>
+                            </td>
+                            <td>
+                                <svg class="icon-check" viewBox="0 0 16 16" aria-label="Included"><path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+                                <span class="compare-table__cell-note">Up to 3 accounts</span>
+                            </td>
+                            <td>
+                                <svg class="icon-check" viewBox="0 0 16 16" aria-label="Included"><path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+                                <span class="compare-table__cell-note">Up to 8 accounts</span>
+                            </td>
+                            <td>
+                                <svg class="icon-check" viewBox="0 0 16 16" aria-label="Included"><path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+                                <span class="compare-table__cell-note">Unlimited</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="compare-table__feature-title">Stock Tags</span>
+                                <span class="compare-table__feature-detail">Organize stocks by custom themes and research labels.</span>
+                            </td>
+                            <td>
+                                <svg class="icon-check" viewBox="0 0 16 16" aria-label="Included"><path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+                                <span class="compare-table__cell-note">Up to 5 tags</span>
+                            </td>
+                            <td>
+                                <svg class="icon-check" viewBox="0 0 16 16" aria-label="Included"><path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+                                <span class="compare-table__cell-note">Up to 15 tags</span>
+                            </td>
+                            <td>
+                                <svg class="icon-check" viewBox="0 0 16 16" aria-label="Included"><path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+                                <span class="compare-table__cell-note">Unlimited</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="compare-table__feature-title">Trading Tags</span>
+                                <span class="compare-table__feature-detail">Label and group trades by strategy and execution patterns.</span>
+                            </td>
+                            <td>
+                                <svg class="icon-check" viewBox="0 0 16 16" aria-label="Included"><path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+                                <span class="compare-table__cell-note">Up to 5 tags</span>
+                            </td>
+                            <td>
+                                <svg class="icon-check" viewBox="0 0 16 16" aria-label="Included"><path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+                                <span class="compare-table__cell-note">Up to 15 tags</span>
+                            </td>
+                            <td>
+                                <svg class="icon-check" viewBox="0 0 16 16" aria-label="Included"><path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+                                <span class="compare-table__cell-note">Unlimited</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="compare-table__feature-title">Custom Assets</span>
+                                <span class="compare-table__feature-detail">Track non-standard assets and manual entries with custom metadata.</span>
+                            </td>
+                            <td><span class="icon-dash" aria-label="Not included">&ndash;</span></td>
+                            <td><svg class="icon-check" viewBox="0 0 16 16" aria-label="Included"><path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></td>
+                            <td><svg class="icon-check" viewBox="0 0 16 16" aria-label="Included"><path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></td>
+                        </tr>
+
+                        <tr class="compare-table__group-row">
+                            <td colspan="4">Alerts</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="compare-table__feature-title">Alerts Engine</span>
+                                <span class="compare-table__feature-detail">Create and manage price, moving-average, and catalyst alerts.</span>
+                            </td>
+                            <td><svg class="icon-check" viewBox="0 0 16 16" aria-label="Included"><path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></td>
                             <td><svg class="icon-check" viewBox="0 0 16 16" aria-label="Included"><path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></td>
                             <td><svg class="icon-check" viewBox="0 0 16 16" aria-label="Included"><path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></td>
                         </tr>
