@@ -321,6 +321,13 @@ revealCardsOnce('#pricing', () => [...document.querySelectorAll('#pricing .prici
   duration: 560,
 });
 
+revealCardsOnce('#contact', () => [...document.querySelectorAll('#contact .contact-panel')], {
+  baseDelay: 90,
+  step: 90,
+  distance: 12,
+  duration: 600,
+});
+
 /* ── Compare-features toggle ── */
 const compareToggle = document.querySelector('.compare-toggle');
 const compareCollapse = document.getElementById('compare-table');
