@@ -1,3 +1,12 @@
+const heroImageContainer = document.getElementById('hero-image');
+if (heroImageContainer) {
+  const slides = [...heroImageContainer.querySelectorAll('.hero-image__slide')];
+  const ready = slides.map((img) =>
+    img.complete ? Promise.resolve() : new Promise((r) => { img.onload = r; img.onerror = r; })
+  );
+  Promise.all(ready).then(() => heroImageContainer.classList.add('is-ready'));
+}
+
 // On-scroll reveal behavior
 const sr = typeof ScrollReveal === 'function'
   ? ScrollReveal({

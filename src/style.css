@@ -334,7 +334,6 @@ section#hero .hero-image__slide--primary {
     position: relative;
     z-index: 1;
     opacity: 1;
-    animation: hero-image-primary 12s var(--ease-inout) infinite;
 }
 
 section#hero .hero-image__slide--secondary {
@@ -342,6 +341,13 @@ section#hero .hero-image__slide--secondary {
     inset: 0;
     z-index: 2;
     opacity: 0;
+}
+
+section#hero #hero-image.is-ready .hero-image__slide--primary {
+    animation: hero-image-primary 12s var(--ease-inout) infinite;
+}
+
+section#hero #hero-image.is-ready .hero-image__slide--secondary {
     animation: hero-image-secondary 12s var(--ease-inout) infinite;
 }
 
