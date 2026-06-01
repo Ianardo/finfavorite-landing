@@ -337,6 +337,25 @@ revealCardsOnce('#contact', () => [...document.querySelectorAll('#contact .conta
   duration: 600,
 });
 
+/* ── Competitor comparison entrance ── */
+const comparePlot = document.querySelector('#compare .cmp-plot');
+
+if (comparePlot) {
+  if (prefersReducedMotion || !('IntersectionObserver' in window)) {
+    comparePlot.classList.add('is-revealed');
+  } else {
+    const compareObserver = new IntersectionObserver(
+      (entries, observer) => {
+        if (!entries.some((entry) => entry.isIntersecting)) return;
+        observer.disconnect();
+        comparePlot.classList.add('is-revealed');
+      },
+      { threshold: 0.25 }
+    );
+    compareObserver.observe(comparePlot);
+  }
+}
+
 /* ── Compare-features toggle ── */
 const compareToggle = document.querySelector('.compare-toggle');
 const compareCollapse = document.getElementById('compare-table');
@@ -646,17 +665,6 @@ if (spotlight) {
     if (!nextData) return;
     const transitionToken = ++spotlightTransitionToken;
 
-    if (shouldAnimate) {
-      panel.classList.add('is-transitioning');
-      await wait(90);
-      if (transitionToken !== spotlightTransitionToken) return;
-    }
-
-    if (spotlightCarouselController) {
-      await spotlightCarouselController.setSlides(nextData.media);
-      if (transitionToken !== spotlightTransitionToken) return;
-    }
-
     tabs.forEach((item) => {
       const isActive = item === tab;
       item.setAttribute('aria-selected', isActive ? 'true' : 'false');
@@ -666,14 +674,30 @@ if (spotlight) {
       }
     });
 
+    if (shouldAnimate) {
+      const panelRect = panel.getBoundingClientRect();
+      panel.style.minHeight = `${panelRect.height}px`;
+      panel.classList.add('is-transitioning');
+      await wait(300);
+      if (transitionToken !== spotlightTransitionToken) return;
+    }
+
+    if (spotlightCarouselController) {
+      await spotlightCarouselController.setSlides(nextData.media);
+      if (transitionToken !== spotlightTransitionToken) return;
+    }
+
     title.textContent = nextData.title;
     description.textContent = nextData.description;
 
     if (shouldAnimate) {
-      window.requestAnimationFrame(() => {
-        if (transitionToken !== spotlightTransitionToken) return;
-        panel.classList.remove('is-transitioning');
-      });
+      await wait(20);
+      if (transitionToken !== spotlightTransitionToken) return;
+      panel.classList.remove('is-transitioning');
+      await wait(400);
+      if (transitionToken === spotlightTransitionToken) {
+        panel.style.minHeight = '';
+      }
     }
   };
 
