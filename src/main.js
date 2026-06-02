@@ -727,3 +727,56 @@ if (spotlight) {
   const selectedTab = tabs.find((tab) => tab.getAttribute('aria-selected') === 'true') ?? tabs[0];
   if (selectedTab) void activateTab(selectedTab, { animate: false });
 }
+
+/* ── FAQ accordion ── */
+const faqTriggers = [...document.querySelectorAll('.faq-item__trigger')];
+
+if (faqTriggers.length) {
+  const collapse = (panel) => {
+    if (prefersReducedMotion) {
+      panel.style.height = '0px';
+      return;
+    }
+    panel.style.height = `${panel.scrollHeight}px`;
+    requestAnimationFrame(() => {
+      panel.style.height = '0px';
+    });
+  };
+
+  const expand = (panel) => {
+    if (prefersReducedMotion) {
+      panel.style.height = 'auto';
+      return;
+    }
+    panel.style.height = `${panel.scrollHeight}px`;
+    panel.addEventListener('transitionend', function onEnd(event) {
+      if (event.propertyName !== 'height') return;
+      panel.removeEventListener('transitionend', onEnd);
+      if (panel.parentElement.querySelector('.faq-item__trigger').getAttribute('aria-expanded') === 'true') {
+        panel.style.height = 'auto';
+      }
+    });
+  };
+
+  faqTriggers.forEach((trigger) => {
+    const panel = document.getElementById(trigger.getAttribute('aria-controls'));
+    if (!panel) return;
+
+    trigger.addEventListener('click', () => {
+      const willExpand = trigger.getAttribute('aria-expanded') !== 'true';
+
+      faqTriggers.forEach((other) => {
+        if (other === trigger || other.getAttribute('aria-expanded') !== 'true') return;
+        other.setAttribute('aria-expanded', 'false');
+        collapse(document.getElementById(other.getAttribute('aria-controls')));
+      });
+
+      trigger.setAttribute('aria-expanded', String(willExpand));
+      if (willExpand) {
+        expand(panel);
+      } else {
+        collapse(panel);
+      }
+    });
+  });
+}
