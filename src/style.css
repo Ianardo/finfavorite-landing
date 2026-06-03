@@ -457,7 +457,7 @@ section#macro-micro .macro-micro__inner hgroup * {
 }
 
 section#how-it-works {
-    display: flex;
+    display: none;
     flex-direction: column;
     align-items: center;
 }
@@ -689,10 +689,57 @@ section#compare {
     overflow: visible;
 }
 
+.cmp-layout {
+    width: min(1320px, calc(100% - 48px));
+    margin-top: 5vh;
+    display: grid;
+    grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
+    align-items: center;
+    gap: clamp(32px, 5vw, 80px);
+}
+
+@media (min-width: 1440px) {
+    .cmp-layout {
+        width: min(1440px, calc(100% - 64px));
+        grid-template-columns: minmax(0, 0.78fr) minmax(0, 1.22fr);
+    }
+}
+
+.cmp-intro {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--s-4);
+}
+
+.cmp-intro hgroup {
+    margin-top: 0;
+    max-width: none;
+    align-items: flex-start;
+    text-align: left;
+    gap: var(--s-3);
+}
+
+.cmp-intro hgroup h1 {
+    text-align: left;
+}
+
+.cmp-intro .subheader {
+    text-align: left;
+    margin: 0;
+}
+
+.cmp-explainer {
+    margin: 0;
+    color: var(--dark-med-gray);
+    font-size: 0.98rem;
+    line-height: 1.6;
+}
+
 .cmp-plot-wrap {
-    width: min(880px, calc(100% - 48px));
-    margin-top: var(--s-7);
-    padding: clamp(30px, 4vw, 48px) clamp(30px, 4vw, 56px);
+    width: 100%;
+    margin-top: 0;
+    padding: clamp(24px, 3vw, 40px) clamp(28px, 3.4vw, 48px);
 }
 
 .cmp-plot {
@@ -729,9 +776,10 @@ section#compare {
 
 .cmp-axis-title {
     position: absolute;
-    color: var(--med-gray);
-    font-size: 0.8rem;
-    font-weight: var(--fw-medium);
+    color: var(--dark-med-gray);
+    font-size: 1.02rem;
+    font-weight: var(--fw-semibold);
+    letter-spacing: 0.01em;
     white-space: nowrap;
     pointer-events: none;
 }
@@ -785,22 +833,52 @@ section#compare {
 }
 
 .cmp-node__dot {
-    display: grid;
-    place-items: center;
-    width: clamp(46px, 6.6vw, 64px);
-    height: clamp(46px, 6.6vw, 64px);
+    position: relative;
+    display: block;
+    width: clamp(21px, 2.6vw, 27px);
+    height: clamp(21px, 2.6vw, 27px);
     border-radius: 999px;
-    background: #fff;
-    border: 1px solid var(--light-gray);
-    box-shadow: 0 3px 8px -3px rgba(11, 18, 32, 0.14);
-    color: var(--blackish);
-    font-size: clamp(0.95rem, 1.5vw, 1.2rem);
-    font-weight: var(--fw-bold);
-    letter-spacing: -0.01em;
+    background: #ccc;
+    border: 2px solid #ccc;
+    box-shadow: 0 2px 6px -2px rgba(11, 18, 32, 0.22);
     transition:
         transform var(--t-2) var(--ease-out),
         box-shadow var(--t-2) var(--ease-out);
     will-change: transform;
+}
+
+/* hoverable affordance: a gentle radiating ring at rest,
+   becoming a steady accent ring on hover/focus */
+.cmp-node:not(.cmp-node--self) .cmp-node__dot::after {
+    content: "";
+    position: absolute;
+    inset: -2px;
+    border-radius: 999px;
+    border: 2px solid var(--med-gray);
+    opacity: 0;
+    pointer-events: none;
+    animation: cmp-dot-ping 2.6s var(--ease-out) infinite;
+    animation-delay: calc(var(--i, 0) * 0.32s);
+}
+
+@keyframes cmp-dot-ping {
+    0% { opacity: 0.55; transform: scale(1); }
+    60% { opacity: 0; transform: scale(2); }
+    100% { opacity: 0; transform: scale(2); }
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .cmp-node:not(.cmp-node--self):hover .cmp-node__dot::after,
+    .cmp-node:not(.cmp-node--self):focus-visible .cmp-node__dot::after {
+        animation: none;
+        opacity: 1;
+        transform: scale(1.35);
+    }
+}
+
+.cmp-node__dot--excel {
+    background: #21a336;
+    border-color: #21a336;
 }
 
 .cmp-node--self {
@@ -809,15 +887,15 @@ section#compare {
 }
 
 .cmp-node--self .cmp-node__dot {
-    width: clamp(82px, 11.5vw, 108px);
-    height: clamp(82px, 11.5vw, 108px);
-    background: var(--accent-color);
+    width: clamp(42px, 5.2vw, 54px);
+    height: clamp(42px, 5.2vw, 54px);
     border: 0;
-    color: var(--text-inverted);
-    font-size: clamp(1.15rem, 2vw, 1.55rem);
-    font-weight: var(--fw-bold);
-    letter-spacing: -0.02em;
-    box-shadow: 0 6px 16px -6px rgba(11, 104, 255, 0.45);
+    background-color: var(--accent-color);
+    background-image: url(../img/logo2.PNG);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    box-shadow: 0 4px 12px -4px rgba(11, 104, 255, 0.55);
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -909,9 +987,35 @@ section#compare {
     to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
 }
 
+@media (max-width: 900px) {
+    .cmp-layout {
+        grid-template-columns: 1fr;
+        gap: clamp(24px, 5vw, 40px);
+    }
+
+    .cmp-intro {
+        align-items: center;
+    }
+
+    .cmp-intro hgroup,
+    .cmp-intro hgroup h1,
+    .cmp-intro .subheader,
+    .cmp-explainer {
+        text-align: center;
+    }
+
+    .cmp-intro hgroup {
+        align-items: center;
+    }
+
+    .cmp-plot-wrap {
+        max-width: 880px;
+        margin-inline: auto;
+    }
+}
+
 @media (max-width: 720px) {
     .cmp-plot-wrap {
-        width: calc(100% - 24px);
         padding: 24px 26px 20px;
     }
 
@@ -929,15 +1033,13 @@ section#compare {
     .cmp-quad--tr, .cmp-quad--br { right: 10px; }
 
     .cmp-node__dot {
-        width: clamp(40px, 13vw, 56px);
-        height: clamp(40px, 13vw, 56px);
-        font-size: clamp(0.8rem, 3.4vw, 1rem);
+        width: clamp(18px, 5vw, 24px);
+        height: clamp(18px, 5vw, 24px);
     }
 
     .cmp-node--self .cmp-node__dot {
-        width: clamp(62px, 19vw, 84px);
-        height: clamp(62px, 19vw, 84px);
-        font-size: clamp(0.9rem, 3.6vw, 1.15rem);
+        width: clamp(40px, 10vw, 50px);
+        height: clamp(40px, 10vw, 50px);
     }
 
     .cmp-tooltip {
@@ -946,8 +1048,8 @@ section#compare {
     }
 
     .cmp-axis-title {
-        font-size: 0.62rem;
-        letter-spacing: 0.1em;
+        font-size: 0.74rem;
+        letter-spacing: 0.02em;
     }
 
     .cmp-axis-title--y { left: -14px; }
@@ -962,6 +1064,13 @@ section#compare {
     .cmp-node__dot,
     .cmp-tooltip {
         transition: none;
+    }
+
+    /* keep the hoverable affordance, but static instead of pulsing */
+    .cmp-node:not(.cmp-node--self) .cmp-node__dot::after {
+        animation: none;
+        opacity: 0.4;
+        transform: scale(1.3);
     }
 }
 
@@ -1075,13 +1184,12 @@ section#testimonials {
     height: 34px;
     border-radius: 9999px;
     object-fit: cover;
-    display: block;
-
+    display: none;
     background: var(--lightest-gray);
 }
 
 .avatar--placeholder {
-    display: inline-block;
+    display: none;
 }
 
 section#pricing {
