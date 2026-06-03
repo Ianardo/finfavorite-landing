@@ -356,6 +356,53 @@ if (comparePlot) {
   }
 }
 
+/* ── Compare plot ↔ legend highlight ── */
+const cmpNodes = document.querySelectorAll('#compare .cmp-node');
+const cmpLegendItems = document.querySelectorAll('#compare .cmp-legend__item');
+
+if (cmpNodes.length && cmpLegendItems.length) {
+  const legendByIndex = new Map();
+  const nodeByIndex = new Map();
+  cmpLegendItems.forEach((item) => legendByIndex.set(item.dataset.i, item));
+  cmpNodes.forEach((node) => nodeByIndex.set(node.dataset.i, node));
+
+  const pair = (a, b) => {
+    if (!a || !b) return;
+    const activate = () => {
+      a.classList.add('is-active');
+      b.classList.add('is-active');
+    };
+    const deactivate = () => {
+      a.classList.remove('is-active');
+      b.classList.remove('is-active');
+    };
+    a.addEventListener('mouseenter', activate);
+    a.addEventListener('mouseleave', deactivate);
+    a.addEventListener('focus', activate);
+    a.addEventListener('blur', deactivate);
+  };
+
+  cmpNodes.forEach((node) => pair(node, legendByIndex.get(node.dataset.i)));
+  cmpLegendItems.forEach((item) => pair(item, nodeByIndex.get(item.dataset.i)));
+
+  // touch: the highlight is focus-driven, so a second tap on the same dot clears it
+  let tappedNode = null;
+  cmpNodes.forEach((node) => {
+    node.addEventListener('click', () => {
+      if (tappedNode === node) {
+        node.blur();
+        tappedNode = null;
+      } else {
+        node.focus(); // iOS Safari doesn't focus <button> on tap, so the card needs an explicit focus
+        tappedNode = node;
+      }
+    });
+    node.addEventListener('blur', () => {
+      if (tappedNode === node) tappedNode = null;
+    });
+  });
+}
+
 /* ── Compare-features toggle ── */
 const compareToggle = document.querySelector('.compare-toggle');
 const compareCollapse = document.getElementById('compare-table');

@@ -727,39 +727,38 @@ section#compare::before {
     z-index: 1;
     width: min(var(--container), calc(100% - var(--page-gutter)));
     margin-top: 5vh;
-    display: grid;
-    grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
-    align-items: center;
-    gap: clamp(32px, 5vw, 80px);
+    display: flex;
+    flex-direction: column;
+    gap: clamp(28px, 4vw, 56px);
 }
 
-@media (min-width: 1440px) {
-    .cmp-layout {
-        grid-template-columns: minmax(0, 0.78fr) minmax(0, 1.22fr);
-    }
+.cmp-main {
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+    align-items: center;
+    gap: clamp(32px, 5vw, 72px);
 }
 
 .cmp-intro {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    gap: var(--s-4);
+    align-items: center;
 }
 
 .cmp-intro hgroup {
     margin-top: 0;
-    max-width: none;
-    align-items: flex-start;
-    text-align: left;
+    max-width: 760px;
+    align-items: center;
+    text-align: center;
     gap: var(--s-3);
 }
 
 .cmp-intro hgroup h1 {
-    text-align: left;
+    text-align: center;
 }
 
 .cmp-intro .subheader {
-    text-align: left;
+    text-align: center;
     margin: 0;
 }
 
@@ -854,6 +853,8 @@ section#compare::before {
     border: 0;
     background: none;
     cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
 }
 
 .cmp-node:hover,
@@ -868,9 +869,11 @@ section#compare::before {
 
 .cmp-node__dot {
     position: relative;
-    display: block;
-    width: clamp(21px, 2.6vw, 27px);
-    height: clamp(21px, 2.6vw, 27px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: clamp(23px, 2.7vw, 29px);
+    height: clamp(23px, 2.7vw, 29px);
     border-radius: 999px;
     background: #ccc;
     border: 2px solid #ccc;
@@ -879,6 +882,18 @@ section#compare::before {
         transform var(--t-2) var(--ease-out),
         box-shadow var(--t-2) var(--ease-out);
     will-change: transform;
+}
+
+.cmp-node__num {
+    font-size: 0.72rem;
+    font-weight: var(--fw-bold);
+    line-height: 1;
+    color: #5b6573;
+    user-select: none;
+}
+
+.cmp-node__dot--excel .cmp-node__num {
+    color: #fff;
 }
 
 /* hoverable affordance: a gentle radiating ring at rest,
@@ -901,13 +916,12 @@ section#compare::before {
     100% { opacity: 0; transform: scale(2); }
 }
 
-@media (hover: hover) and (pointer: fine) {
-    .cmp-node:not(.cmp-node--self):hover .cmp-node__dot::after,
-    .cmp-node:not(.cmp-node--self):focus-visible .cmp-node__dot::after {
-        animation: none;
-        opacity: 1;
-        transform: scale(1.35);
-    }
+/* once a dot is engaged, drop the resting pulse so the accent state reads cleanly */
+.cmp-node:hover .cmp-node__dot::after,
+.cmp-node:focus-within .cmp-node__dot::after,
+.cmp-node.is-active .cmp-node__dot::after {
+    animation: none;
+    opacity: 0;
 }
 
 .cmp-node__dot--excel {
@@ -949,6 +963,17 @@ section#compare::before {
     box-shadow: var(--shadow-focus-ring);
 }
 
+/* legend hover ↔ dot link */
+.cmp-node.is-active .cmp-node__dot {
+    transform: scale(1.4);
+    border-color: var(--darker-med-gray);
+    box-shadow: 0 6px 16px -4px rgba(11, 18, 32, 0.28);
+}
+
+.cmp-node--self.is-active .cmp-node__dot {
+    transform: scale(1.12);
+}
+
 /* tooltip */
 .cmp-tooltip {
     position: absolute;
@@ -978,7 +1003,7 @@ section#compare::before {
 .cmp-tooltip--shift-r { --tip-shift: -22%; }
 .cmp-tooltip--shift-l { --tip-shift: -78%; }
 
-.cmp-node:hover .cmp-tooltip,
+/* focus drives the card on touch (no sticky :hover to keep it open after a tap) */
 .cmp-node:focus-visible .cmp-tooltip,
 .cmp-node:focus-within .cmp-tooltip {
     opacity: 1;
@@ -987,6 +1012,18 @@ section#compare::before {
     transition:
         opacity var(--t-2) var(--ease-out),
         translate var(--t-2) var(--ease-out);
+}
+
+/* hover only opens the card on real pointer devices */
+@media (hover: hover) and (pointer: fine) {
+    .cmp-node:hover .cmp-tooltip {
+        opacity: 1;
+        visibility: visible;
+        translate: 0 0;
+        transition:
+            opacity var(--t-2) var(--ease-out),
+            translate var(--t-2) var(--ease-out);
+    }
 }
 
 .cmp-tooltip__name {
@@ -1010,6 +1047,76 @@ section#compare::before {
     margin-top: 2px;
 }
 
+/* legend */
+.cmp-legend {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: clamp(10px, 1.4vw, 16px);
+}
+
+.cmp-legend__item {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    color: var(--med-gray);
+    transition: color var(--t-2) var(--ease-out);
+}
+
+.cmp-legend__num {
+    flex: none;
+    min-width: 1.2em;
+    font-size: 0.82rem;
+    font-weight: var(--fw-semibold);
+    font-variant-numeric: tabular-nums;
+    color: inherit;
+}
+
+.cmp-legend__body {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.cmp-legend__name {
+    font-size: 0.9rem;
+    font-weight: var(--fw-semibold);
+    color: inherit;
+}
+
+.cmp-legend__detail {
+    font-size: 0.82rem;
+    line-height: 1.45;
+    color: inherit;
+    opacity: 0.85;
+}
+
+.cmp-legend__item.is-active {
+    color: #1a2230;
+}
+
+.cmp-legend__item--self {
+    color: var(--accent-color-light);
+}
+
+.cmp-legend__item--self.is-active {
+    color: var(--accent-color);
+}
+
+.cmp-legend__star {
+    display: block;
+    transform: translateY(1px);
+}
+
+/* desktop: legend replaces the hover cards */
+@media (min-width: 901px) {
+    .cmp-tooltip {
+        display: none;
+    }
+}
+
 /* one-time entrance */
 .cmp-plot.is-revealed .cmp-node {
     animation: cmp-pop 560ms var(--ease-out) both;
@@ -1022,29 +1129,32 @@ section#compare::before {
 }
 
 @media (max-width: 900px) {
-    .cmp-layout {
+    .cmp-main {
         grid-template-columns: 1fr;
         gap: clamp(24px, 5vw, 40px);
-    }
-
-    .cmp-intro {
-        align-items: center;
-    }
-
-    .cmp-intro hgroup,
-    .cmp-intro hgroup h1,
-    .cmp-intro .subheader,
-    .cmp-explainer {
-        text-align: center;
-    }
-
-    .cmp-intro hgroup {
-        align-items: center;
     }
 
     .cmp-plot-wrap {
         max-width: 880px;
         margin-inline: auto;
+    }
+
+    /* mobile: hover cards replace the legend */
+    .cmp-legend {
+        display: none;
+    }
+
+    /* no mouse on touch — mark the tapped dot so it's clearly the active one */
+    .cmp-node:focus .cmp-node__dot,
+    .cmp-node:focus-within .cmp-node__dot {
+        transform: scale(1.4);
+        border-color: var(--darker-med-gray);
+        box-shadow: 0 6px 16px -4px rgba(11, 18, 32, 0.28);
+    }
+
+    .cmp-node--self:focus .cmp-node__dot,
+    .cmp-node--self:focus-within .cmp-node__dot {
+        transform: scale(1.12);
     }
 }
 
@@ -1067,13 +1177,13 @@ section#compare::before {
     .cmp-quad--tr, .cmp-quad--br { right: 10px; }
 
     .cmp-node__dot {
-        width: clamp(18px, 5vw, 24px);
-        height: clamp(18px, 5vw, 24px);
+        width: clamp(24px, 6.4vw, 30px);
+        height: clamp(24px, 6.4vw, 30px);
     }
 
     .cmp-node--self .cmp-node__dot {
-        width: clamp(40px, 10vw, 50px);
-        height: clamp(40px, 10vw, 50px);
+        width: clamp(46px, 11.5vw, 56px);
+        height: clamp(46px, 11.5vw, 56px);
     }
 
     .cmp-tooltip {
@@ -1241,11 +1351,11 @@ section#pricing {
 }
 
 section#contact {
-    padding: clamp(72px, 12vh, 120px) 0 clamp(144px, 24vh, 240px);
+    padding: clamp(72px, 12vh, 240px) 0 clamp(144px, 24vh, 480px);
     justify-content: center;
     min-height: auto;
     background-image: url(../img/speechbubble.svg);
-    background-size: 40% auto;
+    background-size: 30% auto;
 }
 
 .contact-actions {

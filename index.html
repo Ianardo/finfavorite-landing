@@ -2,7 +2,8 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/png" href="icons/global/favicon.png">
+    <!-- <link rel="icon" type="image/png" href="icons/global/favicon.png"> -->
+    <link rel="icon" type="image/png" href="logo2.png">
     <link rel="stylesheet" href="src/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -116,88 +117,151 @@
                 </hgroup>
             </div>
 
-            <div class="cmp-plot-wrap">
-                <div class="cmp-plot" role="img" aria-label="Quadrant chart plotting financial platforms by analytical sophistication and workflow coverage. FinFavorite leads in the deep and integrated quadrant.">
-                    <span class="cmp-axis-title cmp-axis-title--y" aria-hidden="true">Analytical Sophistication</span>
-                    <span class="cmp-axis-title cmp-axis-title--x" aria-hidden="true">Workflow Coverage</span>
+            <div class="cmp-main">
+                <div class="cmp-plot-wrap">
+                    <div class="cmp-plot" role="img" aria-label="Quadrant chart plotting financial platforms by analytical sophistication and workflow coverage. FinFavorite leads in the deep and integrated quadrant.">
+                        <span class="cmp-axis-title cmp-axis-title--y" aria-hidden="true">Analytical Sophistication</span>
+                        <span class="cmp-axis-title cmp-axis-title--x" aria-hidden="true">Workflow Coverage</span>
 
-                    <span class="cmp-quad cmp-quad--tl" aria-hidden="true">Deep · Narrow</span>
-                    <span class="cmp-quad cmp-quad--tr" aria-hidden="true">Deep · Integrated</span>
-                    <span class="cmp-quad cmp-quad--bl" aria-hidden="true">Basic · Narrow</span>
-                    <span class="cmp-quad cmp-quad--br" aria-hidden="true">Basic · Integrated</span>
+                        <span class="cmp-quad cmp-quad--tl" aria-hidden="true">Deep · Narrow</span>
+                        <span class="cmp-quad cmp-quad--tr" aria-hidden="true">Deep · Integrated</span>
+                        <span class="cmp-quad cmp-quad--bl" aria-hidden="true">Basic · Narrow</span>
+                        <span class="cmp-quad cmp-quad--br" aria-hidden="true">Basic · Integrated</span>
 
-                    <button class="cmp-node" type="button" style="--x:16%;--y:26%;--i:1" aria-label="Wealth dashboards: deep planning and net-worth views, but thin on execution and journaling.">
-                        <span class="cmp-node__dot"></span>
-                        <span class="cmp-tooltip cmp-tooltip--below cmp-tooltip--shift-r" aria-hidden="true">
-                            <span class="cmp-tooltip__name">Wealth dashboards</span>
-                            <span class="cmp-tooltip__line">Deep planning &amp; net-worth views</span>
-                            <span class="cmp-tooltip__line">Thin on execution &amp; journaling</span>
-                        </span>
-                    </button>
+                        <button class="cmp-node" type="button" data-i="1" style="--x:16%;--y:26%;--i:1" aria-label="Wealth dashboards: deep planning and net-worth views, but thin on execution and journaling.">
+                            <span class="cmp-node__dot"><span class="cmp-node__num" aria-hidden="true">1</span></span>
+                            <span class="cmp-tooltip cmp-tooltip--below cmp-tooltip--shift-r" aria-hidden="true">
+                                <span class="cmp-tooltip__name">Wealth dashboards</span>
+                                <span class="cmp-tooltip__line">Deep planning &amp; net-worth views</span>
+                                <span class="cmp-tooltip__line">Thin on execution &amp; journaling</span>
+                            </span>
+                        </button>
 
-                    <button class="cmp-node" type="button" style="--x:39%;--y:22%;--i:2" aria-label="Charting platforms: powerful charts and community, but light on portfolio and planning.">
-                        <span class="cmp-node__dot"></span>
-                        <span class="cmp-tooltip cmp-tooltip--below" aria-hidden="true">
-                            <span class="cmp-tooltip__name">Charting platforms</span>
-                            <span class="cmp-tooltip__line">Powerful charts &amp; community</span>
-                            <span class="cmp-tooltip__line">Light portfolio &amp; planning</span>
-                        </span>
-                    </button>
+                        <button class="cmp-node" type="button" data-i="2" style="--x:39%;--y:22%;--i:2" aria-label="Charting platforms: powerful charts and community, but light on portfolio and planning.">
+                            <span class="cmp-node__dot"><span class="cmp-node__num" aria-hidden="true">2</span></span>
+                            <span class="cmp-tooltip cmp-tooltip--below" aria-hidden="true">
+                                <span class="cmp-tooltip__name">Charting platforms</span>
+                                <span class="cmp-tooltip__line">Powerful charts &amp; community</span>
+                                <span class="cmp-tooltip__line">Light portfolio &amp; planning</span>
+                            </span>
+                        </button>
 
-                    <button class="cmp-node" type="button" style="--x:29%;--y:50%;--i:3" aria-label="Trade journals: solid trade logging, but narrow beyond the journal.">
-                        <span class="cmp-node__dot"></span>
-                        <span class="cmp-tooltip cmp-tooltip--below" aria-hidden="true">
-                            <span class="cmp-tooltip__name">Trade journals</span>
-                            <span class="cmp-tooltip__line">Solid trade logging</span>
-                            <span class="cmp-tooltip__line">Narrow beyond the journal</span>
-                        </span>
-                    </button>
+                        <button class="cmp-node" type="button" data-i="3" style="--x:29%;--y:50%;--i:3" aria-label="Trade journals: solid trade logging, but narrow beyond the journal.">
+                            <span class="cmp-node__dot"><span class="cmp-node__num" aria-hidden="true">3</span></span>
+                            <span class="cmp-tooltip cmp-tooltip--below" aria-hidden="true">
+                                <span class="cmp-tooltip__name">Trade journals</span>
+                                <span class="cmp-tooltip__line">Solid trade logging</span>
+                                <span class="cmp-tooltip__line">Narrow beyond the journal</span>
+                            </span>
+                        </button>
 
-                    <button class="cmp-node" type="button" style="--x:60%;--y:47%;--i:4" aria-label="Planning suites: comprehensive financial planning, but advisor-led with little execution.">
-                        <span class="cmp-node__dot"></span>
-                        <span class="cmp-tooltip cmp-tooltip--below" aria-hidden="true">
-                            <span class="cmp-tooltip__name">Planning suites</span>
-                            <span class="cmp-tooltip__line">Comprehensive financial planning</span>
-                            <span class="cmp-tooltip__line">Advisor-led, little execution</span>
-                        </span>
-                    </button>
+                        <button class="cmp-node" type="button" data-i="4" style="--x:60%;--y:47%;--i:4" aria-label="Planning suites: comprehensive financial planning, but advisor-led with little execution.">
+                            <span class="cmp-node__dot"><span class="cmp-node__num" aria-hidden="true">4</span></span>
+                            <span class="cmp-tooltip cmp-tooltip--below" aria-hidden="true">
+                                <span class="cmp-tooltip__name">Planning suites</span>
+                                <span class="cmp-tooltip__line">Comprehensive financial planning</span>
+                                <span class="cmp-tooltip__line">Advisor-led, little execution</span>
+                            </span>
+                        </button>
 
-                    <button class="cmp-node" type="button" style="--x:78%;--y:62%;--i:5" aria-label="Brokerages: broad account access, but shallow per-trade insight.">
-                        <span class="cmp-node__dot"></span>
-                        <span class="cmp-tooltip cmp-tooltip--below cmp-tooltip--shift-l" aria-hidden="true">
-                            <span class="cmp-tooltip__name">Brokerages</span>
-                            <span class="cmp-tooltip__line">Broad account access</span>
-                            <span class="cmp-tooltip__line">Shallow per-trade insight</span>
-                        </span>
-                    </button>
+                        <button class="cmp-node" type="button" data-i="5" style="--x:78%;--y:62%;--i:5" aria-label="Brokerages: broad account access, but shallow per-trade insight.">
+                            <span class="cmp-node__dot"><span class="cmp-node__num" aria-hidden="true">5</span></span>
+                            <span class="cmp-tooltip cmp-tooltip--below cmp-tooltip--shift-l" aria-hidden="true">
+                                <span class="cmp-tooltip__name">Brokerages</span>
+                                <span class="cmp-tooltip__line">Broad account access</span>
+                                <span class="cmp-tooltip__line">Shallow per-trade insight</span>
+                            </span>
+                        </button>
 
-                    <button class="cmp-node" type="button" style="--x:22%;--y:82%;--i:6" aria-label="Excel spreadsheet: manual tracking with formulas, but no automation and error-prone.">
-                        <span class="cmp-node__dot cmp-node__dot--excel"></span>
-                        <span class="cmp-tooltip cmp-tooltip--above cmp-tooltip--shift-r" aria-hidden="true">
-                            <span class="cmp-tooltip__name">Excel spreadsheet</span>
-                            <span class="cmp-tooltip__line">Manual tracking &amp; formulas</span>
-                            <span class="cmp-tooltip__line">No automation, error-prone</span>
-                        </span>
-                    </button>
+                        <button class="cmp-node" type="button" data-i="6" style="--x:22%;--y:82%;--i:6" aria-label="Excel spreadsheet: manual tracking with formulas, but no automation and error-prone.">
+                            <span class="cmp-node__dot cmp-node__dot--excel"><span class="cmp-node__num" aria-hidden="true">6</span></span>
+                            <span class="cmp-tooltip cmp-tooltip--above cmp-tooltip--shift-r" aria-hidden="true">
+                                <span class="cmp-tooltip__name">Excel spreadsheet</span>
+                                <span class="cmp-tooltip__line">Manual tracking &amp; formulas</span>
+                                <span class="cmp-tooltip__line">No automation, error-prone</span>
+                            </span>
+                        </button>
 
-                    <button class="cmp-node" type="button" style="--x:60%;--y:85%;--i:7" aria-label="Big-box brokers: wide product coverage, but basic analytics and review.">
-                        <span class="cmp-node__dot"></span>
-                        <span class="cmp-tooltip cmp-tooltip--above" aria-hidden="true">
-                            <span class="cmp-tooltip__name">Big-box brokers</span>
-                            <span class="cmp-tooltip__line">Wide product coverage</span>
-                            <span class="cmp-tooltip__line">Basic analytics &amp; review</span>
-                        </span>
-                    </button>
+                        <button class="cmp-node" type="button" data-i="7" style="--x:60%;--y:85%;--i:7" aria-label="Big-box brokers: wide product coverage, but basic analytics and review.">
+                            <span class="cmp-node__dot"><span class="cmp-node__num" aria-hidden="true">7</span></span>
+                            <span class="cmp-tooltip cmp-tooltip--above" aria-hidden="true">
+                                <span class="cmp-tooltip__name">Big-box brokers</span>
+                                <span class="cmp-tooltip__line">Wide product coverage</span>
+                                <span class="cmp-tooltip__line">Basic analytics &amp; review</span>
+                            </span>
+                        </button>
 
-                    <div class="cmp-node cmp-node--self" style="--x:83%;--y:19%;--i:8" tabindex="0" aria-label="FinFavorite: deep analysis across every account in one integrated workflow.">
-                        <span class="cmp-node__dot"></span>
-                        <span class="cmp-tooltip cmp-tooltip--below cmp-tooltip--shift-l" aria-hidden="true">
-                            <span class="cmp-tooltip__name">FinFavorite</span>
-                            <span class="cmp-tooltip__line">Deep analysis across every account</span>
-                            <span class="cmp-tooltip__line">One integrated workflow, end to end</span>
-                        </span>
+                        <div class="cmp-node cmp-node--self" data-i="8" style="--x:83%;--y:19%;--i:8" tabindex="0" aria-label="FinFavorite: deep analysis across every account in one integrated workflow.">
+                            <span class="cmp-node__dot"></span>
+                            <span class="cmp-tooltip cmp-tooltip--below cmp-tooltip--shift-l" aria-hidden="true">
+                                <span class="cmp-tooltip__name">FinFavorite</span>
+                                <span class="cmp-tooltip__line">Deep analysis across every account</span>
+                                <span class="cmp-tooltip__line">One integrated workflow, end to end</span>
+                            </span>
+                        </div>
                     </div>
                 </div>
+
+                <ol class="cmp-legend" aria-label="Platform comparison legend">
+                    <li class="cmp-legend__item cmp-legend__item--self" data-i="8">
+                        <span class="cmp-legend__num" aria-hidden="true">
+                            <svg class="cmp-legend__star" width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l2.9 6.26L21.8 9.27l-5 4.87 1.18 6.88L12 17.77l-6.17 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>
+                        </span>
+                        <span class="cmp-legend__body">
+                            <span class="cmp-legend__name">FinFavorite</span>
+                            <span class="cmp-legend__detail">Deep analysis across every account in one integrated workflow, end to end.</span>
+                        </span>
+                    </li>
+                    <li class="cmp-legend__item" data-i="1">
+                        <span class="cmp-legend__num">1</span>
+                        <span class="cmp-legend__body">
+                            <span class="cmp-legend__name">Wealth dashboards</span>
+                            <span class="cmp-legend__detail">Deep planning &amp; net-worth views, but thin on execution &amp; journaling.</span>
+                        </span>
+                    </li>
+                    <li class="cmp-legend__item" data-i="2">
+                        <span class="cmp-legend__num">2</span>
+                        <span class="cmp-legend__body">
+                            <span class="cmp-legend__name">Charting platforms</span>
+                            <span class="cmp-legend__detail">Powerful charts &amp; community, but light on portfolio &amp; planning.</span>
+                        </span>
+                    </li>
+                    <li class="cmp-legend__item" data-i="3">
+                        <span class="cmp-legend__num">3</span>
+                        <span class="cmp-legend__body">
+                            <span class="cmp-legend__name">Trade journals</span>
+                            <span class="cmp-legend__detail">Solid trade logging, but narrow beyond the journal.</span>
+                        </span>
+                    </li>
+                    <li class="cmp-legend__item" data-i="4">
+                        <span class="cmp-legend__num">4</span>
+                        <span class="cmp-legend__body">
+                            <span class="cmp-legend__name">Planning suites</span>
+                            <span class="cmp-legend__detail">Comprehensive financial planning, but advisor-led with little execution.</span>
+                        </span>
+                    </li>
+                    <li class="cmp-legend__item" data-i="5">
+                        <span class="cmp-legend__num">5</span>
+                        <span class="cmp-legend__body">
+                            <span class="cmp-legend__name">Brokerages</span>
+                            <span class="cmp-legend__detail">Broad account access, but shallow per-trade insight.</span>
+                        </span>
+                    </li>
+                    <li class="cmp-legend__item" data-i="6">
+                        <span class="cmp-legend__num">6</span>
+                        <span class="cmp-legend__body">
+                            <span class="cmp-legend__name">Excel spreadsheet</span>
+                            <span class="cmp-legend__detail">Manual tracking &amp; formulas, but no automation and error-prone.</span>
+                        </span>
+                    </li>
+                    <li class="cmp-legend__item" data-i="7">
+                        <span class="cmp-legend__num">7</span>
+                        <span class="cmp-legend__body">
+                            <span class="cmp-legend__name">Big-box brokers</span>
+                            <span class="cmp-legend__detail">Wide product coverage, but basic analytics &amp; review.</span>
+                        </span>
+                    </li>
+                </ol>
             </div>
         </div>
     </section>
@@ -1308,8 +1372,8 @@
                 <span class="pill">Contact</span>
             </div>
 
-            <h1 id="contact-title">Questions, partnerships, or early feedback?</h1>
-            <p class="subheader">We read every message and get back to you personally.</p>
+            <h1 id="contact-title">We'd love to hear from you.</h1>
+            <p class="subheader">We read every message and will get back to you personally.</p>
         </hgroup>
 
         <div class="contact-actions">
