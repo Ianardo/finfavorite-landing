@@ -17,7 +17,10 @@
     --lighter-gray: #ebebed;
     --lightest-gray: #f1f1f4;
 
-    --container: 1100px;
+    /* shared content widths — keep sections aligned to the same vertical bounds */
+    --container: 1200px;          /* wide column: media, grids, primary content */
+    --container-narrow: 760px;    /* narrow column: headers and reading-width text */
+    --page-gutter: 48px;          /* min space on each side combined (24px per edge) */
     --nav-height: 74px;
 
     --r-lg: 18px;
@@ -165,7 +168,7 @@ img {
 }
 
 .top-nav__inner {
-    width: min(1200px, calc(100% - 48px));
+    width: min(var(--container), calc(100% - var(--page-gutter)));
     margin: 0 auto;
     min-height: var(--nav-height);
     display: flex;
@@ -260,18 +263,15 @@ img {
 }
 
 section {
-    padding: var(--s-8) 0;
     scroll-margin-top: var(--nav-height);
 
     /* min-height: clamp(1024px, 100svh, 100vw); */
     height: auto;
     width: 100%;
-    padding: var(--s-8) 0;
+    padding: var(--s-7) 0;
 
-    /* scroll-snap-align: start;         
+    /* scroll-snap-align: start;
     scroll-snap-stop: always;          */
-    
-    border-bottom: 2px solid var(--lightest-gray);
 
     display: flex;
     flex-direction: column;
@@ -280,37 +280,57 @@ section {
 }
 
 hgroup {
-    margin-top: 5vh;
-    max-width: 1000px;
+    margin-top: 0;
+    max-width: var(--container-narrow);
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
 hgroup.narrow-header {
-    max-width: 700px;
+    max-width: var(--container-narrow);
 }
 
 section#hero {
-    background-image: url(../img/scribbles.png);
-    background-size: 100vw 130vh;
-    background-position: 0vw 15vh;
-    background-repeat: no-repeat;
+    position: relative;
     padding: var(--s-8) 0 0;
     border-bottom: 0;
-    
+
     flex-direction: column;
     align-items: center;
 
-    overflow: hidden;
+    overflow: visible;
     gap: var(--s-6);
     margin-bottom: calc(var(--hero-image-overlap) * -1);
     min-height: calc(100svh - var(--nav-height) + var(--hero-image-overlap));
 }
 
+section#hero > hgroup,
+section#hero > #hero-image {
+    position: relative;
+    z-index: 1;
+}
+
+.scribble-layer {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    background-image: url(../img/scribbles.png);
+    background-repeat: no-repeat;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.scribble-layer--hero {
+    top: 0;
+    height: 130vh;
+    background-size: 100vw 130vh;
+    background-position: 0 15vh;
+}
+
 section#hero #hero-image {
     position: relative;
-    width: min(var(--hero-image-max-width), calc(100% - 48px));
+    width: min(var(--container), calc(100% - var(--page-gutter)));
     max-width: 100%;
     min-width: 0;
     height: auto;
@@ -467,7 +487,7 @@ section#how-it-works #how-it-works-content {
     flex-direction: row;
     gap: var(--s-6);
     margin-top: var(--s-6);
-    width: min(var(--container), calc(100% - 48px));
+    width: min(var(--container), calc(100% - var(--page-gutter)));
     margin-left: auto;
     margin-right: auto;
 }
@@ -553,7 +573,7 @@ section#trust {
 
 section#trust .trust-grid {
   position: relative;
-  width: min(960px, 100%);
+  width: min(var(--container), calc(100% - var(--page-gutter)));
   margin-top: var(--s-6);
 
   display: grid;
@@ -607,7 +627,7 @@ section#trust .trust-card__header {
 
 section#trust .trust-grid .trust-card h3 {
     font-size: clamp(1.15rem, 1.4vw, 1.5rem);
-    font-weight: var(--fw-bold);
+    font-weight: var(--fw-semibold);
     margin: 0;
     transition: color var(--t-2) var(--ease-out);
 }
@@ -683,14 +703,29 @@ section#trust .trust-card__icon {
 /* ── Competitor comparison quadrant ── */
 
 section#compare {
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
     overflow: visible;
 }
 
+section#compare::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background-image: radial-gradient(circle, #eaeaea 7%, transparent 7%);
+    background-size: 40px 40px;
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 18%, #000 90%, transparent 100%);
+    mask-image: linear-gradient(to bottom, transparent 0%, #000 18%, #000 90%, transparent 100%);
+}
+
 .cmp-layout {
-    width: min(1320px, calc(100% - 48px));
+    position: relative;
+    z-index: 1;
+    width: min(var(--container), calc(100% - var(--page-gutter)));
     margin-top: 5vh;
     display: grid;
     grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
@@ -700,7 +735,6 @@ section#compare {
 
 @media (min-width: 1440px) {
     .cmp-layout {
-        width: min(1440px, calc(100% - 64px));
         grid-template-columns: minmax(0, 0.78fr) minmax(0, 1.22fr);
     }
 }
@@ -958,7 +992,7 @@ section#compare {
 .cmp-tooltip__name {
     display: block;
     font-size: 0.95rem;
-    font-weight: var(--fw-bold);
+    font-weight: var(--fw-semibold);
     color: var(--text);
     margin-bottom: 6px;
     padding-bottom: 6px;
@@ -1075,11 +1109,6 @@ section#compare {
 }
 
 section#testimonials {
-    background-image: url(../img/scribbles.png);
-    background-size: 100vw 170vh;
-    background-position: 0vw -10vw;
-    background-repeat: no-repeat;
-
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -1088,18 +1117,24 @@ section#testimonials {
     gap: var(--s-6);
 
     position: relative;
-    overflow-x: clip;
+    overflow: visible;
 
-    
     height: auto !important;
-    min-height: 100svh;   
-    overflow-y: visible; 
-    padding-bottom: clamp(24px, 6vh, 80px); 
+    min-height: auto;
+    padding-bottom: clamp(24px, 6vh, 80px);
+}
+
+.scribble-layer--testimonials {
+    top: -30vh;
+    height: 170vh;
+    background-size: 100vw 160vh;
+    background-position: 0 0;
 }
 
 .testimonials-wrap {
-    width: min(1040px, 100%);
-    padding-inline: 24px;
+    position: relative;
+    z-index: 1;
+    width: min(var(--container), calc(100% - var(--page-gutter)));
     margin: var(--s-4) auto 0 auto;
 }
 
@@ -1196,19 +1231,21 @@ section#pricing {
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    gap: var(--s-8);
-    min-height: clamp(800px, 100svh, 100vw);
+    gap: var(--s-6);
+    min-height: auto;
 
-    background-image: url(../img/scribbles2.svg);
+    /* background-image: url(../img/scribbles2.svg); */
     background-size: 100% auto;
     background-position: 0 -15vh;
     background-repeat: no-repeat;
 }
 
 section#contact {
-    padding: clamp(140px, 20vh, 220px) 0;
+    padding: clamp(72px, 12vh, 120px) 0 clamp(144px, 24vh, 240px);
     justify-content: center;
-    min-height: clamp(800px, 100svh, 100vw);
+    min-height: auto;
+    background-image: url(../img/speechbubble.svg);
+    background-size: 40% auto;
 }
 
 .contact-actions {
@@ -1239,7 +1276,7 @@ section#contact {
 
 
 .pricing-wrap {
-    width: min(1300px, calc(100% - 48px));
+    width: min(var(--container), calc(100% - var(--page-gutter)));
     margin: var(--s-4) auto 0 auto;
 }
 
@@ -1506,7 +1543,7 @@ section#features {
 }
 
 .features-wrap {
-    width: min(var(--container), calc(100% - var(--s-4)));
+    width: min(var(--container), calc(100% - var(--page-gutter)));
     margin: var(--s-4) auto 0 auto;
     display: flex;
     flex-direction: column;
@@ -1548,7 +1585,7 @@ section#features {
 .feature-copy h3 {
     margin: 0;
     font-size: 2.3rem;
-    font-weight: var(--fw-bold);
+    font-weight: var(--fw-semibold);
     color: var(--text);
 }
 
@@ -1755,6 +1792,7 @@ section#features {
     text-align: center;
     font-size: 2.2rem;
     color: var(--text);
+    font-weight: var(--fw-semibold);
 }
 
 .feature-spotlight {
@@ -1836,6 +1874,7 @@ section#features {
     margin: 0;
     font-size: 2.1rem;
     color: var(--text);
+    font-weight: var(--fw-semibold);
 }
 
 .feature-spotlight-media {
@@ -1954,7 +1993,7 @@ section#features {
 }
 
 .container {
-    width: min(var(--container), calc(100% - 48px));
+    width: min(var(--container), calc(100% - var(--page-gutter)));
     margin: 0 auto;
 }
 
@@ -1972,7 +2011,7 @@ section#features {
 h1 {
     font-size: var(--font-size-xl);
     color: var(--text);
-    font-weight: var(--fw-bold);
+    font-weight: var(--fw-semibold);
     margin: 0;
     text-shadow: var(--text-shadow);
 }
@@ -2169,12 +2208,9 @@ hgroup p.subheader {
     section {
         min-height: auto;
         padding: var(--s-7) 0;
-        background-position: fill;
     }
 
     section#hero {
-        background-size: cover;
-        background-position: center top;
         gap: var(--s-4);
         margin-bottom: 0;
         min-height: auto;
@@ -2347,7 +2383,7 @@ hgroup p.subheader {
 
 /* ── FAQ accordion ── */
 .faq-list {
-    width: min(820px, calc(100% - 48px));
+    width: min(var(--container-narrow), calc(100% - var(--page-gutter)));
     margin: var(--s-6) auto 0 auto;
 }
 
