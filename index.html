@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <!-- <link rel="icon" type="image/png" href="icons/global/favicon.png"> -->
-    <link rel="icon" type="image/png" href="logo2.png">
+    <link rel="icon" type="image/png" href="img/logo3.png">
     <link rel="stylesheet" href="src/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,7 +23,7 @@
         </a>
 
         <div class="top-nav__links">
-          <a href="#how-it-works">Product</a>
+          <a href="#macro-micro">Product</a>
           <a href="#features">Features</a>
           <a href="#testimonials">Testimonials</a>
           <a href="#pricing">Pricing</a>
@@ -119,6 +119,7 @@
 
             <div class="cmp-main">
                 <div class="cmp-plot-wrap">
+                    <p class="cmp-plot-title">Where today's money tools land</p>
                     <div class="cmp-plot" role="img" aria-label="Quadrant chart plotting financial platforms by analytical sophistication and workflow coverage. FinFavorite leads in the deep and integrated quadrant.">
                         <span class="cmp-axis-title cmp-axis-title--y" aria-hidden="true">Analytical Sophistication</span>
                         <span class="cmp-axis-title cmp-axis-title--x" aria-hidden="true">Workflow Coverage</span>
@@ -164,7 +165,7 @@
                             </span>
                         </button>
 
-                        <button class="cmp-node" type="button" data-i="5" style="--x:78%;--y:62%;--i:5" aria-label="Brokerages: broad account access, but shallow per-trade insight.">
+                        <button class="cmp-node" type="button" data-i="5" style="--x:78%;--y:77%;--i:5" aria-label="Brokerages: broad account access, but shallow per-trade insight.">
                             <span class="cmp-node__dot"><span class="cmp-node__num" aria-hidden="true">5</span></span>
                             <span class="cmp-tooltip cmp-tooltip--below cmp-tooltip--shift-l" aria-hidden="true">
                                 <span class="cmp-tooltip__name">Brokerages</span>
@@ -179,15 +180,6 @@
                                 <span class="cmp-tooltip__name">Excel spreadsheet</span>
                                 <span class="cmp-tooltip__line">Manual tracking &amp; formulas</span>
                                 <span class="cmp-tooltip__line">No automation, error-prone</span>
-                            </span>
-                        </button>
-
-                        <button class="cmp-node" type="button" data-i="7" style="--x:60%;--y:85%;--i:7" aria-label="Big-box brokers: wide product coverage, but basic analytics and review.">
-                            <span class="cmp-node__dot"><span class="cmp-node__num" aria-hidden="true">7</span></span>
-                            <span class="cmp-tooltip cmp-tooltip--above" aria-hidden="true">
-                                <span class="cmp-tooltip__name">Big-box brokers</span>
-                                <span class="cmp-tooltip__line">Wide product coverage</span>
-                                <span class="cmp-tooltip__line">Basic analytics &amp; review</span>
                             </span>
                         </button>
 
@@ -252,13 +244,6 @@
                         <span class="cmp-legend__body">
                             <span class="cmp-legend__name">Excel spreadsheet</span>
                             <span class="cmp-legend__detail">Manual tracking &amp; formulas, but no automation and error-prone.</span>
-                        </span>
-                    </li>
-                    <li class="cmp-legend__item" data-i="7">
-                        <span class="cmp-legend__num">7</span>
-                        <span class="cmp-legend__body">
-                            <span class="cmp-legend__name">Big-box brokers</span>
-                            <span class="cmp-legend__detail">Wide product coverage, but basic analytics &amp; review.</span>
                         </span>
                     </li>
                 </ol>
@@ -1270,16 +1255,16 @@
     </section>
 
     <section id="faq" aria-labelledby="faq-title">
-        <hgroup class="center-align narrow-header">
-            <div class="header-pill">
-                <span class="pill">FAQs</span>
-            </div>
+        <div class="header-pill faq-pill">
+            <span class="pill">FAQs</span>
+        </div>
 
-            <h1 id="faq-title">Answers to common questions.</h1>
-            <p class="subheader">Everything you need to know about getting your data into FinFavorite and keeping it auditable.</p>
-        </hgroup>
+        <div class="faq-layout">
+            <hgroup class="faq-header">
+                <h1 id="faq-title">Answers to common questions.</h1>
+            </hgroup>
 
-        <div class="faq-list">
+            <div class="faq-list">
             <div class="faq-item">
                 <h3 class="faq-item__heading">
                     <button class="faq-item__trigger" type="button" aria-expanded="false" aria-controls="faq-panel-1" id="faq-trigger-1">
@@ -1362,6 +1347,7 @@
                         <p>Nothing. The free plan covers core reports, alerts, and up to three accounts. Upgrade to Plus or Premium when you want unlimited imports, deeper analytics, and the full dashboard.</p>
                     </div>
                 </div>
+            </div>
             </div>
         </div>
     </section>
