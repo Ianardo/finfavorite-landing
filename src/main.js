@@ -619,6 +619,103 @@ sr.reveal('#macro-micro .macro-micro__zoom-line', {
   origin: 'bottom',
 });
 
+/* ── Macro/micro video loop progress ── */
+const macroMicroVideo = document.querySelector('[data-macro-micro-video]');
+const macroMicroProgress = document.querySelector('[data-macro-micro-progress]');
+
+if (macroMicroVideo && macroMicroProgress) {
+  const progressTrack = macroMicroProgress.parentElement;
+  let progressRafId = 0;
+
+  // Breadcrumb steps that light up as the video zooms in. Each step's
+  // `data-step-start` is the time in seconds at which it becomes active and
+  // `data-step-caption` is the line shown beneath it — tweak both in
+  // index.html to fine-tune the sync and copy.
+  const captionEl = document.querySelector('[data-macro-micro-caption]');
+  const stepEls = [...document.querySelectorAll('[data-macro-micro-steps] .macro-micro__step')];
+  const steps = stepEls
+    .map((el) => ({
+      el,
+      start: parseFloat(el.dataset.stepStart) || 0,
+      caption: el.dataset.stepCaption || '',
+    }))
+    .sort((a, b) => a.start - b.start);
+  let activeStepIndex = -1;
+  let captionSwapTimer = 0;
+
+  // Plain hard swap, no opacity animation. Safari ghosts (double-paints) text on
+  // any opacity transition because it caches the element's rendered layer, so a
+  // fade is off the table. Instead we delay the swap by CAPTION_DELAY_MS so the
+  // new line lands as the video fades to the next view rather than popping ahead
+  // of it. Tweak CAPTION_DELAY_MS to nudge the timing.
+  const CAPTION_DELAY_MS = 140;
+  const setCaption = (text) => {
+    if (!captionEl || captionEl.textContent === text) return;
+    window.clearTimeout(captionSwapTimer);
+    captionSwapTimer = window.setTimeout(() => {
+      captionEl.textContent = text;
+    }, CAPTION_DELAY_MS);
+  };
+
+  const renderSteps = (currentTime) => {
+    if (!steps.length) return;
+    let nextIndex = 0;
+    for (let i = 0; i < steps.length; i++) {
+      if (currentTime >= steps[i].start) nextIndex = i;
+    }
+    if (nextIndex === activeStepIndex) return;
+    activeStepIndex = nextIndex;
+    steps.forEach((step, i) => step.el.classList.toggle('is-active', i === nextIndex));
+    setCaption(steps[nextIndex].caption);
+  };
+
+  // Click a step to jump the video to that stage and keep it playing.
+  steps.forEach((step) => {
+    step.el.addEventListener('click', () => {
+      const duration = macroMicroVideo.duration;
+      const target = Number.isFinite(duration)
+        ? Math.min(step.start + 0.05, duration - 0.05)
+        : step.start;
+      macroMicroVideo.currentTime = Math.max(target, 0);
+      const playPromise = macroMicroVideo.play();
+      if (playPromise) playPromise.catch(() => {});
+      renderProgress();
+    });
+  });
+
+  const renderProgress = () => {
+    const { currentTime, duration } = macroMicroVideo;
+    const fraction = duration > 0 ? Math.min(currentTime / duration, 1) : 0;
+    macroMicroProgress.style.transform = `scaleX(${fraction})`;
+    renderSteps(currentTime);
+  };
+
+  const tickProgress = () => {
+    renderProgress();
+    progressRafId = window.requestAnimationFrame(tickProgress);
+  };
+
+  const startProgress = () => {
+    if (progressTrack) progressTrack.classList.add('is-active');
+    if (progressRafId) return;
+    progressRafId = window.requestAnimationFrame(tickProgress);
+  };
+
+  const stopProgress = () => {
+    if (!progressRafId) return;
+    window.cancelAnimationFrame(progressRafId);
+    progressRafId = 0;
+    renderProgress();
+  };
+
+  macroMicroVideo.addEventListener('play', startProgress);
+  macroMicroVideo.addEventListener('playing', startProgress);
+  macroMicroVideo.addEventListener('pause', stopProgress);
+  macroMicroVideo.addEventListener('ended', stopProgress);
+
+  if (!macroMicroVideo.paused) startProgress();
+}
+
 const spotlight = document.querySelector('[data-feature-spotlight]');
 
 if (spotlight) {
