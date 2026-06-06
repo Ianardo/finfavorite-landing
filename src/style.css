@@ -1134,7 +1134,7 @@ section#compare::before {
     height: clamp(41.4px, 4.86vw, 52.2px);
     border: 0;
     background-color: var(--accent-color);
-    background-image: url(../img/logo2.PNG);
+    background-image: url(../img/logo2.png);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
