@@ -431,12 +431,20 @@ section#macro-micro .macro-micro__inner {
     min-height: auto;
 }
 
+section#macro-micro .macro-micro__inner .macro-micro__copy {
+    /* Slid up so the whole column (incl. the step list) stays within the blue
+       diagonal. Lower this if the bottom step ever drops onto the white. */
+    margin-top: clamp(8px, 2vh, 28px);
+    flex: 0 1 min(540px, 34vw);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
 section#macro-micro .macro-micro__inner hgroup {
-    margin-top: clamp(40px, 9vh, 140px);
     max-width: clamp(400px, 40vw, 480px);
     text-align: left;
     align-items: flex-start;
-    flex: 0 1 min(540px, 34vw);
 }
 
 section#macro-micro .macro-micro__inner hgroup p {
@@ -504,64 +512,69 @@ section#macro-micro .macro-micro__inner .info-images .macro-micro__progress-fill
     transform-origin: left center;
 }
 
-section#macro-micro .macro-micro__inner .info-images .macro-micro__guide {
-    margin-top: clamp(14px, 1.6vw, 22px);
-    text-align: center;
+section#macro-micro .macro-micro__inner .macro-micro__steps {
+    list-style: none;
+    margin: clamp(22px, 3vw, 38px) 0 0;
+    padding: 0;
+    width: 100%;
+    max-width: 42ch;
+    border-left: 2px solid rgba(255, 255, 255, 0.22);
 }
 
-section#macro-micro .macro-micro__inner .info-images .macro-micro__steps {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    gap: clamp(8px, 1vw, 14px);
-}
-
-section#macro-micro .macro-micro__inner .info-images .macro-micro__step {
+section#macro-micro .macro-micro__inner .macro-micro__step {
     position: relative;
+    margin-left: -2px;
+    padding: clamp(10px, 1.2vw, 15px) 0 clamp(10px, 1.2vw, 15px) clamp(18px, 1.5vw, 26px);
+    border-left: 2px solid transparent;
+    transition: border-color 0.3s ease;
+}
+
+section#macro-micro .macro-micro__inner .macro-micro__step.is-active {
+    border-left-color: #fff;
+}
+
+section#macro-micro .macro-micro__inner .macro-micro__step-label {
     appearance: none;
     background: none;
     border: 0;
+    margin: 0;
     padding: 0;
     font-family: inherit;
-    font-size: clamp(0.95rem, 1.1vw, 1.15rem);
-    font-weight: 600;
+    font-size: clamp(1.05rem, 1.3vw, 1.3rem);
+    font-weight: 700;
     letter-spacing: -0.01em;
-    color: rgba(15, 30, 60, 0.38);
+    color: rgba(255, 255, 255, 0.55);
     cursor: pointer;
+    text-shadow: var(--text-shadow-dark);
     transition: color 0.3s ease;
 }
 
-section#macro-micro .macro-micro__inner .info-images .macro-micro__step:not(:first-child)::before {
-    content: "›";
-    display: inline-block;
-    margin-right: clamp(8px, 1vw, 14px);
-    color: rgba(15, 30, 60, 0.28);
-    font-weight: 400;
+section#macro-micro .macro-micro__inner .macro-micro__step.is-active .macro-micro__step-label {
+    color: #fff;
 }
 
-section#macro-micro .macro-micro__inner .info-images .macro-micro__step:hover {
-    color: rgba(15, 30, 60, 0.62);
+section#macro-micro .macro-micro__inner .macro-micro__step-label:hover {
+    color: rgba(255, 255, 255, 0.82);
 }
 
-section#macro-micro .macro-micro__inner .info-images .macro-micro__step:focus-visible {
-    outline: 2px solid var(--accent-color);
-    outline-offset: 4px;
+section#macro-micro .macro-micro__inner .macro-micro__step-label:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 3px;
     border-radius: 4px;
 }
 
-section#macro-micro .macro-micro__inner .info-images .macro-micro__step.is-active,
-section#macro-micro .macro-micro__inner .info-images .macro-micro__step.is-active:hover {
-    color: var(--accent-color);
-}
-
-section#macro-micro .macro-micro__inner .info-images .macro-micro__caption {
-    margin: clamp(8px, 1vw, 12px) auto 0;
-    min-height: 1.5em;
-    max-width: 44ch;
+section#macro-micro .macro-micro__inner .macro-micro__step-desc {
+    margin: clamp(2px, 0.4vw, 6px) 0 0;
     font-size: clamp(0.9rem, 1vw, 1.05rem);
     font-weight: 500;
-    color: rgba(15, 30, 60, 0.55);
+    line-height: 1.45;
+    color: rgba(255, 255, 255, 0.42);
+    text-shadow: var(--text-shadow-dark);
+    transition: color 0.3s ease;
+}
+
+section#macro-micro .macro-micro__inner .macro-micro__step.is-active .macro-micro__step-desc {
+    color: rgba(255, 255, 255, 0.88);
 }
 
 section#macro-micro .macro-micro__inner hgroup * {
@@ -2383,7 +2396,10 @@ p.subheader a:hover {
     background-image: conic-gradient(from 35deg at 30% 50%, var(--accent-color-light), var(--accent-color));
     background-position: right;
     background-repeat: no-repeat;
-    clip-path: polygon(0 0, 100% 0, 100% 15%, 0 95%);
+    /* Both bottom vertices sit low so the blue covers the copy column even on
+       wide/4K screens, where the centered max-width container pushes the copy
+       toward the middle (into the lower part of the diagonal). */
+    clip-path: polygon(0 0, 100% 0, 100% 50%, 0 100%);
     z-index: -1;
 }
 
@@ -2521,6 +2537,12 @@ p.subheader a:hover {
         padding: var(--s-6) 0;
     }
 
+    /* Stacked layout: copy is full-width, so flatten the diagonal toward a
+       rectangle (bottom-right edge brought way down) to keep it all on blue. */
+    #macro-micro.diag::before {
+        clip-path: polygon(0 0, 100% 0, 100% 78%, 0 92%);
+    }
+
     section#macro-micro .macro-micro__inner {
         flex-direction: column;
         align-items: center;
@@ -2529,14 +2551,23 @@ p.subheader a:hover {
         padding-inline: 0;
     }
 
-    section#macro-micro .macro-micro__inner hgroup {
+    section#macro-micro .macro-micro__inner .macro-micro__copy {
         margin-top: 0;
+        width: 100%;
+        align-items: center;
+    }
+
+    section#macro-micro .macro-micro__inner hgroup {
         text-align: center;
         align-items: center;
     }
 
     section#macro-micro .macro-micro__inner hgroup * {
         margin-left: 0;
+    }
+
+    section#macro-micro .macro-micro__inner .macro-micro__steps {
+        margin-inline: auto;
     }
 
     section#macro-micro .macro-micro__inner .info-images {

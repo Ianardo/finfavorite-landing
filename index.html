@@ -49,11 +49,27 @@
     </section>
     <section class="diag" id="macro-micro">
         <div class="macro-micro__inner">
-            <hgroup>
-                <h1>See the whole picture.<br>
-                    <span class="macro-micro__zoom-line">Then zoom in.</span></h1>
-                <p class="subheader">Drill down from your whole portfolio to a single lot. See what's moving, why, and by how much.</p>
-            </hgroup>
+            <div class="macro-micro__copy">
+                <hgroup>
+                    <h1>See the whole picture.<br>
+                        <span class="macro-micro__zoom-line">Then zoom in.</span></h1>
+                    <p class="subheader">Drill down from your whole portfolio to a single lot. See what's moving, why, and by how much.</p>
+                </hgroup>
+                <ol class="macro-micro__steps" data-macro-micro-steps aria-label="Stages of the demo">
+                    <li class="macro-micro__step is-active">
+                        <button type="button" class="macro-micro__step-label" data-step-start="0">Portfolio</button>
+                        <p class="macro-micro__step-desc">See everything you own in one place.</p>
+                    </li>
+                    <li class="macro-micro__step">
+                        <button type="button" class="macro-micro__step-label" data-step-start="2.26">Stock</button>
+                        <p class="macro-micro__step-desc">Open any stock for the full picture.</p>
+                    </li>
+                    <li class="macro-micro__step">
+                        <button type="button" class="macro-micro__step-label" data-step-start="8.3">Position</button>
+                        <p class="macro-micro__step-desc">Zoom in on a single position.</p>
+                    </li>
+                </ol>
+            </div>
             <div class="info-images">
                 <div class="macro-micro__video">
                     <video autoplay muted loop playsinline preload="metadata" poster="/poster.jpg" aria-label="Macro and micro portfolio view comparison" data-macro-micro-video>
@@ -63,14 +79,6 @@
                     <div class="macro-micro__progress" aria-hidden="true">
                         <span class="macro-micro__progress-fill" data-macro-micro-progress></span>
                     </div>
-                </div>
-                <div class="macro-micro__guide">
-                    <div class="macro-micro__steps" data-macro-micro-steps aria-label="Jump to a stage of the demo">
-                        <button type="button" class="macro-micro__step is-active" data-step-start="0" data-step-caption="See everything you own in one place.">Portfolio</button>
-                        <button type="button" class="macro-micro__step" data-step-start="2.26" data-step-caption="Open any stock for the full picture.">Stock</button>
-                        <button type="button" class="macro-micro__step" data-step-start="8.3" data-step-caption="Zoom in on a single position.">Position</button>
-                    </div>
-                    <p class="macro-micro__caption" data-macro-micro-caption aria-live="polite">See everything you own in one place.</p>
                 </div>
             </div>
         </div>
