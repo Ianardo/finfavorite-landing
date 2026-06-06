@@ -471,6 +471,23 @@ const createFeatureCarousel = (carousel) => {
   let rafId = 0;
   let setSlidesToken = 0;
 
+  // slide counter badge (e.g. "1 / 2") so multi-image galleries read as galleries
+  let countEl = carousel.querySelector('[data-feature-count]');
+  if (!countEl) {
+    countEl = document.createElement('div');
+    countEl.className = 'feature-carousel-count';
+    countEl.dataset.featureCount = '';
+    countEl.setAttribute('aria-hidden', 'true');
+    carousel.append(countEl);
+  }
+
+  // gentle autoplay state — motion is the strongest "this is interactive" cue
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const AUTOPLAY_MS = 4500;
+  let autoTimer = 0;
+  let inView = false;
+  let paused = false;
+
   const clamp = (index) => {
     const maxIndex = Math.max(slides.length - 1, 0);
     return Math.min(Math.max(index, 0), maxIndex);
@@ -507,7 +524,25 @@ const createFeatureCarousel = (carousel) => {
       dot.setAttribute('aria-current', isActive ? 'true' : 'false');
     });
 
+    if (countEl) countEl.textContent = `${activeIndex + 1} / ${slides.length}`;
+
     updateNavState();
+  };
+
+  const stopAuto = () => {
+    if (autoTimer) {
+      window.clearInterval(autoTimer);
+      autoTimer = 0;
+    }
+  };
+
+  const startAuto = () => {
+    stopAuto();
+    if (reduceMotion || isSingle() || !inView || paused) return;
+    autoTimer = window.setInterval(() => {
+      const next = activeIndex >= slides.length - 1 ? 0 : activeIndex + 1;
+      goTo(next);
+    }, AUTOPLAY_MS);
   };
 
   const indexFromScroll = () => clamp(Math.round(track.scrollLeft / slideWidth()));
@@ -533,7 +568,7 @@ const createFeatureCarousel = (carousel) => {
       dot.dataset.featureIndex = String(index);
       dot.setAttribute('aria-label', `Go to image ${index + 1} of ${slides.length}`);
       dot.setAttribute('aria-current', 'false');
-      dot.addEventListener('click', () => goTo(index));
+      dot.addEventListener('click', () => { goTo(index); startAuto(); });
       dotsWrap.append(dot);
       dots.push(dot);
     });
@@ -580,12 +615,38 @@ const createFeatureCarousel = (carousel) => {
     });
   }, { passive: true });
 
-  if (prevButton) prevButton.addEventListener('click', () => goTo(activeIndex - 1));
-  if (nextButton) nextButton.addEventListener('click', () => goTo(activeIndex + 1));
+  if (prevButton) prevButton.addEventListener('click', () => { goTo(activeIndex - 1); startAuto(); });
+  if (nextButton) nextButton.addEventListener('click', () => { goTo(activeIndex + 1); startAuto(); });
 
   window.addEventListener('resize', () => {
     if (!slides.length) return;
     goTo(activeIndex, 'auto');
+  });
+
+  // autoplay: pause while the user is interacting, resume after
+  const pause = () => { paused = true; stopAuto(); };
+  const resume = () => { paused = false; startAuto(); };
+  carousel.addEventListener('pointerenter', pause);
+  carousel.addEventListener('pointerleave', resume);
+  carousel.addEventListener('focusin', pause);
+  carousel.addEventListener('focusout', resume);
+
+  // only autoplay while the carousel is actually on screen
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        inView = entry.isIntersecting;
+        startAuto();
+      });
+    }, { threshold: 0.4 });
+    io.observe(carousel);
+  } else {
+    inView = true;
+  }
+
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) stopAuto();
+    else startAuto();
   });
 
   refresh(0, 'auto');

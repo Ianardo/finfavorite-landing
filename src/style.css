@@ -46,6 +46,9 @@
     --text-shadow: 4px 4px 12px rgb(182,182,190,0.25);
     --text-shadow-dark: 4px 4px 12px rgb(0,0,0,0.25);
 
+    /* stacked-images / gallery glyph used for the carousel slide counter */
+    --icon-gallery: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3' y='3' width='14' height='14' rx='2'/%3E%3Cpath d='M21 7v12a2 2 0 0 1-2 2H7'/%3E%3C/svg%3E");
+
     --font-size-xxs: 1rem;
     --font-size-xs: 1.2rem;
     --font-size-s: 1.4rem;
@@ -878,7 +881,7 @@ section#compare::before {
 .cmp-plot-wrap {
     width: 100%;
     margin-top: 0;
-    padding: clamp(24px, 3vw, 40px) clamp(28px, 3.4vw, 48px);
+    padding: clamp(24px, 3vw, 40px) clamp(28px, 3.4vw, 48px) clamp(68px, 6vw, 88px);
 }
 
 .cmp-plot-title {
@@ -922,27 +925,113 @@ section#compare::before {
     border-top: 1px dashed rgba(15, 30, 60, 0.16);
 }
 
-.cmp-axis-title {
+.cmp-axis {
     position: absolute;
+    display: flex;
+    pointer-events: none;
+    color: var(--med-gray);
+}
+
+.cmp-axis-label {
+    display: flex;
+    flex-direction: column;
+}
+
+.cmp-axis-name {
     color: var(--dark-med-gray);
     font-size: 1.02rem;
     font-weight: var(--fw-semibold);
     letter-spacing: 0.01em;
-    white-space: nowrap;
-    pointer-events: none;
+    line-height: 1.2;
 }
 
-.cmp-axis-title--x {
+.cmp-axis-subtitle {
+    font-size: 0.76rem;
+    font-weight: var(--fw-regular);
+    font-style: italic;
+    color: var(--med-gray);
+    letter-spacing: 0;
+    line-height: 1.3;
+}
+
+/* directional arrows */
+.cmp-axis-arrow {
+    position: relative;
+    flex: none;
+    background: currentColor;
+    border-radius: 2px;
+}
+
+.cmp-axis-arrow--y {
+    width: 2px;
+    align-self: stretch;
+}
+
+.cmp-axis-arrow--y::before {
+    content: "";
+    position: absolute;
+    top: 0;
     left: 50%;
-    bottom: -36px;
-    transform: translateX(-50%);
+    width: 8px;
+    height: 8px;
+    border-top: 2px solid currentColor;
+    border-left: 2px solid currentColor;
+    transform: translate(-50%, -1px) rotate(45deg);
 }
 
-.cmp-axis-title--y {
+.cmp-axis-arrow--x {
+    height: 2px;
+    align-self: stretch;
+}
+
+.cmp-axis-arrow--x::after {
+    content: "";
+    position: absolute;
+    right: 0;
     top: 50%;
-    left: -18px;
-    writing-mode: vertical-rl;
-    transform: translate(-50%, -50%) rotate(180deg);
+    width: 8px;
+    height: 8px;
+    border-top: 2px solid currentColor;
+    border-right: 2px solid currentColor;
+    transform: translate(1px, -50%) rotate(45deg);
+}
+
+/* y-axis: label block + vertical arrow, in the left gutter */
+.cmp-axis--y {
+    top: 0;
+    bottom: 0;
+    left: 0;
+    transform: translateX(-100%);
+    padding-right: 14px;
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+}
+
+.cmp-axis--y .cmp-axis-label {
+    max-width: 116px;
+    text-align: right;
+    align-items: flex-end;
+}
+
+/* x-axis: horizontal arrow + centered label, below the chart */
+.cmp-axis--x {
+    left: 0;
+    right: 0;
+    top: 100%;
+    margin-top: 16px;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.cmp-axis--x .cmp-axis-arrow--x {
+    width: 100%;
+}
+
+.cmp-axis--x .cmp-axis-label {
+    align-items: center;
+    text-align: center;
 }
 
 .cmp-quad {
@@ -1007,10 +1096,6 @@ section#compare::before {
     user-select: none;
 }
 
-.cmp-node__dot--excel .cmp-node__num {
-    color: #fff;
-}
-
 /* hoverable affordance: a gentle radiating ring at rest,
    becoming a steady accent ring on hover/focus */
 .cmp-node:not(.cmp-node--self) .cmp-node__dot::after {
@@ -1039,14 +1124,9 @@ section#compare::before {
     opacity: 0;
 }
 
-.cmp-node__dot--excel {
-    background: #21a336;
-    border-color: #21a336;
-}
-
 .cmp-node--self {
     z-index: 3;
-    cursor: default;
+    cursor: pointer;
 }
 
 .cmp-node--self .cmp-node__dot {
@@ -1252,6 +1332,9 @@ section#compare::before {
     .cmp-plot-wrap {
         max-width: 880px;
         margin-inline: auto;
+        /* single column: no legend beside the plot, so keep the y-axis
+           label inside a gutter rather than letting it run off-screen */
+        padding-left: 150px;
     }
 
     /* mobile: hover cards replace the legend */
@@ -1275,7 +1358,11 @@ section#compare::before {
 
 @media (max-width: 720px) {
     .cmp-plot-wrap {
-        padding: 24px 26px 20px;
+        padding: 24px 16px 56px 84px;
+    }
+
+    .cmp-plot-title {
+        margin-bottom: clamp(16px, 4vw, 24px);
     }
 
     .cmp-plot {
@@ -1306,13 +1393,27 @@ section#compare::before {
         padding: 11px 13px;
     }
 
-    .cmp-axis-title {
+    .cmp-axis-name {
         font-size: 0.74rem;
         letter-spacing: 0.02em;
     }
 
-    .cmp-axis-title--y { left: -14px; }
-    .cmp-axis-title--x { bottom: -28px; }
+    .cmp-axis-subtitle {
+        font-size: 0.6rem;
+    }
+
+    .cmp-axis--y {
+        gap: 8px;
+        padding-right: 8px;
+    }
+
+    .cmp-axis--y .cmp-axis-label {
+        max-width: 70px;
+    }
+
+    .cmp-axis--x {
+        margin-top: 12px;
+    }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -1959,37 +2060,71 @@ section#features {
 }
 
 .feature-carousel-dots {
-    position: absolute;
-    left: 50%;
-    bottom: 12px;
-    transform: translateX(-50%);
     display: flex;
+    justify-content: center;
     align-items: center;
-    gap: 8px;
-    padding: 6px 10px;
-    border-radius: 999px;
-    background: rgba(10, 17, 32, 0.38);
+    gap: 10px;
+    margin-top: 16px;
 }
 
 .feature-carousel-dot {
-    width: 7px;
-    height: 7px;
+    width: 10px;
+    height: 10px;
     border-radius: 999px;
     border: 0;
     padding: 0;
-    background: rgba(255, 255, 255, 0.48);
+    background: rgba(15, 30, 60, 0.20);
     cursor: pointer;
     transition: background-color var(--t-2) var(--ease-out), transform var(--t-2) var(--ease-out);
 }
 
+.feature-carousel-dot:hover {
+    background: rgba(15, 30, 60, 0.40);
+}
+
 .feature-carousel-dot.is-active {
-    background: #ffffff;
-    transform: scale(1.15);
+    background: var(--accent-color);
+    transform: scale(1.3);
 }
 
 .feature-carousel-dot:focus-visible {
-    outline: 2px solid #ffffff;
+    outline: 2px solid var(--accent-color);
     outline-offset: 2px;
+}
+
+/* slide counter badge — makes a multi-image gallery obvious at a glance */
+.feature-carousel-count {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 5px 11px;
+    border-radius: 999px;
+    background: rgba(8, 15, 30, 0.72);
+    color: #ffffff;
+    font-size: 0.76rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    line-height: 1;
+    pointer-events: none;
+    backdrop-filter: blur(4px);
+    box-shadow: 0 4px 12px rgba(8, 15, 30, 0.22);
+}
+
+.feature-carousel-count::before {
+    content: "";
+    width: 12px;
+    height: 12px;
+    background-color: currentColor;
+    -webkit-mask: var(--icon-gallery) center / contain no-repeat;
+    mask: var(--icon-gallery) center / contain no-repeat;
+}
+
+.feature-carousel.is-single .feature-carousel-count {
+    display: none;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -2018,6 +2153,17 @@ section#features {
     font-size: 2.2rem;
     color: var(--text);
     font-weight: var(--fw-semibold);
+}
+
+.feature-explorer h2:has(+ .feature-explorer__hint) {
+    margin-bottom: 8px;
+}
+
+.feature-explorer__hint {
+    margin: 0 0 var(--s-4) 0;
+    text-align: center;
+    color: var(--med-gray);
+    font-size: var(--font-size-xs);
 }
 
 .feature-spotlight {
@@ -2179,7 +2325,7 @@ section#features {
     }
 
     .feature-carousel-dots {
-        bottom: 10px;
+        margin-top: 12px;
     }
 
     .feature-spotlight-tabs {
@@ -2341,6 +2487,14 @@ hgroup .header-pill .pill,
 hgroup p.subheader {
     color: var(--med-gray);
     font-size: var(--font-size-xs);
+}
+
+hgroup p.subheader--hero {
+    font-size: var(--font-size-s);
+    /* color: var(--med-gray); */
+    /* font-weight: var(--fw-medium); */
+    max-width: 46ch;
+    margin-inline: auto;
 }
 
 p.subheader a {

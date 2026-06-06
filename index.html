@@ -40,7 +40,7 @@
         <div class="scribble-layer scribble-layer--hero" aria-hidden="true"></div>
         <hgroup class="center-align narrow-header">
             <h1 class="wide-header">A <span class="accent gradient-text">unified view</span> of your<br>money at work.</h1>
-            <p class="subheader">Import broker data once, then track performance, decisions, and risk across every account with full auditability.</p>
+            <p class="subheader subheader--hero">Built for investors and traders, FinFavorite lets you track performance, decisions, and risk across every account.</p>
         </hgroup>
         <div id="hero-image" role="img" aria-label="FinFavorite dashboard screens showing performance, reminders, and upcoming events">
             <img class="hero-image__slide hero-image__slide--primary" src="../img/screenshots/dashboard-1.png" alt="" fetchpriority="high">
@@ -141,9 +141,21 @@
             <div class="cmp-main">
                 <div class="cmp-plot-wrap">
                     <p class="cmp-plot-title">Where today's money tools land</p>
-                    <div class="cmp-plot" role="img" aria-label="Quadrant chart plotting financial platforms by analytical sophistication and workflow coverage. FinFavorite leads in the deep and integrated quadrant.">
-                        <span class="cmp-axis-title cmp-axis-title--y" aria-hidden="true">Analytical Sophistication</span>
-                        <span class="cmp-axis-title cmp-axis-title--x" aria-hidden="true">Workflow Coverage</span>
+                    <div class="cmp-plot" role="img" aria-label="Quadrant chart plotting financial platforms by depth of analysis and breadth of workflow. FinFavorite leads in the deep and integrated quadrant.">
+                        <div class="cmp-axis cmp-axis--y" aria-hidden="true">
+                            <span class="cmp-axis-label">
+                                <span class="cmp-axis-name">Depth of Analysis</span>
+                                <span class="cmp-axis-subtitle">(How much can you learn about your investments?)</span>
+                            </span>
+                            <span class="cmp-axis-arrow cmp-axis-arrow--y"></span>
+                        </div>
+                        <div class="cmp-axis cmp-axis--x" aria-hidden="true">
+                            <span class="cmp-axis-arrow cmp-axis-arrow--x"></span>
+                            <span class="cmp-axis-label">
+                                <span class="cmp-axis-name">Breadth of Workflow</span>
+                                <span class="cmp-axis-subtitle">(How many tools does it replace?)</span>
+                            </span>
+                        </div>
 
                         <span class="cmp-quad cmp-quad--tl" aria-hidden="true">Deep · Narrow</span>
                         <span class="cmp-quad cmp-quad--tr" aria-hidden="true">Deep · Integrated</span>
@@ -196,7 +208,7 @@
                         </button>
 
                         <button class="cmp-node" type="button" data-i="6" style="--x:22%;--y:82%;--i:6" aria-label="Excel spreadsheet: manual tracking with formulas, but no automation and error-prone.">
-                            <span class="cmp-node__dot cmp-node__dot--excel"><span class="cmp-node__num" aria-hidden="true">6</span></span>
+                            <span class="cmp-node__dot"><span class="cmp-node__num" aria-hidden="true">6</span></span>
                             <span class="cmp-tooltip cmp-tooltip--above cmp-tooltip--shift-r" aria-hidden="true">
                                 <span class="cmp-tooltip__name">Excel spreadsheet</span>
                                 <span class="cmp-tooltip__line">Manual tracking &amp; formulas</span>
@@ -403,6 +415,7 @@
 
             <div class="feature-explorer" aria-labelledby="feature-explorer-title">
                 <h2 id="feature-explorer-title">Explore more features</h2>
+                <p class="feature-explorer__hint">Select any tab to see the feature in action.</p>
 
                 <article class="feature-spotlight card" data-feature-spotlight>
                     <div class="feature-spotlight-tabs" role="tablist" aria-label="Additional platform features">
