@@ -968,3 +968,154 @@ if (faqTriggers.length) {
     });
   });
 }
+
+// Footer: keep the copyright year current
+const footerYear = document.querySelector('[data-current-year]');
+if (footerYear) {
+  footerYear.textContent = String(new Date().getFullYear());
+}
+
+// Legal docs router: on the landing page, open Privacy / Terms inline (no reload),
+// keeping the current scroll position and then smoothly scrolling up to the top —
+// the standalone /privacy.html and /terms.html pages remain for direct links & refresh.
+(() => {
+  const landing = document.getElementById('main-content');
+  const isLandingPage = !!document.getElementById('hero');
+  if (!landing || !isLandingPage) return;
+
+  const DOC_PATHS = ['/privacy.html', '/terms.html', '/disclaimer.html', '/security.html', '/data-ai.html'];
+  const HOME_TITLE = document.title;
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const docCache = new Map();
+
+  const docView = document.createElement('div');
+  docView.id = 'doc-view';
+  docView.hidden = true;
+  landing.after(docView);
+
+  const isDocPath = (pathname) => DOC_PATHS.includes(pathname);
+  const isThisPage = (pathname) =>
+    pathname === '/' || pathname === '/index.html' || pathname.endsWith('/index.html');
+
+  const loadDoc = async (path) => {
+    if (docCache.has(path)) return docCache.get(path);
+    const res = await fetch(path);
+    const markup = await res.text();
+    const parsed = new DOMParser().parseFromString(markup, 'text/html');
+    const legal = parsed.querySelector('.legal');
+    const entry = { html: legal ? legal.innerHTML : '', title: parsed.title };
+    docCache.set(path, entry);
+    return entry;
+  };
+
+  const scrollToTop = () => {
+    requestAnimationFrame(() => {
+      window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
+    });
+  };
+
+  const showDoc = async (path, { push = true } = {}) => {
+    let entry;
+    try {
+      entry = await loadDoc(path);
+    } catch {
+      window.location.href = path;
+      return;
+    }
+    if (!entry.html) {
+      window.location.href = path;
+      return;
+    }
+    docView.className = 'legal';
+    docView.innerHTML = entry.html;
+    docView.hidden = false;
+    landing.hidden = true;
+    document.title = entry.title;
+    if (push) history.pushState({ doc: path }, '', path);
+    const heading = docView.querySelector('h1');
+    if (heading) {
+      heading.setAttribute('tabindex', '-1');
+      heading.focus({ preventScroll: true });
+    }
+    scrollToTop();
+  };
+
+  const showHome = ({ push = true, scrollToId = null } = {}) => {
+    landing.hidden = false;
+    docView.hidden = true;
+    docView.innerHTML = '';
+    document.title = HOME_TITLE;
+    if (push) history.pushState({ doc: null }, '', '/');
+    if (scrollToId && scrollToId !== 'hero') {
+      const target = document.getElementById(scrollToId);
+      if (target) {
+        requestAnimationFrame(() => {
+          const offset = topNav ? topNav.offsetHeight : 0;
+          const y = target.getBoundingClientRect().top + window.scrollY - offset + 2;
+          window.scrollTo({ top: Math.max(y, 0), behavior: reduceMotion ? 'auto' : 'smooth' });
+        });
+        return;
+      }
+    }
+    window.scrollTo({ top: 0, behavior: 'auto' });
+  };
+
+  const docActive = () => !docView.hidden;
+
+  document.addEventListener(
+    'click',
+    (event) => {
+      if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) {
+        return;
+      }
+      const anchor = event.target.closest('a');
+      if (!anchor) return;
+      const href = anchor.getAttribute('href');
+      if (!href || anchor.target === '_blank') return;
+
+      // Pure in-page hash links: only act when a doc is open (return to the landing
+      // page and scroll to the section); otherwise let the home-page handler run.
+      if (href.startsWith('#')) {
+        if (docActive()) {
+          event.preventDefault();
+          event.stopPropagation();
+          showHome({ scrollToId: href.slice(1) || null });
+        }
+        return;
+      }
+
+      let url;
+      try {
+        url = new URL(href, window.location.href);
+      } catch {
+        return;
+      }
+      if (url.origin !== window.location.origin) return;
+
+      // Open a legal doc inline.
+      if (isDocPath(url.pathname)) {
+        event.preventDefault();
+        event.stopPropagation();
+        showDoc(url.pathname);
+        return;
+      }
+
+      // While a doc is open, return to the landing page for links back to it.
+      if (docActive() && isThisPage(url.pathname)) {
+        event.preventDefault();
+        event.stopPropagation();
+        showHome({ scrollToId: url.hash ? url.hash.slice(1) : null });
+      }
+    },
+    true,
+  );
+
+  history.replaceState({ doc: null }, '', window.location.pathname + window.location.hash);
+  window.addEventListener('popstate', () => {
+    if (isDocPath(window.location.pathname)) {
+      showDoc(window.location.pathname, { push: false });
+    } else {
+      showHome({ push: false });
+    }
+  });
+})();
