@@ -237,7 +237,7 @@ img {
     font-size: 1.0rem;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1024px) {
     :root {
         --nav-height: 64px;
     }
