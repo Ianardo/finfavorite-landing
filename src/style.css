@@ -1685,6 +1685,11 @@ section#contact {
     line-height: 1.8;
 }
 
+.pricing-card__footer {
+    margin-top: auto;
+    padding-top: var(--s-3);
+}
+
 .pricing-badge {
     position: absolute;
     top: var(--s-3);

@@ -977,13 +977,13 @@ if (footerYear) {
 
 // Legal docs router: on the landing page, open Privacy / Terms inline (no reload),
 // keeping the current scroll position and then smoothly scrolling up to the top —
-// the standalone /privacy.html and /terms.html pages remain for direct links & refresh.
+// the standalone /privacy/ and /terms/ pages remain for direct links & refresh.
 (() => {
   const landing = document.getElementById('main-content');
   const isLandingPage = !!document.getElementById('hero');
   if (!landing || !isLandingPage) return;
 
-  const DOC_PATHS = ['/privacy.html', '/terms.html', '/disclaimer.html', '/security.html', '/data-ai.html'];
+  const DOC_PATHS = ['/privacy/', '/terms/', '/disclaimer/', '/security/', '/data-ai/'];
   const HOME_TITLE = document.title;
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const docCache = new Map();

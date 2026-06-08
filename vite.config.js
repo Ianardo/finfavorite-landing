@@ -7,11 +7,11 @@ export default defineConfig({
     rollupOptions: {
       input: {
         main: 'index.html',
-        privacy: 'privacy.html',
-        terms: 'terms.html',
-        disclaimer: 'disclaimer.html',
-        security: 'security.html',
-        dataAi: 'data-ai.html',
+        privacy: 'privacy/index.html',
+        terms: 'terms/index.html',
+        disclaimer: 'disclaimer/index.html',
+        security: 'security/index.html',
+        dataAi: 'data-ai/index.html',
       },
     },
   },
