@@ -776,19 +776,19 @@ if (spotlight) {
     reports: {
       title: 'Reports',
       description:
-        'View metrics from basic win rate to drawdown, excursion, hold-time, and edge-quality analytics.',
+        'Measure performance, attribution, drawdown, excursion, and repeatability to uncover the patterns driving your results and improve your investing process over time.',
       media: [{ src: '../img/screenshots/Reports.png', alt: 'Reports screenshot' }],
     },
     dividends: {
       title: 'Dividends',
       description:
-        'Turn income investing into a planned system with yield metrics, ex-date visibility, and projected payout timelines.',
+        'Track dividend income with yield metrics, ex-date visibility, and payout timelines that stay connected to your portfolio, performance, and long-term income goals.',
       media: [{ src: '../img/screenshots/Dividends.png', alt: 'Dividends screenshot' }],
     },
     charting: {
       title: 'Charting',
       description:
-        'Customize indicators and overlays to compare momentum, structure, and context directly on chart so setup quality is easier to validate.',
+        'Charting gives technical context to positions, so you can evaluate opportunities and setup quality using the same symbols, positions, watchlists, and market context tracked throughout the platform.',
       media: [
         { src: '../img/screenshots/charting.png', alt: 'Charting screenshot' },
         { src: '../img/screenshots/charting-2.png', alt: 'Charting secondary screenshot' },
@@ -797,7 +797,7 @@ if (spotlight) {
     screener: {
       title: 'Screener',
       description:
-        'Filter your watchlist with technical and fundamental criteria so strong setups surface faster and stay grounded in context.',
+        'Discover opportunities with technical and fundamental filters, then move them seamlessly into watchlists, charting, research, and portfolio review.',
       media: [
         { src: '../img/screenshots/screener.png', alt: 'Screener overview screenshot' },
         { src: '../img/screenshots/screener-2.png', alt: 'Screener performance filter screenshot' },
@@ -807,13 +807,13 @@ if (spotlight) {
     watchlists: {
       title: 'Watchlist',
       description:
-        'Organize ideas with tags, imports, and quick filtering so research stays actionable instead of scattered.',
+        'Organize opportunities with customizable tags, imports, and filters so ideas remain connected to charting, events, research, and portfolio decisions.',
       media: [{ src: '../img/screenshots/Watchlists.png', alt: 'Watchlists screenshot' }],
     },
     calendar: {
       title: 'Calendar',
       description:
-        'Review performance by day, week, or month with a calendar view that keeps trading context tied to each result.',
+        'Visualize your performance in an interactive timeline. Track results, income, and activity to reveal trends, milestones, and consistent patterns over days, weeks, months and years.',
       media: [
         { src: '../img/screenshots/Calendar.png', alt: 'Calendar screenshot' },
         { src: '../img/screenshots/calendar-2.png', alt: 'Calendar secondary screenshot' },
@@ -822,7 +822,7 @@ if (spotlight) {
     events: {
       title: 'Events',
       description:
-        'Stay ahead of catalysts with earnings and economic calendars, event details, and journal context that surfaces what mattered on the day.',
+        'Stay ahead of catalysts with earnings and economic calendars that surface the events most relevant to the assets, opportunities, and decisions you care about.',
       media: [
         { src: '../img/screenshots/events.png', alt: 'Earnings calendar screenshot' },
         { src: '../img/screenshots/events-2.png', alt: 'Economic calendar screenshot' },
@@ -833,7 +833,7 @@ if (spotlight) {
     customAssets: {
       title: 'Custom Assets',
       description:
-        'Track private financial instruments and tangible assets in one place with dedicated views for both asset types.',
+        'Track all your assets, including real estate, precious metals, collectibles, private investments, and cryptocurrencies, for a comprehensive view of allocation, performance, and total wealth.',
       media: [
         { src: '../img/screenshots/custom.png', alt: 'Custom assets financial tab screenshot' },
         { src: '../img/screenshots/custom-2.png', alt: 'Custom assets tangible tab screenshot' },
