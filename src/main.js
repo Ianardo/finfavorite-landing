@@ -916,6 +916,128 @@ if (spotlight) {
   if (selectedTab) void activateTab(selectedTab, { animate: false });
 }
 
+/* ── Connected system wheel ── */
+const connections = document.querySelector('[data-connections]');
+
+if (connections) {
+  const nodes = [...connections.querySelectorAll('.connections-node[data-node]')];
+  const edges = [...connections.querySelectorAll('[data-edge]')];
+  const spokes = [...connections.querySelectorAll('[data-spoke]')];
+  const kickerEl = connections.querySelector('[data-connections-kicker]');
+  const titleEl = connections.querySelector('[data-connections-title]');
+  const bodyEl = connections.querySelector('[data-connections-body]');
+
+  const connectionData = {
+    events: {
+      kicker: 'Market context',
+      title: 'Events',
+      body: 'Events become more useful because FinFavorite already knows what you own and track. Earnings, economic releases, and sector moves are filtered through your actual exposure.',
+      feeds: 'Calendar, watchlist, reports, alerts, position views, and future review.',
+      smarter: 'Holdings, watchlists, custom assets, sectors, charting context, and calendar timing.',
+      related: ['calendar', 'watchlist', 'reports', 'customAssets'],
+      edges: ['events-calendar', 'events-reports', 'events-watchlist', 'customAssets-events'],
+    },
+    screener: {
+      kicker: 'Discovery layer',
+      title: 'Screener',
+      body: 'The screener surfaces new opportunities that can move from discovery into watchlists, charting, research, alerts, and eventually portfolio decisions.',
+      feeds: 'Watchlists, charting, reports, future events, and portfolio opportunities.',
+      smarter: 'Market data, filters, sectors, existing holdings, watchlists, and prior performance context.',
+      related: ['watchlist', 'charting', 'reports'],
+      edges: ['screener-watchlist', 'screener-charting', 'screener-reports'],
+    },
+    charting: {
+      kicker: 'Market view',
+      title: 'Charting',
+      body: 'Charting gives price action and technical context to positions, watchlist names, screened ideas, and events already inside your investing workflow.',
+      feeds: 'Watchlist review, reports, calendar context, opportunity analysis, and future decisions.',
+      smarter: 'Screeners, watchlists, events, reports, holdings, and calendar timing.',
+      related: ['watchlist', 'screener', 'reports', 'calendar'],
+      edges: ['screener-charting', 'watchlist-charting', 'charting-reports', 'charting-calendar'],
+    },
+    reports: {
+      kicker: 'Analysis layer',
+      title: 'Reports',
+      body: 'Reports turn raw investing activity into patterns, helping you understand performance, income, allocation, repeatability, and where your process can improve.',
+      feeds: 'Watchlist priorities, event review, portfolio decisions, custom asset context, and future research.',
+      smarter: 'Holdings, dividends, calendar history, charting context, screened ideas, watchlists, events, and custom assets.',
+      related: ['dividends', 'charting', 'screener', 'events', 'customAssets'],
+      edges: ['events-reports', 'screener-reports', 'dividends-reports', 'charting-reports', 'customAssets-reports'],
+    },
+    dividends: {
+      kicker: 'Income layer',
+      title: 'Dividends',
+      body: 'Dividend tracking connects income back to the assets, accounts, and holdings producing it, so yield and cash flow become part of the broader portfolio system.',
+      feeds: 'Reports, calendar views, portfolio income review, and allocation decisions.',
+      smarter: 'Holdings, custom assets, transaction history, calendar timing, and performance reporting.',
+      related: ['reports', 'calendar', 'customAssets'],
+      edges: ['dividends-reports', 'dividends-calendar', 'customAssets-dividends'],
+    },
+    calendar: {
+      kicker: 'Timeline layer',
+      title: 'Calendar',
+      body: 'The calendar turns activity and events into a timeline, helping you connect income, earnings, trades, notes, and decisions to specific days.',
+      feeds: 'Reports, event review, dividend tracking, chart context, and historical pattern recognition.',
+      smarter: 'Events, dividends, charting context, account activity, notes, and performance history.',
+      related: ['events', 'dividends', 'charting'],
+      edges: ['events-calendar', 'dividends-calendar', 'charting-calendar'],
+    },
+    customAssets: {
+      kicker: 'Full picture',
+      title: 'Custom Assets',
+      body: 'Custom Assets let your system include holdings that do not fit neatly inside a brokerage account, creating a more complete view of wealth and exposure.',
+      feeds: 'Reports, events, allocation views, dividend context, net worth review, and long-term planning.',
+      smarter: 'User-entered asset values, notes, categories, income history, events, and portfolio context.',
+      related: ['reports', 'events', 'dividends'],
+      edges: ['customAssets-reports', 'customAssets-events', 'customAssets-dividends'],
+    },
+    watchlist: {
+      kicker: 'Monitoring layer',
+      title: 'Watchlist',
+      body: 'Watchlists keep important symbols connected to the rest of your workflow, turning names you care about into monitored opportunities with charts, events, and review context.',
+      feeds: 'Events, charting, reports, dashboards, and future portfolio actions.',
+      smarter: 'Screened ideas, research interests, current holdings, events, charting, and performance history.',
+      related: ['screener', 'charting', 'events'],
+      edges: ['screener-watchlist', 'watchlist-charting', 'events-watchlist'],
+    },
+  };
+
+  const setNode = (key) => {
+    const item = connectionData[key];
+    if (!item) return;
+
+    kickerEl.textContent = item.kicker;
+    titleEl.textContent = item.title;
+    bodyEl.textContent = item.body;
+
+    nodes.forEach((node) => {
+      const nodeKey = node.dataset.node;
+      node.classList.toggle('is-active', nodeKey === key);
+      node.classList.toggle('is-related', item.related.includes(nodeKey));
+      node.setAttribute('aria-pressed', nodeKey === key ? 'true' : 'false');
+    });
+
+    edges.forEach((edge) => {
+      edge.classList.toggle('is-active', item.edges.includes(edge.dataset.edge));
+    });
+
+    spokes.forEach((spoke) => {
+      spoke.classList.toggle('is-active', spoke.dataset.spoke === key);
+    });
+  };
+
+  nodes.forEach((node) => {
+    node.addEventListener('click', () => setNode(node.dataset.node));
+    node.addEventListener('keydown', (event) => {
+      if (event.key !== 'Enter' && event.key !== ' ' && event.key !== 'Spacebar') return;
+      event.preventDefault();
+      setNode(node.dataset.node);
+    });
+  });
+
+  setNode('events');
+}
+
 /* ── FAQ accordion ── */
 const faqTriggers = [...document.querySelectorAll('.faq-item__trigger')];
 

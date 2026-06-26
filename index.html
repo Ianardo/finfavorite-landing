@@ -492,6 +492,98 @@
         </div>
     </section>
 
+    <section id="connections" aria-labelledby="connections-title" data-connections>
+        <hgroup class="center-align narrow-header">
+            <div class="header-pill">
+                <span class="pill">Connected system</span>
+            </div>
+
+            <h1 id="connections-title">A connected system, not a drawer of tools</h1>
+            <p class="subheader">Every module plugs into the same source of truth. Select any one to see what it feeds and what makes it smarter.</p>
+        </hgroup>
+
+        <div class="connections-stage card">
+            <div class="connections-figure">
+                <svg class="connections-network" viewBox="0 0 720 720" preserveAspectRatio="xMidYMid meet" role="group" aria-label="Connected network of FinFavorite modules orbiting your financial decisions">
+                    <!-- cross-module links -->
+                    <line class="connections-edge is-active" data-edge="events-calendar" x1="360" y1="110" x2="183" y2="537"/>
+                    <line class="connections-edge is-active" data-edge="events-reports" x1="360" y1="110" x2="537" y2="537"/>
+                    <line class="connections-edge is-active" data-edge="events-watchlist" x1="360" y1="110" x2="183" y2="183"/>
+                    <line class="connections-edge" data-edge="screener-watchlist" x1="537" y1="183" x2="183" y2="183"/>
+                    <line class="connections-edge" data-edge="screener-charting" x1="537" y1="183" x2="610" y2="360"/>
+                    <line class="connections-edge" data-edge="screener-reports" x1="537" y1="183" x2="537" y2="537"/>
+                    <line class="connections-edge" data-edge="watchlist-charting" x1="183" y1="183" x2="610" y2="360"/>
+                    <line class="connections-edge" data-edge="dividends-reports" x1="360" y1="610" x2="537" y2="537"/>
+                    <line class="connections-edge" data-edge="dividends-calendar" x1="360" y1="610" x2="183" y2="537"/>
+                    <line class="connections-edge" data-edge="charting-reports" x1="610" y1="360" x2="537" y2="537"/>
+                    <line class="connections-edge" data-edge="charting-calendar" x1="610" y1="360" x2="183" y2="537"/>
+                    <line class="connections-edge" data-edge="customAssets-reports" x1="110" y1="360" x2="537" y2="537"/>
+                    <line class="connections-edge is-active" data-edge="customAssets-events" x1="110" y1="360" x2="360" y2="110"/>
+                    <line class="connections-edge" data-edge="customAssets-dividends" x1="110" y1="360" x2="360" y2="610"/>
+
+                    <!-- spokes to the core -->
+                    <line class="connections-spoke is-active" data-spoke="events" x1="360" y1="360" x2="360" y2="110"/>
+                    <line class="connections-spoke" data-spoke="screener" x1="360" y1="360" x2="537" y2="183"/>
+                    <line class="connections-spoke" data-spoke="charting" x1="360" y1="360" x2="610" y2="360"/>
+                    <line class="connections-spoke" data-spoke="reports" x1="360" y1="360" x2="537" y2="537"/>
+                    <line class="connections-spoke" data-spoke="dividends" x1="360" y1="360" x2="360" y2="610"/>
+                    <line class="connections-spoke" data-spoke="calendar" x1="360" y1="360" x2="183" y2="537"/>
+                    <line class="connections-spoke" data-spoke="customAssets" x1="360" y1="360" x2="110" y2="360"/>
+                    <line class="connections-spoke" data-spoke="watchlist" x1="360" y1="360" x2="183" y2="183"/>
+
+                    <!-- core -->
+                    <g class="connections-node connections-node--center" aria-hidden="true" transform="translate(360 360)">
+                        <circle r="86"></circle>
+                        <text text-anchor="middle" y="-15">Your</text>
+                        <text text-anchor="middle" y="7">financial</text>
+                        <text text-anchor="middle" y="29">decisions</text>
+                    </g>
+
+                    <!-- modules -->
+                    <g class="connections-node is-active" data-node="events" role="button" tabindex="0" aria-pressed="true" aria-label="Show how the Events module connects" transform="translate(360 110)">
+                        <circle r="56"></circle>
+                        <text text-anchor="middle" y="5">Events</text>
+                    </g>
+                    <g class="connections-node" data-node="screener" role="button" tabindex="0" aria-pressed="false" aria-label="Show how the Screener module connects" transform="translate(537 183)">
+                        <circle r="56"></circle>
+                        <text text-anchor="middle" y="5">Screener</text>
+                    </g>
+                    <g class="connections-node" data-node="charting" role="button" tabindex="0" aria-pressed="false" aria-label="Show how the Charting module connects" transform="translate(610 360)">
+                        <circle r="56"></circle>
+                        <text text-anchor="middle" y="5">Charting</text>
+                    </g>
+                    <g class="connections-node is-related" data-node="reports" role="button" tabindex="0" aria-pressed="false" aria-label="Show how the Reports module connects" transform="translate(537 537)">
+                        <circle r="56"></circle>
+                        <text text-anchor="middle" y="5">Reports</text>
+                    </g>
+                    <g class="connections-node" data-node="dividends" role="button" tabindex="0" aria-pressed="false" aria-label="Show how the Dividends module connects" transform="translate(360 610)">
+                        <circle r="56"></circle>
+                        <text text-anchor="middle" y="5">Dividends</text>
+                    </g>
+                    <g class="connections-node is-related" data-node="calendar" role="button" tabindex="0" aria-pressed="false" aria-label="Show how the Calendar module connects" transform="translate(183 537)">
+                        <circle r="56"></circle>
+                        <text text-anchor="middle" y="5">Calendar</text>
+                    </g>
+                    <g class="connections-node is-related" data-node="customAssets" role="button" tabindex="0" aria-pressed="false" aria-label="Show how the Custom Assets module connects" transform="translate(110 360)">
+                        <circle r="56"></circle>
+                        <text text-anchor="middle" y="-4">Custom</text>
+                        <text text-anchor="middle" y="16">Assets</text>
+                    </g>
+                    <g class="connections-node is-related" data-node="watchlist" role="button" tabindex="0" aria-pressed="false" aria-label="Show how the Watchlist module connects" transform="translate(183 183)">
+                        <circle r="56"></circle>
+                        <text text-anchor="middle" y="5">Watchlist</text>
+                    </g>
+                </svg>
+            </div>
+
+            <aside class="connections-copy" aria-live="polite">
+                <span class="connections-copy__kicker" data-connections-kicker>Market context</span>
+                <h3 data-connections-title>Events</h3>
+                <p class="connections-copy__body" data-connections-body>Events become more useful because FinFavorite already knows what you own and track. Earnings, economic releases, and sector moves are filtered through your actual exposure.</p>
+            </aside>
+        </div>
+    </section>
+
     <section id="trust">
         <hgroup class="center-align narrow-header">
             <div class="header-pill">
