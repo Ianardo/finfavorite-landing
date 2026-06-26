@@ -926,81 +926,100 @@ if (connections) {
   const kickerEl = connections.querySelector('[data-connections-kicker]');
   const titleEl = connections.querySelector('[data-connections-title]');
   const bodyEl = connections.querySelector('[data-connections-body]');
+  const carouselEl = connections.querySelector('[data-connections-carousel]');
+  const carousel = carouselEl ? carouselControllers.get(carouselEl) : null;
 
+  // Module descriptions + screenshots live here (relocated from the old
+  // feature-spotlight card); `related`/`edges` drive the graph highlighting.
   const connectionData = {
     events: {
       kicker: 'Market context',
       title: 'Events',
-      body: 'Events become more useful because FinFavorite already knows what you own and track. Earnings, economic releases, and sector moves are filtered through your actual exposure.',
-      feeds: 'Calendar, watchlist, reports, alerts, position views, and future review.',
-      smarter: 'Holdings, watchlists, custom assets, sectors, charting context, and calendar timing.',
+      body: 'Stay ahead of catalysts with earnings and economic calendars that surface the events most relevant to the assets, opportunities, and decisions you care about.',
+      media: [
+        { src: '../img/screenshots/events.png', alt: 'Earnings calendar screenshot' },
+        { src: '../img/screenshots/events-2.png', alt: 'Economic calendar screenshot' },
+        { src: '../img/screenshots/events-3.png', alt: 'Journal view with upcoming events screenshot' },
+        { src: '../img/screenshots/events-4.png', alt: 'Journal economic events panel screenshot' },
+      ],
       related: ['calendar', 'watchlist', 'reports', 'customAssets'],
       edges: ['events-calendar', 'events-reports', 'events-watchlist', 'customAssets-events'],
     },
     screener: {
       kicker: 'Discovery layer',
       title: 'Screener',
-      body: 'The screener surfaces new opportunities that can move from discovery into watchlists, charting, research, alerts, and eventually portfolio decisions.',
-      feeds: 'Watchlists, charting, reports, future events, and portfolio opportunities.',
-      smarter: 'Market data, filters, sectors, existing holdings, watchlists, and prior performance context.',
+      body: 'Discover opportunities with technical and fundamental filters, then move them seamlessly into watchlists, charting, research, and portfolio review.',
+      media: [
+        { src: '../img/screenshots/screener.png', alt: 'Screener overview screenshot' },
+        { src: '../img/screenshots/screener-2.png', alt: 'Screener performance filter screenshot' },
+        { src: '../img/screenshots/screener-3.png', alt: 'Screener add filters modal screenshot' },
+      ],
       related: ['watchlist', 'charting', 'reports'],
       edges: ['screener-watchlist', 'screener-charting', 'screener-reports'],
     },
     charting: {
       kicker: 'Market view',
       title: 'Charting',
-      body: 'Charting gives price action and technical context to positions, watchlist names, screened ideas, and events already inside your investing workflow.',
-      feeds: 'Watchlist review, reports, calendar context, opportunity analysis, and future decisions.',
-      smarter: 'Screeners, watchlists, events, reports, holdings, and calendar timing.',
+      body: 'Charting gives technical context to positions, so you can evaluate opportunities and setup quality using the same symbols, positions, watchlists, and market context tracked throughout the platform.',
+      media: [
+        { src: '../img/screenshots/charting.png', alt: 'Charting screenshot' },
+        { src: '../img/screenshots/charting-2.png', alt: 'Charting secondary screenshot' },
+      ],
       related: ['watchlist', 'screener', 'reports', 'calendar'],
       edges: ['screener-charting', 'watchlist-charting', 'charting-reports', 'charting-calendar'],
     },
     reports: {
       kicker: 'Analysis layer',
       title: 'Reports',
-      body: 'Reports turn raw investing activity into patterns, helping you understand performance, income, allocation, repeatability, and where your process can improve.',
-      feeds: 'Watchlist priorities, event review, portfolio decisions, custom asset context, and future research.',
-      smarter: 'Holdings, dividends, calendar history, charting context, screened ideas, watchlists, events, and custom assets.',
+      body: 'Measure performance, attribution, drawdown, excursion, and repeatability to uncover the patterns driving your results and improve your investing process over time.',
+      media: [{ src: '../img/screenshots/Reports.png', alt: 'Reports screenshot' }],
       related: ['dividends', 'charting', 'screener', 'events', 'customAssets'],
       edges: ['events-reports', 'screener-reports', 'dividends-reports', 'charting-reports', 'customAssets-reports'],
     },
     dividends: {
       kicker: 'Income layer',
       title: 'Dividends',
-      body: 'Dividend tracking connects income back to the assets, accounts, and holdings producing it, so yield and cash flow become part of the broader portfolio system.',
-      feeds: 'Reports, calendar views, portfolio income review, and allocation decisions.',
-      smarter: 'Holdings, custom assets, transaction history, calendar timing, and performance reporting.',
+      body: 'Track dividend income with yield metrics, ex-date visibility, and payout timelines that stay connected to your portfolio, performance, and long-term income goals.',
+      media: [{ src: '../img/screenshots/Dividends.png', alt: 'Dividends screenshot' }],
       related: ['reports', 'calendar', 'customAssets'],
       edges: ['dividends-reports', 'dividends-calendar', 'customAssets-dividends'],
     },
     calendar: {
       kicker: 'Timeline layer',
       title: 'Calendar',
-      body: 'The calendar turns activity and events into a timeline, helping you connect income, earnings, trades, notes, and decisions to specific days.',
-      feeds: 'Reports, event review, dividend tracking, chart context, and historical pattern recognition.',
-      smarter: 'Events, dividends, charting context, account activity, notes, and performance history.',
+      body: 'Visualize your performance in an interactive timeline. Track results, income, and activity to reveal trends, milestones, and consistent patterns over days, weeks, months and years.',
+      media: [
+        { src: '../img/screenshots/Calendar.png', alt: 'Calendar screenshot' },
+        { src: '../img/screenshots/calendar-2.png', alt: 'Calendar secondary screenshot' },
+      ],
       related: ['events', 'dividends', 'charting'],
       edges: ['events-calendar', 'dividends-calendar', 'charting-calendar'],
     },
     customAssets: {
       kicker: 'Full picture',
       title: 'Custom Assets',
-      body: 'Custom Assets let your system include holdings that do not fit neatly inside a brokerage account, creating a more complete view of wealth and exposure.',
-      feeds: 'Reports, events, allocation views, dividend context, net worth review, and long-term planning.',
-      smarter: 'User-entered asset values, notes, categories, income history, events, and portfolio context.',
+      body: 'Track all your assets, including real estate, precious metals, collectibles, private investments, and cryptocurrencies, for a comprehensive view of allocation, performance, and total wealth.',
+      media: [
+        { src: '../img/screenshots/custom.png', alt: 'Custom assets financial tab screenshot' },
+        { src: '../img/screenshots/custom-2.png', alt: 'Custom assets tangible tab screenshot' },
+      ],
       related: ['reports', 'events', 'dividends'],
       edges: ['customAssets-reports', 'customAssets-events', 'customAssets-dividends'],
     },
     watchlist: {
       kicker: 'Monitoring layer',
       title: 'Watchlist',
-      body: 'Watchlists keep important symbols connected to the rest of your workflow, turning names you care about into monitored opportunities with charts, events, and review context.',
-      feeds: 'Events, charting, reports, dashboards, and future portfolio actions.',
-      smarter: 'Screened ideas, research interests, current holdings, events, charting, and performance history.',
+      body: 'Organize opportunities with customizable tags, imports, and filters so ideas remain connected to charting, events, research, and portfolio decisions.',
+      media: [{ src: '../img/screenshots/Watchlists.png', alt: 'Watchlists screenshot' }],
       related: ['screener', 'charting', 'events'],
       edges: ['screener-watchlist', 'watchlist-charting', 'events-watchlist'],
     },
   };
+
+  // Warm the image cache so the first few module switches feel instant.
+  Object.values(connectionData).forEach((item) => {
+    item.media.forEach((media) => { void preloadImage(media.src); });
+  });
 
   const setNode = (key) => {
     const item = connectionData[key];
@@ -1009,6 +1028,7 @@ if (connections) {
     kickerEl.textContent = item.kicker;
     titleEl.textContent = item.title;
     bodyEl.textContent = item.body;
+    if (carousel) void carousel.setSlides(item.media);
 
     nodes.forEach((node) => {
       const nodeKey = node.dataset.node;

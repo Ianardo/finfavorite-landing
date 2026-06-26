@@ -47,39 +47,114 @@
             <img class="hero-image__slide hero-image__slide--secondary" src="/img/screenshots/dashboard-2.png" alt="" decoding="async" loading="lazy">
         </div>
     </section>
-    <section class="diag" id="macro-micro">
-        <div class="macro-micro__inner">
-            <div class="macro-micro__copy">
-                <hgroup>
-                    <h1>The platform gets smarter as you use it</h1>
-                    <p class="subheader">View everything you own, monitor what matters, and zoom into the decisions shaping your performance</p>
-                </hgroup>
-                <ol class="macro-micro__steps" data-macro-micro-steps aria-label="Stages of the demo">
-                    <li class="macro-micro__step is-active">
-                        <button type="button" class="macro-micro__step-label" data-step-start="0">Manage</button>
-                        <p class="macro-micro__step-desc">See holdings, allocation, and account activity in one place</p>
-                    </li>
-                    <li class="macro-micro__step">
-                        <button type="button" class="macro-micro__step-label" data-step-start="2.26">Monitor</button>
-                        <p class="macro-micro__step-desc">Open any position to review catalysts, risk, and context</p>
-                    </li>
-                    <li class="macro-micro__step">
-                        <button type="button" class="macro-micro__step-label" data-step-start="8.3">Learn</button>
-                        <p class="macro-micro__step-desc">Drill into the outcome and the decision behind it</p>
-                    </li>
-                </ol>
+
+    <section id="connections" aria-labelledby="connections-title" data-connections>
+        <hgroup class="center-align narrow-header">
+            <div class="header-pill">
+                <span class="pill">Connected system</span>
             </div>
-            <div class="info-images">
-                <div class="macro-micro__video">
-                    <video autoplay muted loop playsinline preload="metadata" poster="/poster.jpg" aria-label="Macro and micro portfolio view comparison" data-macro-micro-video>
-                        <source src="/finfavorite-demo-web.webm" type="video/webm">
-                        <source src="/finfavorite-demo-web.mp4" type="video/mp4">
-                    </video>
-                    <div class="macro-micro__progress" aria-hidden="true">
-                        <span class="macro-micro__progress-fill" data-macro-micro-progress></span>
+
+            <h1 id="connections-title">A connected system, not a drawer of tools</h1>
+            <p class="subheader">Every module plugs into the same source of truth. Select any one to see what it feeds and what makes it smarter.</p>
+        </hgroup>
+
+        <div class="connections-stage">
+            <div class="connections-figure">
+                <svg class="connections-network" viewBox="0 0 720 720" preserveAspectRatio="xMidYMid meet" role="group" aria-label="Connected network of FinFavorite modules orbiting your financial decisions">
+                    <!-- cross-module links -->
+                    <line class="connections-edge is-active" data-edge="events-calendar" x1="360" y1="110" x2="183" y2="537"/>
+                    <line class="connections-edge is-active" data-edge="events-reports" x1="360" y1="110" x2="537" y2="537"/>
+                    <line class="connections-edge is-active" data-edge="events-watchlist" x1="360" y1="110" x2="183" y2="183"/>
+                    <line class="connections-edge" data-edge="screener-watchlist" x1="537" y1="183" x2="183" y2="183"/>
+                    <line class="connections-edge" data-edge="screener-charting" x1="537" y1="183" x2="610" y2="360"/>
+                    <line class="connections-edge" data-edge="screener-reports" x1="537" y1="183" x2="537" y2="537"/>
+                    <line class="connections-edge" data-edge="watchlist-charting" x1="183" y1="183" x2="610" y2="360"/>
+                    <line class="connections-edge" data-edge="dividends-reports" x1="360" y1="610" x2="537" y2="537"/>
+                    <line class="connections-edge" data-edge="dividends-calendar" x1="360" y1="610" x2="183" y2="537"/>
+                    <line class="connections-edge" data-edge="charting-reports" x1="610" y1="360" x2="537" y2="537"/>
+                    <line class="connections-edge" data-edge="charting-calendar" x1="610" y1="360" x2="183" y2="537"/>
+                    <line class="connections-edge" data-edge="customAssets-reports" x1="110" y1="360" x2="537" y2="537"/>
+                    <line class="connections-edge is-active" data-edge="customAssets-events" x1="110" y1="360" x2="360" y2="110"/>
+                    <line class="connections-edge" data-edge="customAssets-dividends" x1="110" y1="360" x2="360" y2="610"/>
+
+                    <!-- spokes to the core -->
+                    <line class="connections-spoke is-active" data-spoke="events" x1="360" y1="360" x2="360" y2="110"/>
+                    <line class="connections-spoke" data-spoke="screener" x1="360" y1="360" x2="537" y2="183"/>
+                    <line class="connections-spoke" data-spoke="charting" x1="360" y1="360" x2="610" y2="360"/>
+                    <line class="connections-spoke" data-spoke="reports" x1="360" y1="360" x2="537" y2="537"/>
+                    <line class="connections-spoke" data-spoke="dividends" x1="360" y1="360" x2="360" y2="610"/>
+                    <line class="connections-spoke" data-spoke="calendar" x1="360" y1="360" x2="183" y2="537"/>
+                    <line class="connections-spoke" data-spoke="customAssets" x1="360" y1="360" x2="110" y2="360"/>
+                    <line class="connections-spoke" data-spoke="watchlist" x1="360" y1="360" x2="183" y2="183"/>
+
+                    <!-- core -->
+                    <g class="connections-node connections-node--center" aria-hidden="true" transform="translate(360 360)">
+                        <circle r="86"></circle>
+                        <text text-anchor="middle" y="-4">Decision</text>
+                        <text text-anchor="middle" y="18">intelligence</text>
+                    </g>
+
+                    <!-- modules -->
+                    <g class="connections-node is-active" data-node="events" role="button" tabindex="0" aria-pressed="true" aria-label="Show how the Events module connects" transform="translate(360 110)">
+                        <circle r="56"></circle>
+                        <text text-anchor="middle" y="5">Events</text>
+                    </g>
+                    <g class="connections-node" data-node="screener" role="button" tabindex="0" aria-pressed="false" aria-label="Show how the Screener module connects" transform="translate(537 183)">
+                        <circle r="56"></circle>
+                        <text text-anchor="middle" y="5">Screener</text>
+                    </g>
+                    <g class="connections-node" data-node="charting" role="button" tabindex="0" aria-pressed="false" aria-label="Show how the Charting module connects" transform="translate(610 360)">
+                        <circle r="56"></circle>
+                        <text text-anchor="middle" y="5">Charting</text>
+                    </g>
+                    <g class="connections-node is-related" data-node="reports" role="button" tabindex="0" aria-pressed="false" aria-label="Show how the Reports module connects" transform="translate(537 537)">
+                        <circle r="56"></circle>
+                        <text text-anchor="middle" y="5">Reports</text>
+                    </g>
+                    <g class="connections-node" data-node="dividends" role="button" tabindex="0" aria-pressed="false" aria-label="Show how the Dividends module connects" transform="translate(360 610)">
+                        <circle r="56"></circle>
+                        <text text-anchor="middle" y="5">Dividends</text>
+                    </g>
+                    <g class="connections-node is-related" data-node="calendar" role="button" tabindex="0" aria-pressed="false" aria-label="Show how the Calendar module connects" transform="translate(183 537)">
+                        <circle r="56"></circle>
+                        <text text-anchor="middle" y="5">Calendar</text>
+                    </g>
+                    <g class="connections-node is-related" data-node="customAssets" role="button" tabindex="0" aria-pressed="false" aria-label="Show how the Custom Assets module connects" transform="translate(110 360)">
+                        <circle r="56"></circle>
+                        <text text-anchor="middle" y="-4">Custom</text>
+                        <text text-anchor="middle" y="16">Assets</text>
+                    </g>
+                    <g class="connections-node is-related" data-node="watchlist" role="button" tabindex="0" aria-pressed="false" aria-label="Show how the Watchlist module connects" transform="translate(183 183)">
+                        <circle r="56"></circle>
+                        <text text-anchor="middle" y="5">Watchlist</text>
+                    </g>
+                </svg>
+            </div>
+
+            <aside class="connections-copy">
+                <div class="connections-copy__text" aria-live="polite">
+                    <span class="connections-copy__kicker" data-connections-kicker>Market context</span>
+                    <h3 data-connections-title>Events</h3>
+                    <p class="connections-copy__body" data-connections-body>Stay ahead of catalysts with earnings and economic calendars that surface the events most relevant to the assets, opportunities, and decisions you care about.</p>
+                </div>
+
+                <div class="connections-media">
+                    <div class="feature-carousel" data-feature-carousel data-connections-carousel aria-label="Selected module preview">
+                        <div class="feature-carousel-track" data-feature-track>
+                            <img class="feature-carousel-slide" data-feature-slide src="../img/screenshots/events.png" alt="Earnings calendar screenshot">
+                        </div>
+
+                        <button class="feature-carousel-control feature-carousel-control--prev" type="button" aria-label="Previous image" data-feature-prev hidden>
+                            <span aria-hidden="true">‹</span>
+                        </button>
+                        <button class="feature-carousel-control feature-carousel-control--next" type="button" aria-label="Next image" data-feature-next hidden>
+                            <span aria-hidden="true">›</span>
+                        </button>
+
+                        <div class="feature-carousel-dots" hidden></div>
                     </div>
                 </div>
-            </div>
+            </aside>
         </div>
     </section>
     <section id="how-it-works">
@@ -284,7 +359,7 @@
                 </div>
             </article>
 
-            <div class="feature-explorer" aria-labelledby="feature-explorer-title">
+            <div class="feature-explorer" aria-labelledby="feature-explorer-title" hidden>
                 <h2 id="feature-explorer-title">Every feature works better by working together</h2>
                 <p class="feature-explorer__hint">Each module learns from and improves the others</p>
 
@@ -492,97 +567,6 @@
         </div>
     </section>
 
-    <section id="connections" aria-labelledby="connections-title" data-connections>
-        <hgroup class="center-align narrow-header">
-            <div class="header-pill">
-                <span class="pill">Connected system</span>
-            </div>
-
-            <h1 id="connections-title">A connected system, not a drawer of tools</h1>
-            <p class="subheader">Every module plugs into the same source of truth. Select any one to see what it feeds and what makes it smarter.</p>
-        </hgroup>
-
-        <div class="connections-stage card">
-            <div class="connections-figure">
-                <svg class="connections-network" viewBox="0 0 720 720" preserveAspectRatio="xMidYMid meet" role="group" aria-label="Connected network of FinFavorite modules orbiting your financial decisions">
-                    <!-- cross-module links -->
-                    <line class="connections-edge is-active" data-edge="events-calendar" x1="360" y1="110" x2="183" y2="537"/>
-                    <line class="connections-edge is-active" data-edge="events-reports" x1="360" y1="110" x2="537" y2="537"/>
-                    <line class="connections-edge is-active" data-edge="events-watchlist" x1="360" y1="110" x2="183" y2="183"/>
-                    <line class="connections-edge" data-edge="screener-watchlist" x1="537" y1="183" x2="183" y2="183"/>
-                    <line class="connections-edge" data-edge="screener-charting" x1="537" y1="183" x2="610" y2="360"/>
-                    <line class="connections-edge" data-edge="screener-reports" x1="537" y1="183" x2="537" y2="537"/>
-                    <line class="connections-edge" data-edge="watchlist-charting" x1="183" y1="183" x2="610" y2="360"/>
-                    <line class="connections-edge" data-edge="dividends-reports" x1="360" y1="610" x2="537" y2="537"/>
-                    <line class="connections-edge" data-edge="dividends-calendar" x1="360" y1="610" x2="183" y2="537"/>
-                    <line class="connections-edge" data-edge="charting-reports" x1="610" y1="360" x2="537" y2="537"/>
-                    <line class="connections-edge" data-edge="charting-calendar" x1="610" y1="360" x2="183" y2="537"/>
-                    <line class="connections-edge" data-edge="customAssets-reports" x1="110" y1="360" x2="537" y2="537"/>
-                    <line class="connections-edge is-active" data-edge="customAssets-events" x1="110" y1="360" x2="360" y2="110"/>
-                    <line class="connections-edge" data-edge="customAssets-dividends" x1="110" y1="360" x2="360" y2="610"/>
-
-                    <!-- spokes to the core -->
-                    <line class="connections-spoke is-active" data-spoke="events" x1="360" y1="360" x2="360" y2="110"/>
-                    <line class="connections-spoke" data-spoke="screener" x1="360" y1="360" x2="537" y2="183"/>
-                    <line class="connections-spoke" data-spoke="charting" x1="360" y1="360" x2="610" y2="360"/>
-                    <line class="connections-spoke" data-spoke="reports" x1="360" y1="360" x2="537" y2="537"/>
-                    <line class="connections-spoke" data-spoke="dividends" x1="360" y1="360" x2="360" y2="610"/>
-                    <line class="connections-spoke" data-spoke="calendar" x1="360" y1="360" x2="183" y2="537"/>
-                    <line class="connections-spoke" data-spoke="customAssets" x1="360" y1="360" x2="110" y2="360"/>
-                    <line class="connections-spoke" data-spoke="watchlist" x1="360" y1="360" x2="183" y2="183"/>
-
-                    <!-- core -->
-                    <g class="connections-node connections-node--center" aria-hidden="true" transform="translate(360 360)">
-                        <circle r="86"></circle>
-                        <text text-anchor="middle" y="-15">Your</text>
-                        <text text-anchor="middle" y="7">financial</text>
-                        <text text-anchor="middle" y="29">decisions</text>
-                    </g>
-
-                    <!-- modules -->
-                    <g class="connections-node is-active" data-node="events" role="button" tabindex="0" aria-pressed="true" aria-label="Show how the Events module connects" transform="translate(360 110)">
-                        <circle r="56"></circle>
-                        <text text-anchor="middle" y="5">Events</text>
-                    </g>
-                    <g class="connections-node" data-node="screener" role="button" tabindex="0" aria-pressed="false" aria-label="Show how the Screener module connects" transform="translate(537 183)">
-                        <circle r="56"></circle>
-                        <text text-anchor="middle" y="5">Screener</text>
-                    </g>
-                    <g class="connections-node" data-node="charting" role="button" tabindex="0" aria-pressed="false" aria-label="Show how the Charting module connects" transform="translate(610 360)">
-                        <circle r="56"></circle>
-                        <text text-anchor="middle" y="5">Charting</text>
-                    </g>
-                    <g class="connections-node is-related" data-node="reports" role="button" tabindex="0" aria-pressed="false" aria-label="Show how the Reports module connects" transform="translate(537 537)">
-                        <circle r="56"></circle>
-                        <text text-anchor="middle" y="5">Reports</text>
-                    </g>
-                    <g class="connections-node" data-node="dividends" role="button" tabindex="0" aria-pressed="false" aria-label="Show how the Dividends module connects" transform="translate(360 610)">
-                        <circle r="56"></circle>
-                        <text text-anchor="middle" y="5">Dividends</text>
-                    </g>
-                    <g class="connections-node is-related" data-node="calendar" role="button" tabindex="0" aria-pressed="false" aria-label="Show how the Calendar module connects" transform="translate(183 537)">
-                        <circle r="56"></circle>
-                        <text text-anchor="middle" y="5">Calendar</text>
-                    </g>
-                    <g class="connections-node is-related" data-node="customAssets" role="button" tabindex="0" aria-pressed="false" aria-label="Show how the Custom Assets module connects" transform="translate(110 360)">
-                        <circle r="56"></circle>
-                        <text text-anchor="middle" y="-4">Custom</text>
-                        <text text-anchor="middle" y="16">Assets</text>
-                    </g>
-                    <g class="connections-node is-related" data-node="watchlist" role="button" tabindex="0" aria-pressed="false" aria-label="Show how the Watchlist module connects" transform="translate(183 183)">
-                        <circle r="56"></circle>
-                        <text text-anchor="middle" y="5">Watchlist</text>
-                    </g>
-                </svg>
-            </div>
-
-            <aside class="connections-copy" aria-live="polite">
-                <span class="connections-copy__kicker" data-connections-kicker>Market context</span>
-                <h3 data-connections-title>Events</h3>
-                <p class="connections-copy__body" data-connections-body>Events become more useful because FinFavorite already knows what you own and track. Earnings, economic releases, and sector moves are filtered through your actual exposure.</p>
-            </aside>
-        </div>
-    </section>
 
     <section id="trust">
         <hgroup class="center-align narrow-header">
@@ -962,6 +946,42 @@
                             </div>
                         </figcaption>
                     </figure>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="macro-micro">
+        <div class="macro-micro__inner">
+            <div class="macro-micro__copy">
+                <hgroup>
+                    <h1>The platform gets smarter as you use it</h1>
+                    <p class="subheader">View everything you own, monitor what matters, and zoom into the decisions shaping your performance</p>
+                </hgroup>
+                <ol class="macro-micro__steps" data-macro-micro-steps aria-label="Stages of the demo">
+                    <li class="macro-micro__step is-active">
+                        <button type="button" class="macro-micro__step-label" data-step-start="0">Manage</button>
+                        <p class="macro-micro__step-desc">See holdings, allocation, and account activity in one place</p>
+                    </li>
+                    <li class="macro-micro__step">
+                        <button type="button" class="macro-micro__step-label" data-step-start="2.26">Monitor</button>
+                        <p class="macro-micro__step-desc">Open any position to review catalysts, risk, and context</p>
+                    </li>
+                    <li class="macro-micro__step">
+                        <button type="button" class="macro-micro__step-label" data-step-start="8.3">Learn</button>
+                        <p class="macro-micro__step-desc">Drill into the outcome and the decision behind it</p>
+                    </li>
+                </ol>
+            </div>
+            <div class="info-images">
+                <div class="macro-micro__video">
+                    <video autoplay muted loop playsinline preload="metadata" poster="/poster.jpg" aria-label="Macro and micro portfolio view comparison" data-macro-micro-video>
+                        <source src="/finfavorite-demo-web.webm" type="video/webm">
+                        <source src="/finfavorite-demo-web.mp4" type="video/mp4">
+                    </video>
+                    <div class="macro-micro__progress" aria-hidden="true">
+                        <span class="macro-micro__progress-fill" data-macro-micro-progress></span>
+                    </div>
                 </div>
             </div>
         </div>

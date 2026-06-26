@@ -417,9 +417,8 @@ section#hero hgroup {
 
 section#macro-micro {
     min-height: auto;
-    padding: calc(clamp(48px, 7vh, 88px) + var(--hero-image-overlap)) 0 clamp(48px, 7vh, 88px);
+    padding: clamp(48px, 7vh, 88px) 0;
     position: relative;
-    z-index: 1;
 }
 
 section#macro-micro .macro-micro__inner {
@@ -521,7 +520,7 @@ section#macro-micro .macro-micro__inner .macro-micro__steps {
     padding: 0;
     width: 100%;
     max-width: 42ch;
-    border-left: 2px solid rgba(255, 255, 255, 0.22);
+    border-left: 2px solid var(--border);
 }
 
 section#macro-micro .macro-micro__inner .macro-micro__step {
@@ -533,7 +532,7 @@ section#macro-micro .macro-micro__inner .macro-micro__step {
 }
 
 section#macro-micro .macro-micro__inner .macro-micro__step.is-active {
-    border-left-color: #fff;
+    border-left-color: var(--accent-color);
 }
 
 section#macro-micro .macro-micro__inner .macro-micro__step-label {
@@ -546,22 +545,22 @@ section#macro-micro .macro-micro__inner .macro-micro__step-label {
     font-size: clamp(1.05rem, 1.3vw, 1.3rem);
     font-weight: 700;
     letter-spacing: -0.01em;
-    color: rgba(255, 255, 255, 0.55);
+    color: var(--dark-med-gray);
     cursor: pointer;
-    text-shadow: var(--text-shadow-dark);
+    text-shadow: none;
     transition: color 0.3s ease;
 }
 
 section#macro-micro .macro-micro__inner .macro-micro__step.is-active .macro-micro__step-label {
-    color: #fff;
+    color: var(--text);
 }
 
 section#macro-micro .macro-micro__inner .macro-micro__step-label:hover {
-    color: rgba(255, 255, 255, 0.82);
+    color: var(--text);
 }
 
 section#macro-micro .macro-micro__inner .macro-micro__step-label:focus-visible {
-    outline: 2px solid #fff;
+    outline: 2px solid var(--accent-color);
     outline-offset: 3px;
     border-radius: 4px;
 }
@@ -571,18 +570,18 @@ section#macro-micro .macro-micro__inner .macro-micro__step-desc {
     font-size: clamp(0.9rem, 1vw, 1.05rem);
     font-weight: 500;
     line-height: 1.45;
-    color: rgba(255, 255, 255, 0.42);
-    text-shadow: var(--text-shadow-dark);
+    color: var(--med-gray);
+    text-shadow: none;
     transition: color 0.3s ease;
 }
 
 section#macro-micro .macro-micro__inner .macro-micro__step.is-active .macro-micro__step-desc {
-    color: rgba(255, 255, 255, 0.88);
+    color: var(--muted);
 }
 
 section#macro-micro .macro-micro__inner hgroup * {
     margin-left: 0;
-    text-shadow: var(--text-shadow-dark);
+    text-shadow: none;
 }
 
 section#how-it-works {
@@ -2428,18 +2427,45 @@ section#features {
     margin: 0 auto;
 }
 
-/* ── Connected system wheel ── */
+/* ── Connected system wheel (blue feature section, sits below the hero) ── */
 section#connections {
     min-height: auto;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    /* Extra top padding lets the overlapping hero image clear the header. */
+    padding: calc(clamp(48px, 7vh, 88px) + var(--hero-image-overlap)) 0 clamp(48px, 7vh, 88px);
 }
 
+section#connections::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: conic-gradient(from 35deg at 30% 50%, var(--accent-color-light), var(--accent-color));
+    z-index: -1;
+}
+
+section#connections h1 {
+    color: var(--text-inverted);
+}
+
+section#connections .subheader {
+    color: var(--light-gray);
+}
+
+/* white card keeps the wheel + screenshot legible on the blue background */
 .connections-stage {
     width: min(var(--container), calc(100% - var(--page-gutter)));
     margin-top: var(--s-6);
     display: grid;
-    grid-template-columns: minmax(0, 1.12fr) minmax(280px, 0.88fr);
-    align-items: stretch;
-    overflow: hidden;
+    grid-template-columns: minmax(0, 1fr) minmax(300px, 1fr);
+    align-items: start;
+    gap: clamp(24px, 4vw, 64px);
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: var(--r-lg);
+    box-shadow: var(--shadow-lg);
+    padding: clamp(20px, 3vw, 44px);
 }
 
 .connections-figure {
@@ -2447,8 +2473,9 @@ section#connections {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: clamp(16px, 2.6vw, 44px);
-    border-right: 1px solid var(--border);
+    /* Pin to the top so a taller/shorter screenshot in the copy column never
+       re-centers (and bobs) the wheel. */
+    align-self: center;
 }
 
 .connections-network {
@@ -2471,12 +2498,12 @@ section#connections {
 }
 
 .connections-edge {
-    stroke: rgba(15, 30, 60, 0.06);
+    stroke: rgba(11, 104, 255, 0.16);
     stroke-width: 1.2;
 }
 
 .connections-spoke {
-    stroke: rgba(11, 104, 255, 0.12);
+    stroke: rgba(11, 104, 255, 0.2);
     stroke-width: 1.4;
 }
 
@@ -2548,9 +2575,9 @@ section#connections {
 }
 
 .connections-node--center circle {
-    fill: var(--blackish);
-    stroke: var(--blackish);
-    filter: drop-shadow(0 12px 28px rgba(15, 30, 60, 0.22));
+    fill: var(--accent-color);
+    stroke: var(--accent-color);
+    filter: drop-shadow(0 12px 28px rgba(11, 104, 255, 0.30));
 }
 
 .connections-node--center text {
@@ -2561,10 +2588,13 @@ section#connections {
 
 /* copy column */
 .connections-copy {
-    align-self: center;
     display: flex;
     flex-direction: column;
-    padding: clamp(28px, 3.4vw, 52px);
+}
+
+.connections-copy__text {
+    display: flex;
+    flex-direction: column;
 }
 
 .connections-copy__kicker {
@@ -2584,24 +2614,33 @@ section#connections {
 
 .connections-copy__body {
     margin: 0;
-    max-width: 42ch;
-    /* Reserve height for the tallest body copy so switching modules never
-       nudges the kicker/title vertically (centered block stays put). */
-    min-height: 8em;
+    max-width: 46ch;
+    /* Reserve height for the tallest description so the screenshot below keeps
+       a steady position as you move between modules. */
+    min-height: 6.4em;
     color: var(--med-gray);
     font-size: 1.1rem;
     line-height: 1.6;
 }
 
+.connections-media {
+    margin-top: var(--s-4);
+    width: 100%;
+}
+
+.connections-media .feature-carousel {
+    max-width: none;
+}
+
 @media (max-width: 980px) {
     .connections-stage {
         grid-template-columns: 1fr;
-        max-width: 640px;
+        max-width: 560px;
+        gap: var(--s-5);
     }
 
     .connections-figure {
-        border-right: 0;
-        border-bottom: 1px solid var(--border);
+        align-self: auto;
     }
 
     .connections-network {
