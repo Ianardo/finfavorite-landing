@@ -2473,8 +2473,8 @@ section#connections .subheader {
     display: flex;
     align-items: center;
     justify-content: center;
-    /* Pin to the top so a taller/shorter screenshot in the copy column never
-       re-centers (and bobs) the wheel. */
+    /* Vertically centered in the card; the copy column is now a fixed height
+       (locked media aspect + reserved dots), so this never bobs between modules. */
     align-self: center;
 }
 
@@ -2632,6 +2632,23 @@ section#connections .subheader {
     max-width: none;
 }
 
+/* All module screenshots are 7:5. Locking the slide to that ratio reserves the
+   box up front, so it can't collapse or jitter while an image loads, and keeps
+   every module's media the exact same height. */
+.connections-media .feature-carousel-slide {
+    aspect-ratio: 7 / 5;
+    height: auto;
+    object-fit: cover;
+}
+
+/* Keep the gallery dots row reserved even on single-image modules, so the card
+   height is identical whether or not a module has multiple screenshots. */
+.connections-media .feature-carousel-dots[hidden],
+.connections-media .feature-carousel.is-single .feature-carousel-dots {
+    display: flex;
+    visibility: hidden;
+}
+
 @media (max-width: 980px) {
     .connections-stage {
         grid-template-columns: 1fr;
@@ -2654,7 +2671,9 @@ section#connections .subheader {
 
     .connections-copy__body {
         max-width: 52ch;
-        min-height: 0;
+        /* reserve the tallest mobile description (~7 lines) so the stacked card
+           keeps a steady height between modules here too */
+        min-height: 11.2em;
     }
 }
 
