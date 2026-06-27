@@ -435,7 +435,7 @@ const imagePreloadCache = new Map();
 const wait = (ms) => new Promise((resolve) => window.setTimeout(resolve, ms));
 
 const preloadImage = (src) => {
-  if (!src) return Promise.resolve(false);
+  if (!src) return Promise.resolve(null);
   if (imagePreloadCache.has(src)) return imagePreloadCache.get(src);
 
   const preloadPromise = new Promise((resolve) => {
@@ -443,13 +443,18 @@ const preloadImage = (src) => {
     image.decoding = 'async';
     image.loading = 'eager';
     image.onload = () => {
+      const metadata = {
+        src,
+        width: image.naturalWidth || 0,
+        height: image.naturalHeight || 0,
+      };
       if (typeof image.decode === 'function') {
-        image.decode().then(() => resolve(true)).catch(() => resolve(true));
+        image.decode().then(() => resolve(metadata)).catch(() => resolve(metadata));
         return;
       }
-      resolve(true);
+      resolve(metadata);
     };
-    image.onerror = () => resolve(false);
+    image.onerror = () => resolve(null);
     image.src = src;
   });
 
@@ -470,6 +475,7 @@ const createFeatureCarousel = (carousel) => {
   let activeIndex = 0;
   let rafId = 0;
   let setSlidesToken = 0;
+  let currentSlidesSignature = '';
 
   // slide counter badge (e.g. "1 / 2") so multi-image galleries read as galleries
   let countEl = carousel.querySelector('[data-feature-count]');
@@ -586,24 +592,40 @@ const createFeatureCarousel = (carousel) => {
 
     const nextItems = mediaItems.filter((media) => media?.src);
     if (!nextItems.length) return;
+    const nextSignature = JSON.stringify(nextItems);
+    if (nextSignature === currentSlidesSignature) {
+      refresh(0, 'auto');
+      return;
+    }
 
     const requestToken = ++setSlidesToken;
-    await Promise.all(nextItems.map((media) => preloadImage(media.src)));
+    const preloadedMedia = await Promise.all(nextItems.map((media) => preloadImage(media.src)));
     if (requestToken !== setSlidesToken) return;
+
+    const firstLoadedMedia = preloadedMedia.find((media) => media?.width && media?.height);
+    if (firstLoadedMedia) {
+      track.style.aspectRatio = `${firstLoadedMedia.width} / ${firstLoadedMedia.height}`;
+    } else {
+      track.style.removeProperty('aspect-ratio');
+    }
 
     track.replaceChildren();
 
-    nextItems.forEach((media) => {
+    nextItems.forEach((media, index) => {
+      const loadedMedia = preloadedMedia[index];
       const image = document.createElement('img');
       image.className = 'feature-carousel-slide';
       image.dataset.featureSlide = '';
       image.src = media.src;
       image.alt = media.alt ?? '';
-      image.loading = 'lazy';
+      image.loading = 'eager';
       image.decoding = 'async';
+      if (loadedMedia?.width) image.width = loadedMedia.width;
+      if (loadedMedia?.height) image.height = loadedMedia.height;
       track.append(image);
     });
 
+    currentSlidesSignature = nextSignature;
     refresh(0, 'auto');
   };
 
@@ -767,6 +789,7 @@ if (spotlight) {
   const panel = spotlight.querySelector('.feature-spotlight-panel');
   const title = spotlight.querySelector('[data-feature-title]');
   const description = spotlight.querySelector('[data-feature-description]');
+  const copy = spotlight.querySelector('.feature-spotlight-copy');
   const spotlightCarousel = spotlight.querySelector('[data-spotlight-carousel]');
   const spotlightCarouselController = spotlightCarousel ? carouselControllers.get(spotlightCarousel) : null;
   let spotlightTransitionToken = 0;
@@ -847,6 +870,27 @@ if (spotlight) {
     });
   });
 
+  const measureSpotlightCopyHeight = () => {
+    if (!copy || !title || !description) return;
+
+    const previousTitle = title.textContent;
+    const previousDescription = description.textContent;
+    let maxHeight = 0;
+
+    Object.values(featureCopy).forEach((feature) => {
+      title.textContent = feature.title;
+      description.textContent = feature.description;
+      maxHeight = Math.max(maxHeight, copy.getBoundingClientRect().height);
+    });
+
+    title.textContent = previousTitle;
+    description.textContent = previousDescription;
+
+    if (maxHeight > 0) {
+      copy.style.minHeight = `${Math.ceil(maxHeight)}px`;
+    }
+  };
+
   const activateTab = async (tab, options = {}) => {
     const shouldAnimate = options.animate ?? !prefersReducedMotion;
     const nextData = featureCopy[tab.dataset.featureKey];
@@ -913,7 +957,20 @@ if (spotlight) {
   });
 
   const selectedTab = tabs.find((tab) => tab.getAttribute('aria-selected') === 'true') ?? tabs[0];
-  if (selectedTab) void activateTab(selectedTab, { animate: false });
+  if (selectedTab) {
+    void activateTab(selectedTab, { animate: false }).then(() => {
+      measureSpotlightCopyHeight();
+    });
+  }
+
+  let spotlightResizeRaf = 0;
+  window.addEventListener('resize', () => {
+    if (spotlightResizeRaf) window.cancelAnimationFrame(spotlightResizeRaf);
+    spotlightResizeRaf = window.requestAnimationFrame(() => {
+      spotlightResizeRaf = 0;
+      measureSpotlightCopyHeight();
+    });
+  });
 }
 
 /* ── Connected system wheel ── */

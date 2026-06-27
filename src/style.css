@@ -2044,8 +2044,7 @@ section#features {
     scroll-snap-type: none;
 }
 
-.feature-carousel.is-single .feature-carousel-control,
-.feature-carousel.is-single .feature-carousel-dots {
+.feature-carousel.is-single .feature-carousel-control {
     display: none;
 }
 
@@ -2316,8 +2315,29 @@ section#features {
 }
 
 .feature-spotlight-media .feature-carousel {
+    display: grid;
+    grid-template-rows: minmax(0, 1fr) 26px;
     width: 100%;
     max-width: none;
+}
+
+.feature-carousel--spotlight .feature-carousel-track {
+    aspect-ratio: 7 / 5;
+}
+
+.feature-carousel--spotlight .feature-carousel-dots {
+    margin-top: 0;
+    min-height: 26px;
+}
+
+.feature-carousel--spotlight.is-single .feature-carousel-dots {
+    visibility: hidden;
+}
+
+.feature-carousel--spotlight .feature-carousel-slide {
+    height: 100%;
+    object-fit: contain;
+    background: #ffffff;
 }
 
 .feature-spotlight-panel.is-transitioning {
