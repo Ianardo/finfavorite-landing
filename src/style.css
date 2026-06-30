@@ -2447,6 +2447,39 @@ section#features {
     margin: 0 auto;
 }
 
+/* About page: tighten the gap between the hero and the body copy */
+#about-hero {
+    padding-bottom: var(--s-3);
+}
+
+#about-body {
+    padding-top: 0;
+}
+
+/* About page body: readable left-aligned column, centered on the page */
+.about-body {
+    width: min(var(--container-narrow), calc(100% - var(--page-gutter)));
+    text-align: left;
+    font-size: clamp(1.15rem, 1.2vw, 1.3rem);
+    line-height: 1.7;
+    color: var(--text);
+}
+
+.about-body p {
+    margin: 0 0 var(--s-4);
+}
+
+.about-body p:first-child {
+    font-size: clamp(1.3rem, 1.6vw, 1.55rem);
+    font-weight: 600;
+    line-height: 1.5;
+    margin-bottom: var(--s-5);
+}
+
+.about-body p:last-child {
+    margin-bottom: 0;
+}
+
 /* ── Connected system wheel (blue feature section, sits below the hero) ── */
 section#connections {
     min-height: auto;
