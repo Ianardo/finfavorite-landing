@@ -2567,6 +2567,22 @@ section#connections .subheader {
     pointer-events: none;
 }
 
+/* Icon labels: hidden by default, swapped in for words on phones (see media query) */
+.connections-node__icon {
+    display: none;
+    pointer-events: none;
+}
+
+.connections-node__icon path {
+    fill: var(--text);
+    transition: fill var(--t-2) var(--ease-out);
+}
+
+.connections-node.is-active .connections-node__icon path,
+.connections-node--center .connections-node__icon path {
+    fill: var(--text-inverted);
+}
+
 @media (hover: hover) and (pointer: fine) {
     .connections-node:not(.connections-node--center):hover circle {
         stroke: var(--accent-color);
@@ -2694,6 +2710,17 @@ section#connections .subheader {
         /* reserve the tallest mobile description (~7 lines) so the stacked card
            keeps a steady height between modules here too */
         min-height: 11.2em;
+    }
+}
+
+@media (max-width: 640px) {
+    /* swap every node's word label (including the center hub) for its icon */
+    .connections-node text {
+        display: none;
+    }
+
+    .connections-node__icon {
+        display: block;
     }
 }
 
